@@ -453,6 +453,31 @@ function LandingPage({ setCurrentPage }) {
 function DashboardPage() {
   const mob = useWindowSize() < 768;
   const [sel, setSel] = useState("강남구");
+
+  const FALLBACK_CHANNELS = [
+    { channel: "부읽남TV", subs: "123만", color: "#3b82f6", avatar: "부", link: "https://www.youtube.com/@부읽남TV", videos: [
+      { date: "2026.02", title: "10·15 대책 이후 3개월, 서울 부동산 실제 변화", summary: "투기과열지구 지정 후 거래량 감소했으나 핵심 입지 실거래가는 소폭 상승.", tag: "정책분석", link: "https://www.youtube.com/@부읽남TV" },
+      { date: "2026.01", title: "2026 부동산 시장 흐름과 정책 방향", summary: "주산연 보고서 기반 분석. 서울·수도권 매매가 상승 전망.", tag: "시장전망", link: "https://www.youtube.com/@부읽남TV" },
+    ]},
+    { channel: "월급쟁이부자들TV", subs: "149만", color: "#10b981", avatar: "월", link: "https://www.youtube.com/@월급쟁이부자들TV", videos: [
+      { date: "2026.02", title: "구리시 잠실 20분 생활권, 저평가 아파트 분석", summary: "구리시 핵심 입지 분석. 8호선 연장 수혜지역.", tag: "지역분석", link: "https://www.youtube.com/@월급쟁이부자들TV" },
+      { date: "2026.01", title: "2026 부동산 투자, 무주택자가 반드시 알아야 할 것", summary: "금리 인하 기대와 실제 대출 환경 괴리 설명.", tag: "투자전략", link: "https://www.youtube.com/@월급쟁이부자들TV" },
+    ]},
+  ];
+  const [ytChannels, setYtChannels] = useState(FALLBACK_CHANNELS);
+  const [ytUpdated, setYtUpdated] = useState("수동 입력");
+  useEffect(() => {
+    fetch(`${API_BASE.replace('/apt-trade', '/youtube-insights')}`)
+      .then(r => r.json())
+      .then(d => {
+        if (d.channels && d.channels.length > 0 && d.channels.some(c => c.videos && c.videos.length > 0)) {
+          setYtChannels(d.channels);
+          setYtUpdated(d.updated_at || "자동 수집");
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const now = new Date();
   const curYM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}`;
   const prevYM = (() => { const d = new Date(now.getFullYear(), now.getMonth() - 1, 1); return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`; })();
@@ -592,42 +617,6 @@ function DashboardPage() {
 
         {/* 유튜브 인사이트 (API 자동 + 폴백) */}
         {(() => {
-          const FALLBACK_CHANNELS = [
-            {
-              channel: "부읽남TV", subs: "123만", color: "#3b82f6", avatar: "부",
-              link: "https://www.youtube.com/@부읽남TV",
-              videos: [
-                { date: "2026.02", title: "10·15 대책 이후 3개월, 서울 부동산 실제 변화", summary: "투기과열지구 지정 후 거래량 감소했으나 핵심 입지 실거래가는 소폭 상승. 대출 규제로 매수 진입 어려워졌지만 매물 잠김 현상으로 가격 하방 경직. 급매물 포착 전략 유효.", tag: "정책분석", link: "https://www.youtube.com/@부읽남TV" },
-                { date: "2026.01", title: "2026 부동산 시장 흐름과 정책 방향", summary: "주산연 보고서 기반 분석. 서울·수도권 매매가 상승 전망, 입주물량 감소로 전월세 난 가능성. 금리 인하 기대 있으나 DSR 강화로 대출 여건 개선 제한적.", tag: "시장전망", link: "https://www.youtube.com/@부읽남TV" },
-                { date: "2025.12", title: "2026년 달라지는 부동산 제도 총정리", summary: "주담대 위험가중치 상향(15→20%), 외국인 거래 관리 강화, 비수도권 미분양 양도세 완화 연장, 다주택자 양도세 중과 배제 2026.5월 종료 예정.", tag: "제도변경", link: "https://www.youtube.com/@부읽남TV" },
-              ]
-            },
-            {
-              channel: "월급쟁이부자들TV", subs: "149만", color: "#10b981", avatar: "월",
-              link: "https://www.youtube.com/@월급쟁이부자들TV",
-              videos: [
-                { date: "2026.02", title: "구리시 잠실 20분 생활권, 저평가 아파트 분석", summary: "구리시 핵심 입지 분석. 8호선 연장 수혜지역, 잠실·강남 접근성 대비 가격 갭이 큰 아파트 선별. 전세가율 높은 단지 위주 매수 타이밍 제안.", tag: "지역분석", link: "https://www.youtube.com/@월급쟁이부자들TV" },
-                { date: "2026.01", title: "2026 부동산 투자, 무주택자가 반드시 알아야 할 것", summary: "금리 인하 기대와 실제 대출 환경 괴리 설명. 스트레스 DSR로 대출한도 축소된 상황에서 자금계획 수립법. 전세가율·입지·공급량 체크리스트 제공.", tag: "투자전략", link: "https://www.youtube.com/@월급쟁이부자들TV" },
-                { date: "2025.12", title: "서울 아파트, 지금 사도 될까? 2030 내집마련 로드맵", summary: "2030세대 소득 대비 내집마련 전략. 청약 vs 매매 비교분석, 생애최초 특별공급 활용법, 3년 내 내집마련 실행 플랜 제시.", tag: "내집마련", link: "https://www.youtube.com/@월급쟁이부자들TV" },
-              ]
-            },
-          ];
-
-          // eslint-disable-next-line
-          const [ytChannels, setYtChannels] = React.useState(FALLBACK_CHANNELS);
-          const [ytUpdated, setYtUpdated] = React.useState("수동 입력");
-          // eslint-disable-next-line
-          React.useEffect(() => {
-            fetch(`${API_BASE.replace('/apt-trade', '/youtube-insights')}`)
-              .then(r => r.json())
-              .then(d => {
-                if (d.channels && d.channels.length > 0 && d.channels.some(c => c.videos && c.videos.length > 0)) {
-                  setYtChannels(d.channels);
-                  setYtUpdated(d.updated_at || "자동 수집");
-                }
-              })
-              .catch(() => {});
-          }, []);
 
           const tagColors = {
             "정책분석": "#3b82f6", "시장전망": "#f59e0b", "제도변경": "#ef4444",
