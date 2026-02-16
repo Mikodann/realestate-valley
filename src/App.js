@@ -1809,7 +1809,7 @@ function RedevelopmentMapPage() {
             ${a.direction ? `<span>${a.direction}</span>` : ""}
           </div>
           ${a.desc ? `<div style="margin-top:6px;font-size:10px;color:#8B92A5">${a.desc}</div>` : ""}
-          ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
+          ${a.link ? `<a href="https://search.naver.com/search.naver?query=${encodeURIComponent((a.name||a.complex)+' 아파트 매물')}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
         </div>`;
       const marker = L.marker([a.lat, a.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 250, className: "redev-popup" });
       articleMarkersRef.current.push(marker);
@@ -2158,7 +2158,7 @@ function ListingsPage() {
             ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}${a.floor ? `<span>${a.floor}</span>` : ""}${a.direction ? `<span>${a.direction}</span>` : ""}
           </div>
           ${a.desc ? `<div style="margin-top:6px;font-size:11px;color:#8B92A5">${a.desc}</div>` : ""}
-          ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
+          ${a.link ? `<a href="https://search.naver.com/search.naver?query=${encodeURIComponent((a.name||a.complex)+' 아파트 매물')}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
         </div>`;
         const marker = L.marker([a.lat, a.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 270, className: "redev-popup" });
         mkRef.current.push(marker);
@@ -2285,7 +2285,7 @@ function ListingsPage() {
                       {a.direction && <span>{a.direction}</span>}
                     </div>
                     {a.link && (
-                      <a href={a.link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
+                      <a href={`https://search.naver.com/search.naver?query=${encodeURIComponent((a.name || a.complex) + ' 아파트 매물')}`} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
                         style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 6, fontSize: 11, color: C.primary, textDecoration: "none" }}>
                         네이버 부동산 <ExternalLink size={10} />
                       </a>
