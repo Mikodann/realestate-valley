@@ -1749,19 +1749,31 @@ function RedevelopmentMapPage() {
   };
 
   // 매물 조회
+  // 클라이언트 캐시
+  const articleCacheRef = useRef({});
+
   const fetchArticles = async (p, tradTp) => {
+    const ck = `${p.lat}_${p.lng}_${tradTp}`;
+    if (articleCacheRef.current[ck]) {
+      setArticles(articleCacheRef.current[ck]);
+      setShowArticles(true);
+      setArticleTarget(p.name);
+      return;
+    }
     setArticlesLoading(true);
     setShowArticles(true);
     setArticleTarget(p.name);
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 10000);
     try {
-      const res = await fetch(`/api/naver-land?lat=${p.lat}&lng=${p.lng}&tradTp=${tradTp}&z=15`);
+      const res = await fetch(`/api/naver-land?lat=${p.lat}&lng=${p.lng}&tradTp=${tradTp}&z=15`, { signal: ctrl.signal });
+      clearTimeout(timer);
       const json = await res.json();
-      if (json.success) {
-        setArticles(json.articles || []);
-      } else {
-        setArticles([]);
-      }
+      const items = json.success ? (json.articles || []) : [];
+      articleCacheRef.current[ck] = items;
+      setArticles(items);
     } catch (_) {
+      clearTimeout(timer);
       setArticles([]);
     } finally {
       setArticlesLoading(false);
@@ -2075,13 +2087,19 @@ function ListingsPage() {
   const mapInst = useRef(null);
   const mkRef = useRef([]);
 
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [district, setDistrict] = useState("강남구");
-  const [tradType, setTradType] = useState("A1:B1:B2");
-  const [rletType, setRletType] = useState("APT");
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [searched, setSearched] = useState(false);
-  const [sortBy, setSortBy] = useState("price"); // price, area
+  const [tradFilter, setTradFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("default");
+
+  // Fetch JSON data (from Pi cron job)
+  useEffect(() => {
+    fetch("./data/naver-listings.json")
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
 
   // Init map
   useEffect(() => {
@@ -2097,28 +2115,27 @@ function ListingsPage() {
     return () => { map.remove(); mapInst.current = null; };
   }, []);
 
-  const doSearch = async () => {
-    const d = LISTING_DISTRICTS[district];
-    if (!d) return;
-    setLoading(true);
-    setSearched(true);
-    if (mapInst.current) mapInst.current.flyTo([d.lat, d.lng], 14, { duration: 0.6 });
-    try {
-      const res = await fetch(`/api/naver-land?lat=${d.lat}&lng=${d.lng}&tradTp=${tradType}&rletTp=${rletType}&z=14`);
-      const json = await res.json();
-      setArticles(json.success ? (json.articles || []) : []);
-    } catch (_) {
-      setArticles([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const districtData = data?.districts?.[district];
+  const articles = useMemo(() => {
+    if (!districtData) return [];
+    let arr = [...(districtData.articles || [])];
+    if (tradFilter !== "all") arr = arr.filter(a => a.trade === tradFilter);
+    if (sortBy === "area") arr.sort((a, b) => parseFloat(b.area2 || 0) - parseFloat(a.area2 || 0));
+    return arr;
+  }, [districtData, tradFilter, sortBy]);
 
-  // Draw markers
+  const stats = useMemo(() => {
+    if (!districtData) return { total: 0, sale: 0, lease: 0, rent: 0 };
+    return { total: districtData.count || 0, sale: districtData.sale || 0, lease: districtData.lease || 0, rent: districtData.rent || 0 };
+  }, [districtData]);
+
+  // Update markers when district changes
   useEffect(() => {
     const L = window.L;
     const map = mapInst.current;
-    if (!L || !map) return;
+    if (!L || !map || !districtData) return;
+
+    map.flyTo([districtData.lat, districtData.lng], 14, { duration: 0.6 });
     mkRef.current.forEach(m => map.removeLayer(m));
     mkRef.current = [];
 
@@ -2128,189 +2145,148 @@ function ListingsPage() {
       const lbl = a.trade === "매매" ? "매" : a.trade === "전세" ? "전" : "월";
       const icon = L.divIcon({
         className: "",
-        html: `<div style="min-width:42px;padding:2px 6px;border-radius:6px;background:${tc};color:#fff;font-size:10px;font-weight:700;font-family:'Noto Sans KR',sans-serif;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.4);white-space:nowrap;border:1.5px solid rgba(255,255,255,.5)">${lbl} ${a.price?.split(" ")[0] || ""}</div>`,
+        html: `<div style="min-width:42px;padding:2px 6px;border-radius:6px;background:${tc};color:#fff;font-size:10px;font-weight:700;font-family:'Noto Sans KR',sans-serif;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.4);white-space:nowrap;border:1.5px solid rgba(255,255,255,.5)">${lbl} ${(a.price || "").split(" ")[0]}</div>`,
         iconSize: [50, 20], iconAnchor: [25, 10]
       });
-      const popup = `
-        <div style="font-family:'Noto Sans KR',sans-serif;padding:12px;min-width:220px;background:#131729;color:#E8ECF4;border-radius:8px">
-          <div style="font-weight:700;font-size:14px;margin-bottom:2px">${a.name || a.complex}</div>
-          <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
-          <div style="font-size:18px;font-weight:800;color:${tc};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
-          <div style="display:flex;gap:10px;font-size:11px;color:#C5CAD6;flex-wrap:wrap">
-            ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}
-            ${a.floor ? `<span>${a.floor}</span>` : ""}
-            ${a.direction ? `<span>${a.direction}</span>` : ""}
-          </div>
-          ${a.desc ? `<div style="margin-top:6px;font-size:11px;color:#8B92A5;line-height:1.5">${a.desc}</div>` : ""}
-          ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
-        </div>`;
+      const popup = `<div style="font-family:'Noto Sans KR',sans-serif;padding:12px;min-width:220px;background:#131729;color:#E8ECF4;border-radius:8px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:2px">${a.name || a.complex}</div>
+        <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
+        <div style="font-size:18px;font-weight:800;color:${tc};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
+        <div style="display:flex;gap:10px;font-size:11px;color:#C5CAD6;flex-wrap:wrap">
+          ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}${a.floor ? `<span>${a.floor}</span>` : ""}${a.direction ? `<span>${a.direction}</span>` : ""}
+        </div>
+        ${a.desc ? `<div style="margin-top:6px;font-size:11px;color:#8B92A5">${a.desc}</div>` : ""}
+        ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
+      </div>`;
       const marker = L.marker([a.lat, a.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 270, className: "redev-popup" });
       mkRef.current.push(marker);
     });
-  }, [articles]);
+  }, [articles, districtData]);
 
-  const sorted = useMemo(() => {
-    const arr = [...articles];
-    if (sortBy === "area") arr.sort((a, b) => parseFloat(b.area2 || 0) - parseFloat(a.area2 || 0));
-    return arr;
-  }, [articles, sortBy]);
+  const cardS = { background: C.darkCard, border: `1px solid ${C.darkBorder}`, borderRadius: 14, overflow: "hidden" };
+  const pillS = (active, color) => ({ padding: "6px 14px", borderRadius: 20, border: active ? "1px solid transparent" : `1px solid ${C.darkBorder}`, background: active ? (color || C.primary) : "transparent", color: active ? "#fff" : "#8B92A5", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", transition: "all .15s", whiteSpace: "nowrap" });
 
-  const stats = useMemo(() => {
-    const s = { total: articles.length, sale: 0, lease: 0, rent: 0 };
-    articles.forEach(a => { if (a.trade === "매매") s.sale++; else if (a.trade === "전세") s.lease++; else s.rent++; });
-    return s;
-  }, [articles]);
+  if (loading) return (
+    <div style={{ paddingTop: 120, minHeight: "100vh", background: C.dark, textAlign: "center" }}>
+      <div style={{ display: "inline-block", width: 32, height: 32, border: "3px solid #2A3050", borderTopColor: C.primary, borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+      <div style={{ color: "#8B92A5", marginTop: 12, fontSize: 14 }}>매물 데이터 로딩 중...</div>
+    </div>
+  );
 
-  const tradTypes = [
-    { label: "전체", val: "A1:B1:B2" },
-    { label: "매매", val: "A1" },
-    { label: "전세", val: "B1" },
-    { label: "월세", val: "B2" },
-  ];
-  const rletTypes = [
-    { label: "아파트", val: "APT" },
-    { label: "오피스텔", val: "OPST" },
-    { label: "빌라", val: "ABYG" },
-    { label: "전체", val: "APT:OPST:ABYG:JGC" },
-  ];
-
-  const cardStyle = { background: C.darkCard, border: `1px solid ${C.darkBorder}`, borderRadius: 14, overflow: "hidden" };
-  const selectStyle = { padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none", flex: 1, minWidth: 0 };
-  const pillStyle = (active, color) => ({ padding: "6px 14px", borderRadius: 20, border: active ? "1px solid transparent" : `1px solid ${C.darkBorder}`, background: active ? (color || C.primary) : "transparent", color: active ? "#fff" : "#8B92A5", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", transition: "all .15s", whiteSpace: "nowrap" });
+  if (!data) return (
+    <div style={{ paddingTop: 120, minHeight: "100vh", background: C.dark, textAlign: "center" }}>
+      <div style={{ fontSize: 36, marginBottom: 12 }}>🏠</div>
+      <div style={{ color: "#8B92A5", fontSize: 14 }}>매물 데이터를 불러올 수 없습니다</div>
+      <div style={{ color: "#5a6480", fontSize: 12, marginTop: 4 }}>데이터 수집이 아직 진행되지 않았을 수 있습니다</div>
+    </div>
+  );
 
   return (
     <div style={{ paddingTop: 80, minHeight: "100vh", background: C.dark }}>
+      <style>{`
+        .redev-popup .leaflet-popup-content-wrapper{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;padding:0!important;color:#E8ECF4!important}
+        .redev-popup .leaflet-popup-content{margin:0!important}
+        .redev-popup .leaflet-popup-tip{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important}
+      `}</style>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: mob ? "0 12px" : "0 24px" }}>
         {/* Header */}
-        <div className="ani" style={{ marginBottom: 24 }}>
-          <div style={{ fontSize: mob ? 22 : 28, fontWeight: 800, marginBottom: 6, fontFamily: "'Outfit','Noto Sans KR',sans-serif" }}>
-            <Search size={mob ? 22 : 26} style={{ verticalAlign: "middle", marginRight: 8, color: C.primary }} />
-            매물<span style={{ color: C.primary }}>검색</span>
+        <div className="ani" style={{ marginBottom: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+            <div>
+              <div style={{ fontSize: mob ? 22 : 28, fontWeight: 800, fontFamily: "'Outfit','Noto Sans KR',sans-serif" }}>
+                <Search size={mob ? 22 : 26} style={{ verticalAlign: "middle", marginRight: 8, color: C.primary }} />
+                매물<span style={{ color: C.primary }}>검색</span>
+              </div>
+              <div style={{ fontSize: 13, color: C.darkText, marginTop: 2 }}>네이버 부동산 매물 · 갱신: {data.updated_display || "알 수 없음"}</div>
+            </div>
+            <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+              <div style={{ fontSize: 11, color: "#8B92A5", background: "rgba(0,102,255,.08)", padding: "4px 10px", borderRadius: 6 }}>
+                전체 {data.summary?.total_articles?.toLocaleString() || 0}건
+              </div>
+            </div>
           </div>
-          <div style={{ fontSize: 14, color: C.darkText }}>네이버 부동산 실시간 매물 조회</div>
         </div>
 
-        {/* Search Bar */}
-        <div className="ani d1" style={{ ...cardStyle, padding: mob ? 14 : 20, marginBottom: 20 }}>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
-            <select style={selectStyle} value={district} onChange={e => setDistrict(e.target.value)}>
-              {Object.keys(LISTING_DISTRICTS).map(d => <option key={d} value={d}>{d}</option>)}
+        {/* Controls */}
+        <div className="ani d1" style={{ ...cardS, padding: mob ? 14 : 18, marginBottom: 16 }}>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 12 }}>
+            <select value={district} onChange={e => setDistrict(e.target.value)}
+              style={{ padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none", minWidth: 120 }}>
+              {Object.keys(LISTING_DISTRICTS).map(d => {
+                const dd = data.districts?.[d];
+                return <option key={d} value={d}>{d} ({dd?.count || 0})</option>;
+              })}
             </select>
-            <select style={selectStyle} value={rletType} onChange={e => setRletType(e.target.value)}>
-              {rletTypes.map(r => <option key={r.val} value={r.val}>{r.label}</option>)}
+            <select value={sortBy} onChange={e => setSortBy(e.target.value)}
+              style={{ padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none" }}>
+              <option value="default">기본순</option>
+              <option value="area">면적순</option>
             </select>
-            <button onClick={doSearch} disabled={loading}
-              style={{ padding: "8px 24px", borderRadius: 8, border: "none", background: C.gradient1, color: "#fff", fontSize: 14, fontWeight: 600, cursor: loading ? "wait" : "pointer", fontFamily: "'Noto Sans KR',sans-serif", display: "flex", alignItems: "center", gap: 6, boxShadow: "0 4px 16px rgba(0,102,255,.3)", whiteSpace: "nowrap" }}>
-              {loading ? <span style={{ display: "inline-block", width: 14, height: 14, border: "2px solid rgba(255,255,255,.3)", borderTopColor: "#fff", borderRadius: "50%", animation: "spin .7s linear infinite" }} /> : <Search size={15} />}
-              검색
-            </button>
           </div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-            {tradTypes.map(t => (
-              <button key={t.val} style={pillStyle(tradType === t.val)} onClick={() => setTradType(t.val)}>{t.label}</button>
+            {[
+              { label: "전체", val: "all" },
+              { label: `매매 ${stats.sale}`, val: "매매", color: "#FF4757" },
+              { label: `전세 ${stats.lease}`, val: "전세", color: "#0066FF" },
+              { label: `월세 ${stats.rent}`, val: "월세", color: "#FFA502" },
+            ].map(t => (
+              <button key={t.val} style={pillS(tradFilter === t.val, t.color)} onClick={() => setTradFilter(t.val)}>{t.label}</button>
             ))}
           </div>
         </div>
 
-        {/* Content: Map + List */}
+        {/* Map + List */}
         <div style={{ display: "flex", gap: 16, flexDirection: mob ? "column" : "row" }}>
           {/* Map */}
-          <div className="ani d2" style={{ ...cardStyle, flex: mob ? "none" : 1, height: mob ? 300 : 600 }}>
-            <style>{`
-              .redev-popup .leaflet-popup-content-wrapper{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;padding:0!important;color:#E8ECF4!important}
-              .redev-popup .leaflet-popup-content{margin:0!important}
-              .redev-popup .leaflet-popup-tip{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important}
-            `}</style>
+          <div className="ani d2" style={{ ...cardS, flex: mob ? "none" : 1, height: mob ? 300 : 560 }}>
             <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
           </div>
 
           {/* List */}
-          <div className="ani d3" style={{ ...cardStyle, width: mob ? "100%" : 400, flexShrink: 0, display: "flex", flexDirection: "column", maxHeight: mob ? "none" : 600 }}>
-            {/* Stats header */}
-            <div style={{ padding: "14px 16px", borderBottom: `1px solid ${C.darkBorder}`, background: "rgba(255,255,255,.01)" }}>
-              {!searched ? (
-                <div style={{ fontSize: 13, color: "#8B92A5", textAlign: "center", padding: 8 }}>구/동을 선택하고 검색하세요</div>
-              ) : loading ? (
-                <div style={{ fontSize: 13, color: "#8B92A5", textAlign: "center", padding: 8 }}>
-                  <span style={{ display: "inline-block", width: 16, height: 16, border: "2px solid #8B92A5", borderTopColor: C.primary, borderRadius: "50%", animation: "spin .7s linear infinite", verticalAlign: "middle", marginRight: 6 }} />
-                  매물 조회 중...
-                </div>
-              ) : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                    <span style={{ fontSize: 14, fontWeight: 600 }}>{district} 매물</span>
-                    <span style={{ fontSize: 12, color: C.primary, fontWeight: 700 }}>{stats.total}건</span>
-                  </div>
-                  <div style={{ display: "flex", gap: 8 }}>
-                    {stats.sale > 0 && <span style={{ fontSize: 11, color: "#FF4757", background: "rgba(255,71,87,.1)", padding: "2px 8px", borderRadius: 4 }}>매매 {stats.sale}</span>}
-                    {stats.lease > 0 && <span style={{ fontSize: 11, color: "#0066FF", background: "rgba(0,102,255,.1)", padding: "2px 8px", borderRadius: 4 }}>전세 {stats.lease}</span>}
-                    {stats.rent > 0 && <span style={{ fontSize: 11, color: "#FFA502", background: "rgba(255,165,2,.1)", padding: "2px 8px", borderRadius: 4 }}>월세 {stats.rent}</span>}
-                    <div style={{ flex: 1 }} />
-                    <select style={{ background: "transparent", border: "none", color: "#8B92A5", fontSize: 11, cursor: "pointer", outline: "none", fontFamily: "'Noto Sans KR',sans-serif" }}
-                      value={sortBy} onChange={e => setSortBy(e.target.value)}>
-                      <option value="price">기본순</option>
-                      <option value="area">면적순</option>
-                    </select>
-                  </div>
-                </>
-              )}
+          <div className="ani d3" style={{ ...cardS, width: mob ? "100%" : 400, flexShrink: 0, display: "flex", flexDirection: "column", maxHeight: mob ? "none" : 560 }}>
+            <div style={{ padding: "12px 16px", borderBottom: `1px solid ${C.darkBorder}` }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: 14, fontWeight: 600 }}>{district}</span>
+                <span style={{ fontSize: 12, color: C.primary, fontWeight: 700 }}>{articles.length}건</span>
+              </div>
             </div>
-
-            {/* Article list */}
             <div style={{ flex: 1, overflowY: "auto", padding: 6 }}>
-              {!searched ? (
-                <div style={{ padding: 40, textAlign: "center" }}>
-                  <MapPin size={40} style={{ color: C.darkBorder, marginBottom: 12 }} />
-                  <div style={{ fontSize: 13, color: "#8B92A5" }}>지역과 조건을 선택한 뒤</div>
-                  <div style={{ fontSize: 13, color: "#8B92A5" }}>검색 버튼을 눌러주세요</div>
-                </div>
-              ) : articles.length === 0 && !loading ? (
+              {articles.length === 0 ? (
                 <div style={{ padding: 40, textAlign: "center" }}>
                   <div style={{ fontSize: 36, marginBottom: 8 }}>🏠</div>
-                  <div style={{ fontSize: 13, color: "#8B92A5" }}>매물이 없습니다</div>
-                  <div style={{ fontSize: 11, color: "#5a6480", marginTop: 4 }}>다른 조건으로 검색해보세요</div>
+                  <div style={{ fontSize: 13, color: "#8B92A5" }}>해당 조건의 매물이 없습니다</div>
                 </div>
-              ) : (
-                sorted.map((a, i) => {
-                  const tc = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
-                  return (
-                    <div key={i} style={{ padding: "12px 14px", borderRadius: 10, marginBottom: 4, cursor: "pointer", transition: "background .15s", borderLeft: `3px solid ${tc}` }}
-                      onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,.04)"}
-                      onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                      onClick={() => {
-                        if (a.lat && a.lng && mapInst.current) {
-                          mapInst.current.flyTo([a.lat, a.lng], 17, { duration: 0.5 });
-                          const m = mkRef.current[i];
-                          if (m) setTimeout(() => m.openPopup(), 600);
-                        }
-                      }}
-                    >
-                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                        <span style={{ fontSize: 10, fontWeight: 700, color: "#fff", background: tc, padding: "1px 7px", borderRadius: 4 }}>{a.trade}</span>
-                        <span style={{ fontSize: 14, fontWeight: 600, color: "#E8ECF4", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{a.name || a.complex || "매물"}</span>
-                      </div>
-                      <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 4 }}>
-                        <span style={{ fontSize: 17, fontWeight: 800, color: tc }}>{a.price}</span>
-                        {a.deposit && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
-                      </div>
-                      <div style={{ display: "flex", gap: 10, fontSize: 11, color: "#8B92A5", flexWrap: "wrap" }}>
-                        {a.type && <span>{a.type}</span>}
-                        {a.area2 && <span>전용 {a.area2}㎡</span>}
-                        {a.floor && <span>{a.floor}</span>}
-                        {a.direction && <span>{a.direction}</span>}
-                      </div>
-                      {a.desc && <div style={{ marginTop: 4, fontSize: 11, color: "#5a6480", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{a.desc}</div>}
-                      {a.link && (
-                        <a href={a.link} target="_blank" rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
-                          style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 6, fontSize: 11, color: C.primary, textDecoration: "none" }}>
-                          네이버 부동산 <ExternalLink size={10} />
-                        </a>
-                      )}
+              ) : articles.map((a, i) => {
+                const tc = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
+                return (
+                  <div key={a.id || i} style={{ padding: "12px 14px", borderRadius: 10, marginBottom: 4, cursor: "pointer", transition: "background .15s", borderLeft: `3px solid ${tc}` }}
+                    onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,.04)"}
+                    onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                    onClick={() => { if (a.lat && a.lng && mapInst.current) { mapInst.current.flyTo([a.lat, a.lng], 17, { duration: 0.5 }); const m = mkRef.current[i]; if (m) setTimeout(() => m.openPopup(), 600); } }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                      <span style={{ fontSize: 10, fontWeight: 700, color: "#fff", background: tc, padding: "1px 7px", borderRadius: 4 }}>{a.trade}</span>
+                      <span style={{ fontSize: 14, fontWeight: 600, color: "#E8ECF4", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{a.name || a.complex || "매물"}</span>
                     </div>
-                  );
-                })
-              )}
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 4 }}>
+                      <span style={{ fontSize: 17, fontWeight: 800, color: tc }}>{a.price}</span>
+                      {a.deposit && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
+                    </div>
+                    <div style={{ display: "flex", gap: 10, fontSize: 11, color: "#8B92A5", flexWrap: "wrap" }}>
+                      {a.type && <span>{a.type}</span>}
+                      {a.area2 && <span>전용 {a.area2}㎡</span>}
+                      {a.floor && <span>{a.floor}</span>}
+                      {a.direction && <span>{a.direction}</span>}
+                    </div>
+                    {a.link && (
+                      <a href={a.link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
+                        style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 6, fontSize: 11, color: C.primary, textDecoration: "none" }}>
+                        네이버 부동산 <ExternalLink size={10} />
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
