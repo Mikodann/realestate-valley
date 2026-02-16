@@ -8,7 +8,7 @@ import {
   ArrowDownRight, Building2, DollarSign, Percent, Lock, BarChart3,
   PiggyBank, FileText, Shield, Zap, ArrowRight, Eye, EyeOff,
   Sparkles, LogOut, Menu, X, RefreshCw, Loader2, Database, Wifi, WifiOff,
-  Newspaper, Brain, ExternalLink, Clock, TrendingDown, Play, Search
+  Newspaper, Brain, ExternalLink, Clock, TrendingDown, Play, Search, Map
 } from "lucide-react";
 
 /* ================================================================
@@ -336,6 +336,7 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "dashboard", label: "실거래가", icon: BarChart3 },
     { id: "calculator", label: "계산기", icon: Calculator },
     { id: "analysis", label: "지역분석", icon: MapPin },
+    { id: "redevelop", label: "재개발지도", icon: Map },
     { id: "news", label: "뉴스", icon: Newspaper },
     { id: "prediction", label: "시세예측", icon: Brain },
   ];
@@ -1600,6 +1601,304 @@ function PredictionPage() {
 /* ================================================================
    FOOTER
    ================================================================ */
+/* ================================================================
+   REDEVELOPMENT MAP PAGE — 서울 재개발·재건축 지도
+   ================================================================ */
+const REDEV_PROJECTS = [
+  { name:"압구정 2구역", type:"재건축", district:"강남구", dong:"압구정동", lat:37.5285, lng:127.0260, units:2296, status:"시공사 선정 완료", stage:"사업시행인가 추진", cost:"2.7조원", desc:"현대건설(디에이치) 수주. 최고 70층, 현대아파트 1·2·3차 통합 재건축." },
+  { name:"압구정 3구역", type:"재건축", district:"강남구", dong:"압구정동", lat:37.5275, lng:127.0310, units:5175, status:"정비구역 지정 고시", stage:"시공사 선정 추진", cost:"약 7조원", desc:"2026년 1월 고시 완료. 최고 70층, 5,175세대. 현대건설·삼성물산 경합." },
+  { name:"압구정 4구역", type:"재건축", district:"강남구", dong:"압구정동", lat:37.5265, lng:127.0230, units:1722, status:"시공사 입찰 공고", stage:"시공사 선정 추진", cost:"약 2조원", desc:"최고 69층·1,664가구. 삼성물산·현대건설·DL이앤씨 경합. 2026 상반기 선정." },
+  { name:"압구정 5구역", type:"재건축", district:"강남구", dong:"압구정동", lat:37.5255, lng:127.0200, units:1401, status:"시공사 선정 준비", stage:"시공사 선정 추진", cost:"약 1.5조원", desc:"한양1·2차 통합. 최고 68층. 삼성물산·현대건설·DL이앤씨·포스코이앤씨 검토." },
+  { name:"여의도 시범아파트", type:"재건축", district:"영등포구", dong:"여의도동", lat:37.5218, lng:126.9265, units:2493, status:"사업시행인가 추진", stage:"사업시행인가", cost:"-", desc:"1971년 준공. 신통기획 1호. 삼성물산·현대건설·대우건설 3파전. 2029 착공 목표." },
+  { name:"여의도 대교·한양", type:"재건축", district:"영등포구", dong:"여의도동", lat:37.5238, lng:126.9230, units:1800, status:"사업시행인가 완료", stage:"관리처분인가 추진", cost:"-", desc:"여의도 재건축 중 사업 속도 가장 빠름." },
+  { name:"여의도 공작·삼부", type:"재건축", district:"영등포구", dong:"여의도동", lat:37.5260, lng:126.9295, units:1400, status:"정비구역 지정", stage:"조합설립 추진", cost:"-", desc:"여의도 재건축 16개 단지 중 추진 구역. 한강변 프리미엄 입지." },
+  { name:"목동 6단지", type:"재건축", district:"양천구", dong:"목동", lat:37.5440, lng:126.8745, units:2640, status:"시공사 선정 추진", stage:"시공사 선정", cost:"-", desc:"목동 14개 단지 중 가장 빠름. 삼성물산·DL이앤씨·포스코이앤씨 경쟁." },
+  { name:"목동 13단지", type:"재건축", district:"양천구", dong:"목동", lat:37.5395, lng:126.8685, units:1848, status:"시공사 입찰 공고", stage:"시공사 선정", cost:"-", desc:"2026년 3월 시공사 선정 공고 예정." },
+  { name:"목동 1~3단지", type:"재건축", district:"양천구", dong:"목동", lat:37.5480, lng:126.8650, units:8500, status:"정비구역 지정 완료", stage:"조합설립 추진", cost:"-", desc:"2025년 12월 지정 완료. 14개 단지 전체 재건축 퍼즐 완성. 총 47,438세대." },
+  { name:"성수 1지구", type:"재개발", district:"성동구", dong:"성수동", lat:37.5450, lng:127.0580, units:3200, status:"시공사 선정 추진", stage:"시공사 선정", cost:"2.15조원", desc:"강북 최대 재개발. 현대건설·GS건설·HDC현산·금호건설 경합." },
+  { name:"성수 2지구", type:"재개발", district:"성동구", dong:"성수동", lat:37.5430, lng:127.0540, units:2500, status:"재입찰 추진", stage:"시공사 선정", cost:"1.8조원", desc:"1차 유찰 후 재입찰 준비. 삼성물산·DL이앤씨·포스코이앤씨 관심." },
+  { name:"성수 3지구", type:"재개발", district:"성동구", dong:"성수동", lat:37.5415, lng:127.0510, units:1600, status:"설계사 선정 완료", stage:"사업시행인가 추진", cost:"-", desc:"2026년 2월 설계사 선정. 사업 재개." },
+  { name:"성수 4지구", type:"재개발", district:"성동구", dong:"성수동", lat:37.5470, lng:127.0620, units:2128, status:"시공사 선정 추진", stage:"시공사 선정", cost:"1.36조원", desc:"최고 70층 초고층 확정. 대우건설·롯데건설 2파전." },
+  { name:"한남 3구역", type:"재개발", district:"용산구", dong:"한남동", lat:37.5345, lng:127.0020, units:5816, status:"시공사 선정 완료", stage:"관리처분인가 추진", cost:"5.6조원", desc:"서울 최대 규모 재개발. 현대건설 시공. 최고 35층, 5,816세대." },
+  { name:"한남 2구역", type:"재개발", district:"용산구", dong:"한남동", lat:37.5365, lng:127.0050, units:2000, status:"조합설립인가", stage:"사업시행인가 추진", cost:"-", desc:"한남뉴타운 내 주요 재개발 구역." },
+  { name:"용산정비창", type:"재개발", district:"용산구", dong:"한강로3가", lat:37.5285, lng:126.9650, units:8000, status:"개발계획 수립", stage:"마스터플랜 수립", cost:"-", desc:"49.7만㎡ 초대형 부지. 국제업무·문화·주거 복합개발." },
+  { name:"대치 쌍용1차", type:"재건축", district:"강남구", dong:"대치동", lat:37.4975, lng:127.0625, units:999, status:"시공사 선정 추진", stage:"시공사 선정", cost:"-", desc:"최고 49층, 999가구. 삼성물산 수주 유력." },
+  { name:"반포주공1단지", type:"재건축", district:"서초구", dong:"반포동", lat:37.5065, lng:127.0015, units:5610, status:"이주 진행", stage:"착공 준비", cost:"-", desc:"대규모 재건축. 이주 및 철거 진행 중." },
+  { name:"송파 한양2차", type:"재건축", district:"송파구", dong:"송파동", lat:37.5040, lng:127.1085, units:1346, status:"시공사 선정 추진", stage:"시공사 선정", cost:"-", desc:"GS건설 단독 입찰." },
+  { name:"고덕주공9단지", type:"재건축", district:"강동구", dong:"고덕동", lat:37.5565, lng:127.1590, units:2400, status:"관리용역 진행", stage:"사업시행인가 추진", cost:"-", desc:"고덕지구 재건축 추진." },
+  { name:"상계동 154-3", type:"재개발", district:"노원구", dong:"상계동", lat:37.6565, lng:127.0630, units:1200, status:"조합설립 추진", stage:"조합설립 추진", cost:"-", desc:"신통기획 재개발. 주민협의체 선거 진행." },
+  { name:"쌍문 2구역", type:"재개발", district:"도봉구", dong:"쌍문동", lat:37.6480, lng:127.0290, units:950, status:"정비구역 지정", stage:"조합설립 추진", cost:"-", desc:"쌍문동 81번지 일대 재개발." },
+  { name:"중계그린아파트", type:"재건축", district:"노원구", dong:"중계동", lat:37.6425, lng:127.0720, units:1500, status:"추진위 구성 중", stage:"추진위 구성", cost:"-", desc:"추진위원회 구성 입후보 등록 진행." },
+  { name:"신림 8구역", type:"재개발", district:"관악구", dong:"신림동", lat:37.4755, lng:126.9285, units:800, status:"추진위 승인", stage:"조합설립 추진", cost:"-", desc:"2026년 2월 추진위 승인 고시. 신통기획 재개발." },
+  { name:"신당 9구역", type:"재개발", district:"중구", dong:"신당동", lat:37.5610, lng:127.0110, units:2000, status:"정비구역 지정", stage:"사업시행인가 추진", cost:"-", desc:"서울시 '주택 공급 촉진 방안' 사업 가속화 대상." },
+  { name:"수색·증산 뉴타운", type:"재정비촉진", district:"은평구", dong:"수색동", lat:37.5825, lng:126.8980, units:12000, status:"단계별 추진", stage:"구역별 상이", cost:"-", desc:"서북부 최대 재정비촉진. GTX-A 수색역 호재." },
+  { name:"북아현 뉴타운", type:"재정비촉진", district:"서대문구", dong:"북아현동", lat:37.5595, lng:126.9550, units:8000, status:"일부 준공", stage:"구역별 상이", cost:"-", desc:"일부 준공(e편한·래미안). 잔여 구역 진행." },
+  { name:"이문·휘경 뉴타운", type:"재정비촉진", district:"동대문구", dong:"이문동", lat:37.5960, lng:127.0570, units:15000, status:"구역별 진행", stage:"구역별 상이", cost:"-", desc:"동북부 최대 재정비촉진. 일부 입주, 잔여 추진." },
+  { name:"장위 뉴타운", type:"재정비촉진", district:"성북구", dong:"장위동", lat:37.6145, lng:127.0525, units:18000, status:"구역별 진행", stage:"구역별 상이", cost:"-", desc:"서울 최대 뉴타운. 15개 구역 단계별 진행." },
+  { name:"영등포 1-2구역", type:"재정비촉진", district:"영등포구", dong:"영등포동", lat:37.5160, lng:126.9075, units:3500, status:"사업 정상화 추진", stage:"사업 정상화", cost:"-", desc:"조합 내부 갈등. 사업 정상화 노력 중." },
+  { name:"고척동 모아타운", type:"모아타운", district:"구로구", dong:"고척동", lat:37.4975, lng:126.8620, units:647, status:"시공사 선정", stage:"사업시행인가 추진", cost:"7,680억", desc:"동부건설 수주. 최고 25층 647가구." },
+  { name:"석수역세권 모아타운", type:"모아타운", district:"금천구", dong:"시흥동", lat:37.4690, lng:126.9080, units:576, status:"시공사 선정", stage:"사업시행인가 추진", cost:"-", desc:"동부건설 수주. 최고 15층 576가구." },
+  { name:"마장동 모아타운", type:"모아타운", district:"성동구", dong:"마장동", lat:37.5650, lng:127.0400, units:400, status:"시공사 선정", stage:"사업시행인가 추진", cost:"-", desc:"코오롱글로벌 수주." },
+  { name:"방화 6구역", type:"재개발", district:"강서구", dong:"방화동", lat:37.5745, lng:126.8130, units:1100, status:"조합설립인가", stage:"사업시행인가 추진", cost:"-", desc:"마곡지구 인접 개발 호재." },
+];
+
+const REDEV_COLORS = {
+  "재개발":  { color:"#FF6B35", glow:"rgba(255,107,53,0.35)", bg:"rgba(255,107,53,0.12)" },
+  "재건축":  { color:"#00D68F", glow:"rgba(0,214,143,0.35)", bg:"rgba(0,214,143,0.12)" },
+  "재정비촉진":{ color:"#A78BFA", glow:"rgba(167,139,250,0.35)", bg:"rgba(167,139,250,0.12)" },
+  "모아타운": { color:"#FFA502", glow:"rgba(255,165,2,0.35)",  bg:"rgba(255,165,2,0.12)" },
+};
+
+function RedevelopmentMapPage() {
+  const mapRef = useRef(null);
+  const mapInstance = useRef(null);
+  const markersRef = useRef([]);
+  const mob = useWindowSize() < 768;
+
+  const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState(null);
+  const [panelOpen, setPanelOpen] = useState(!mob);
+
+  const filtered = useMemo(() => {
+    return REDEV_PROJECTS.filter(p => {
+      const typeOk = filter === "all" || p.type === filter;
+      const searchOk = !search || p.name.includes(search) || p.district.includes(search) || p.dong.includes(search);
+      return typeOk && searchOk;
+    });
+  }, [filter, search]);
+
+  const totalUnits = useMemo(() => filtered.reduce((s, p) => s + p.units, 0), [filtered]);
+
+  // Init map
+  useEffect(() => {
+    if (!mapRef.current || mapInstance.current) return;
+    const L = window.L;
+    if (!L) return;
+
+    const map = L.map(mapRef.current, { center: [37.5665, 126.978], zoom: 12, zoomControl: false });
+    L.control.zoom({ position: "topright" }).addTo(map);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      attribution: "&copy; CARTO", subdomains: "abcd", maxZoom: 19
+    }).addTo(map);
+    mapInstance.current = map;
+
+    return () => { map.remove(); mapInstance.current = null; };
+  }, []);
+
+  // Update markers
+  useEffect(() => {
+    const L = window.L;
+    const map = mapInstance.current;
+    if (!L || !map) return;
+
+    markersRef.current.forEach(m => map.removeLayer(m));
+    markersRef.current = [];
+
+    filtered.forEach((p, idx) => {
+      const c = REDEV_COLORS[p.type] || REDEV_COLORS["재개발"];
+      const sz = Math.min(Math.max(p.units / 250, 10), 32);
+
+      const icon = L.divIcon({
+        className: "",
+        html: `<div style="position:relative;width:${sz*2}px;height:${sz*2}px">
+          <div style="position:absolute;width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,${c.color}66 0%,${c.color}00 70%);animation:pulse 2s ease-in-out infinite"></div>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:${sz}px;height:${sz}px;border-radius:50%;background:${c.color};border:2px solid rgba(255,255,255,.3);box-shadow:0 0 10px ${c.glow}"></div>
+        </div>`,
+        iconSize: [sz*2, sz*2], iconAnchor: [sz, sz]
+      });
+
+      const popupHtml = `
+        <div style="font-family:'Noto Sans KR',sans-serif;padding:14px;min-width:230px;background:#131729;color:#E8ECF4;border-radius:10px">
+          <div style="display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:${c.bg};color:${c.color};margin-bottom:8px;letter-spacing:1px">${p.type}</div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:3px">${p.name}</div>
+          <div style="font-size:11px;color:#8B92A5;margin-bottom:10px">${p.district} ${p.dong}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="background:rgba(255,255,255,.04);padding:7px 9px;border-radius:7px"><div style="font-size:9px;color:#8B92A5">세대수</div><div style="font-size:12px;font-weight:600">${p.units.toLocaleString()}</div></div>
+            <div style="background:rgba(255,255,255,.04);padding:7px 9px;border-radius:7px"><div style="font-size:9px;color:#8B92A5">단계</div><div style="font-size:12px;font-weight:600">${p.stage}</div></div>
+            ${p.cost !== "-" ? `<div style="background:rgba(255,255,255,.04);padding:7px 9px;border-radius:7px;grid-column:span 2"><div style="font-size:9px;color:#8B92A5">사업비</div><div style="font-size:12px;font-weight:600">${p.cost}</div></div>` : ""}
+          </div>
+          <div style="margin-top:10px;padding:7px 10px;border-radius:7px;font-size:11px;background:${c.bg};color:${c.color};border-left:3px solid ${c.color}">📌 ${p.status}</div>
+        </div>`;
+
+      const marker = L.marker([p.lat, p.lng], { icon })
+        .addTo(map)
+        .bindPopup(popupHtml, { maxWidth: 280, className: "redev-popup" });
+
+      marker.on("click", () => setSelected(idx));
+      markersRef.current.push(marker);
+    });
+  }, [filtered]);
+
+  const focusProject = (idx) => {
+    const p = filtered[idx];
+    if (!p || !mapInstance.current) return;
+    mapInstance.current.flyTo([p.lat, p.lng], 15, { duration: 0.6 });
+    if (markersRef.current[idx]) markersRef.current[idx].openPopup();
+    setSelected(idx);
+    if (mob) setPanelOpen(false);
+  };
+
+  const types = ["all", "재건축", "재개발", "재정비촉진", "모아타운"];
+
+  const s = {
+    page: { paddingTop: 60, minHeight: "100vh", background: C.dark, position: "relative" },
+    mapWrap: { position: "relative", height: mob ? "50vh" : "calc(100vh - 60px)", display: "flex" },
+    map: { flex: 1, background: "#0a0e17", position: "relative" },
+    filterBar: { position: "absolute", top: 12, left: 12, right: mob ? 12 : 392, zIndex: 500, display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" },
+    filterBtn: (active, type) => {
+      const base = { padding: "6px 14px", borderRadius: 20, border: "1px solid rgba(255,255,255,.08)", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", transition: "all .2s", whiteSpace: "nowrap" };
+      if (!active) return { ...base, background: "rgba(17,23,41,.85)", backdropFilter: "blur(8px)", color: "#8B92A5" };
+      if (type === "all") return { ...base, background: "linear-gradient(135deg,#FF6B35,#00D68F)", color: "#fff", border: "1px solid transparent" };
+      const c = REDEV_COLORS[type];
+      return { ...base, background: c ? c.color : C.primary, color: "#fff", border: "1px solid transparent", boxShadow: c ? `0 0 14px ${c.glow}` : "none" };
+    },
+    searchInput: { padding: "6px 12px", borderRadius: 20, border: "1px solid rgba(255,255,255,.08)", background: "rgba(17,23,41,.85)", backdropFilter: "blur(8px)", color: "#E8ECF4", fontSize: 12, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", width: mob ? "100%" : 180 },
+    statsBar: { position: "absolute", bottom: 12, left: 12, zIndex: 500, display: "flex", gap: 10, alignItems: "center" },
+    statBadge: { background: "rgba(17,23,41,.9)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 10, padding: "8px 14px", display: "flex", flexDirection: "column", alignItems: "center" },
+    statVal: { fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 16, color: "#E8ECF4" },
+    statLbl: { fontSize: 9, color: "#8B92A5", letterSpacing: 1, textTransform: "uppercase" },
+    panel: { width: mob ? "100%" : 380, height: mob ? "50vh" : "calc(100vh - 60px)", background: C.darkCard, borderLeft: mob ? "none" : `1px solid ${C.darkBorder}`, borderTop: mob ? `1px solid ${C.darkBorder}` : "none", overflowY: "auto", flexShrink: 0 },
+    panelHead: { padding: "16px 18px", borderBottom: `1px solid ${C.darkBorder}`, position: "sticky", top: 0, background: C.darkCard, zIndex: 5, display: "flex", justifyContent: "space-between", alignItems: "center" },
+    card: (isActive) => ({ padding: "12px 14px", borderRadius: 10, border: isActive ? `1px solid rgba(255,255,255,.12)` : "1px solid transparent", cursor: "pointer", transition: "all .15s", marginBottom: 3, background: isActive ? "rgba(255,255,255,.04)" : "transparent" }),
+    cardName: { fontSize: 13, fontWeight: 600, color: "#E8ECF4" },
+    cardDistrict: { fontSize: 10, color: "#8B92A5", background: "rgba(255,255,255,.04)", padding: "1px 7px", borderRadius: 4 },
+    dot: (type) => { const c = REDEV_COLORS[type]; return { width: 7, height: 7, borderRadius: "50%", background: c ? c.color : "#666", boxShadow: c ? `0 0 5px ${c.glow}` : "none", flexShrink: 0 }; },
+    meta: { fontSize: 10, color: "#8B92A5" },
+    metaLabel: { color: "#5a6480", marginRight: 3 },
+    detail: { padding: 16, background: "rgba(255,255,255,.02)", borderBottom: `1px solid ${C.darkBorder}` },
+    detailName: { fontSize: 16, fontWeight: 700, marginBottom: 3 },
+    detailDistrict: { fontSize: 12, color: "#8B92A5", marginBottom: 14 },
+    detailGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 14 },
+    detailStat: { background: "rgba(255,255,255,.03)", padding: "10px 12px", borderRadius: 9 },
+    detailStatLabel: { fontSize: 9, color: "#8B92A5", letterSpacing: .5, textTransform: "uppercase", marginBottom: 3 },
+    detailStatVal: { fontSize: 14, fontWeight: 600 },
+    detailDesc: (type) => { const c = REDEV_COLORS[type]; return { fontSize: 12, lineHeight: 1.7, color: "#C5CAD6", padding: "10px 12px", background: "rgba(255,255,255,.02)", borderRadius: 9, borderLeft: `3px solid ${c ? c.color : "#666"}` }; },
+    legend: { display: "flex", gap: 10, flexWrap: "wrap" },
+    legendItem: { display: "flex", alignItems: "center", gap: 5, fontSize: 10, color: "#8B92A5" },
+    legendDot: (type) => { const c = REDEV_COLORS[type]; return { width: 6, height: 6, borderRadius: "50%", background: c ? c.color : "#666" }; },
+    toggleBtn: { position: "absolute", top: 12, right: 12, zIndex: 600, background: "rgba(17,23,41,.9)", backdropFilter: "blur(8px)", border: `1px solid ${C.darkBorder}`, borderRadius: 10, padding: "8px 12px", color: "#E8ECF4", cursor: "pointer", fontSize: 12, fontFamily: "'Noto Sans KR',sans-serif", display: mob ? "block" : "none" },
+  };
+
+  return (
+    <div style={s.page}>
+      <style>{`
+        .redev-popup .leaflet-popup-content-wrapper{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;padding:0!important;color:#E8ECF4!important}
+        .redev-popup .leaflet-popup-content{margin:0!important}
+        .redev-popup .leaflet-popup-tip{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important}
+        @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+      `}</style>
+
+      <div style={s.mapWrap}>
+        {/* Map */}
+        <div style={s.map}>
+          <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
+
+          {/* Filter */}
+          <div style={s.filterBar}>
+            {types.map(t => (
+              <button key={t} style={s.filterBtn(filter === t, t)} onClick={() => setFilter(t)}>
+                {t === "all" ? "전체" : t}
+              </button>
+            ))}
+            <input
+              type="text" placeholder="🔍 구역명 검색..." style={s.searchInput}
+              value={search} onChange={e => setSearch(e.target.value)}
+            />
+          </div>
+
+          {/* Stats */}
+          <div style={s.statsBar}>
+            <div style={s.statBadge}>
+              <div style={s.statVal}>{filtered.length}</div>
+              <div style={s.statLbl}>구역</div>
+            </div>
+            <div style={s.statBadge}>
+              <div style={s.statVal}>{totalUnits.toLocaleString()}</div>
+              <div style={s.statLbl}>세대</div>
+            </div>
+            <div style={{ ...s.statBadge, flexDirection: "row", gap: 8 }}>
+              {Object.entries(REDEV_COLORS).map(([t, c]) => (
+                <div key={t} style={s.legendItem}>
+                  <div style={s.legendDot(t)} />
+                  <span>{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile toggle */}
+          {mob && (
+            <button style={s.toggleBtn} onClick={() => setPanelOpen(v => !v)}>
+              {panelOpen ? "지도 보기 ▲" : `목록 보기 ▼ (${filtered.length})`}
+            </button>
+          )}
+        </div>
+
+        {/* Panel */}
+        {(!mob || panelOpen) && (
+          <div style={s.panel}>
+            {/* Detail */}
+            {selected !== null && filtered[selected] && (() => {
+              const p = filtered[selected];
+              const c = REDEV_COLORS[p.type];
+              return (
+                <div style={s.detail}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                    <div>
+                      <div style={{ display: "inline-block", fontSize: 10, fontWeight: 600, padding: "2px 8px", borderRadius: 4, background: c?.bg, color: c?.color, marginBottom: 6, letterSpacing: 1 }}>{p.type}</div>
+                      <div style={s.detailName}>{p.name}</div>
+                      <div style={s.detailDistrict}>{p.district} {p.dong}</div>
+                    </div>
+                    <button onClick={() => setSelected(null)} style={{ background: "none", border: "none", color: "#8B92A5", fontSize: 16, cursor: "pointer", padding: 4 }}>✕</button>
+                  </div>
+                  <div style={s.detailGrid}>
+                    <div style={s.detailStat}><div style={s.detailStatLabel}>세대수</div><div style={{ ...s.detailStatVal, color: c?.color }}>{p.units.toLocaleString()}</div></div>
+                    <div style={s.detailStat}><div style={s.detailStatLabel}>현재 단계</div><div style={s.detailStatVal}>{p.stage}</div></div>
+                    <div style={s.detailStat}><div style={s.detailStatLabel}>사업비</div><div style={s.detailStatVal}>{p.cost}</div></div>
+                    <div style={s.detailStat}><div style={s.detailStatLabel}>현황</div><div style={s.detailStatVal}>{p.status}</div></div>
+                  </div>
+                  <div style={s.detailDesc(p.type)}>{p.desc}</div>
+                </div>
+              );
+            })()}
+
+            <div style={s.panelHead}>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600 }}>정비사업 구역 목록</div>
+                <div style={{ fontSize: 11, color: "#8B92A5" }}>{filtered.length}개 구역 · {totalUnits.toLocaleString()}세대</div>
+              </div>
+            </div>
+
+            <div style={{ padding: 6 }}>
+              {filtered.map((p, i) => {
+                const c = REDEV_COLORS[p.type];
+                return (
+                  <div key={i} style={s.card(selected === i)} onClick={() => focusProject(i)}
+                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,.04)"; }}
+                    onMouseLeave={e => { if (selected !== i) e.currentTarget.style.background = "transparent"; }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                      <div style={s.dot(p.type)} />
+                      <div style={s.cardName}>{p.name}</div>
+                      <div style={s.cardDistrict}>{p.district}</div>
+                    </div>
+                    <div style={{ display: "flex", gap: 10, paddingLeft: 15 }}>
+                      <span style={s.meta}><span style={s.metaLabel}>세대</span>{p.units.toLocaleString()}</span>
+                      <span style={s.meta}><span style={s.metaLabel}>단계</span>{p.stage}</span>
+                      {p.cost !== "-" && <span style={s.meta}><span style={s.metaLabel}>사업비</span>{p.cost}</span>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Footer() {
   const mob = useWindowSize() < 768;
   return (
@@ -1646,6 +1945,7 @@ export default function App() {
       {page === "dashboard" && <DashboardPage />}
       {page === "calculator" && <CalculatorPage />}
       {page === "analysis" && <AnalysisPage />}
+      {page === "redevelop" && <RedevelopmentMapPage />}
       {page === "news" && <NewsPage />}
       {page === "prediction" && <PredictionPage />}
       <Footer />
