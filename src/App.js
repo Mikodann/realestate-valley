@@ -2101,8 +2101,9 @@ function ListingsPage() {
       .catch(() => setLoading(false));
   }, []);
 
-  // Init map
+  // Init map (data 로드 후 실행)
   useEffect(() => {
+    if (loading || !data) return;
     if (!mapRef.current || mapInst.current) return;
     const L = window.L;
     if (!L) return;
@@ -2113,7 +2114,7 @@ function ListingsPage() {
     }).addTo(map);
     mapInst.current = map;
     return () => { map.remove(); mapInst.current = null; };
-  }, []);
+  }, [loading, data]);
 
   const districtData = data?.districts?.[district];
   const articles = useMemo(() => {
@@ -2131,36 +2132,41 @@ function ListingsPage() {
 
   // Update markers when district changes
   useEffect(() => {
-    const L = window.L;
-    const map = mapInst.current;
-    if (!L || !map || !districtData) return;
+    const drawMarkers = () => {
+      const L = window.L;
+      const map = mapInst.current;
+      if (!L || !map || !districtData) return;
 
-    map.flyTo([districtData.lat, districtData.lng], 14, { duration: 0.6 });
-    mkRef.current.forEach(m => map.removeLayer(m));
-    mkRef.current = [];
+      map.flyTo([districtData.lat, districtData.lng], 14, { duration: 0.6 });
+      mkRef.current.forEach(m => map.removeLayer(m));
+      mkRef.current = [];
 
-    articles.forEach((a, i) => {
-      if (!a.lat || !a.lng) return;
-      const tc = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
-      const lbl = a.trade === "매매" ? "매" : a.trade === "전세" ? "전" : "월";
-      const icon = L.divIcon({
-        className: "",
-        html: `<div style="min-width:42px;padding:2px 6px;border-radius:6px;background:${tc};color:#fff;font-size:10px;font-weight:700;font-family:'Noto Sans KR',sans-serif;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.4);white-space:nowrap;border:1.5px solid rgba(255,255,255,.5)">${lbl} ${(a.price || "").split(" ")[0]}</div>`,
-        iconSize: [50, 20], iconAnchor: [25, 10]
+      articles.forEach((a, i) => {
+        if (!a.lat || !a.lng) return;
+        const tc = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
+        const lbl = a.trade === "매매" ? "매" : a.trade === "전세" ? "전" : "월";
+        const icon = L.divIcon({
+          className: "",
+          html: `<div style="min-width:42px;padding:2px 6px;border-radius:6px;background:${tc};color:#fff;font-size:10px;font-weight:700;font-family:'Noto Sans KR',sans-serif;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.4);white-space:nowrap;border:1.5px solid rgba(255,255,255,.5)">${lbl} ${(a.price || "").split(" ")[0]}</div>`,
+          iconSize: [50, 20], iconAnchor: [25, 10]
+        });
+        const popup = `<div style="font-family:'Noto Sans KR',sans-serif;padding:12px;min-width:220px;background:#131729;color:#E8ECF4;border-radius:8px">
+          <div style="font-weight:700;font-size:14px;margin-bottom:2px">${a.name || a.complex}</div>
+          <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
+          <div style="font-size:18px;font-weight:800;color:${tc};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
+          <div style="display:flex;gap:10px;font-size:11px;color:#C5CAD6;flex-wrap:wrap">
+            ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}${a.floor ? `<span>${a.floor}</span>` : ""}${a.direction ? `<span>${a.direction}</span>` : ""}
+          </div>
+          ${a.desc ? `<div style="margin-top:6px;font-size:11px;color:#8B92A5">${a.desc}</div>` : ""}
+          ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
+        </div>`;
+        const marker = L.marker([a.lat, a.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 270, className: "redev-popup" });
+        mkRef.current.push(marker);
       });
-      const popup = `<div style="font-family:'Noto Sans KR',sans-serif;padding:12px;min-width:220px;background:#131729;color:#E8ECF4;border-radius:8px">
-        <div style="font-weight:700;font-size:14px;margin-bottom:2px">${a.name || a.complex}</div>
-        <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
-        <div style="font-size:18px;font-weight:800;color:${tc};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
-        <div style="display:flex;gap:10px;font-size:11px;color:#C5CAD6;flex-wrap:wrap">
-          ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}${a.floor ? `<span>${a.floor}</span>` : ""}${a.direction ? `<span>${a.direction}</span>` : ""}
-        </div>
-        ${a.desc ? `<div style="margin-top:6px;font-size:11px;color:#8B92A5">${a.desc}</div>` : ""}
-        ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
-      </div>`;
-      const marker = L.marker([a.lat, a.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 270, className: "redev-popup" });
-      mkRef.current.push(marker);
-    });
+    };
+    // 지도 초기화 직후면 약간 딜레이
+    if (mapInst.current) drawMarkers();
+    else setTimeout(drawMarkers, 300);
   }, [articles, districtData]);
 
   const cardS = { background: C.darkCard, border: `1px solid ${C.darkBorder}`, borderRadius: 14, overflow: "hidden" };
