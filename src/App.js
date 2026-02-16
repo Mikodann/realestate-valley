@@ -1802,7 +1802,7 @@ function RedevelopmentMapPage() {
         <div style="font-family:'Noto Sans KR',sans-serif;padding:10px;min-width:200px;background:#131729;color:#E8ECF4;border-radius:8px;font-size:12px">
           <div style="font-weight:700;font-size:13px;margin-bottom:4px">${a.name || a.complex}</div>
           <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
-          <div style="font-size:16px;font-weight:800;color:${tradColor};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
+          <div style="font-size:16px;font-weight:800;color:${tradColor};margin-bottom:6px">${a.price}${a.deposit && a.deposit !== "0" ? " / " + a.deposit : ""}</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:10px;color:#C5CAD6">
             ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}
             ${a.floor ? `<span>${a.floor}</span>` : ""}
@@ -2006,7 +2006,7 @@ function RedevelopmentMapPage() {
                           </div>
                           <div style={{ display: "flex", alignItems: "baseline", gap: 6, paddingLeft: 0 }}>
                             <span style={{ fontSize: 15, fontWeight: 800, color: tradColor }}>{a.price}</span>
-                            {a.deposit && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
+                            {a.deposit && a.deposit !== "0" && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
                           </div>
                           <div style={{ display: "flex", gap: 8, marginTop: 3, fontSize: 10, color: "#8B92A5" }}>
                             {a.area2 && <span>전용 {a.area2}㎡</span>}
@@ -2153,7 +2153,7 @@ function ListingsPage() {
         const popup = `<div style="font-family:'Noto Sans KR',sans-serif;padding:12px;min-width:220px;background:#131729;color:#E8ECF4;border-radius:8px">
           <div style="font-weight:700;font-size:14px;margin-bottom:2px">${a.name || a.complex}</div>
           <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
-          <div style="font-size:18px;font-weight:800;color:${tc};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
+          <div style="font-size:18px;font-weight:800;color:${tc};margin-bottom:6px">${a.price}${a.deposit && a.deposit !== "0" ? " / " + a.deposit : ""}</div>
           <div style="display:flex;gap:10px;font-size:11px;color:#C5CAD6;flex-wrap:wrap">
             ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}${a.floor ? `<span>${a.floor}</span>` : ""}${a.direction ? `<span>${a.direction}</span>` : ""}
           </div>
@@ -2276,7 +2276,7 @@ function ListingsPage() {
                     </div>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 4 }}>
                       <span style={{ fontSize: 17, fontWeight: 800, color: tc }}>{a.price}</span>
-                      {a.deposit && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
+                      {a.deposit && a.deposit !== "0" && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
                     </div>
                     <div style={{ display: "flex", gap: 10, fontSize: 11, color: "#8B92A5", flexWrap: "wrap" }}>
                       {a.type && <span>{a.type}</span>}
