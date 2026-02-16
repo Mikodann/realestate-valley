@@ -337,6 +337,7 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "calculator", label: "계산기", icon: Calculator },
     { id: "analysis", label: "지역분석", icon: MapPin },
     { id: "redevelop", label: "재개발지도", icon: Map },
+    { id: "listings", label: "매물검색", icon: Search },
     { id: "news", label: "뉴스", icon: Newspaper },
     { id: "prediction", label: "시세예측", icon: Brain },
   ];
@@ -1653,12 +1654,20 @@ function RedevelopmentMapPage() {
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const markersRef = useRef([]);
+  const articleMarkersRef = useRef([]);
   const mob = useWindowSize() < 768;
 
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState(null);
   const [panelOpen, setPanelOpen] = useState(!mob);
+
+  // 매물 관련 state
+  const [articles, setArticles] = useState([]);
+  const [articlesLoading, setArticlesLoading] = useState(false);
+  const [tradFilter, setTradFilter] = useState("A1:B1:B2"); // 전체
+  const [showArticles, setShowArticles] = useState(false);
+  const [articleTarget, setArticleTarget] = useState(null); // 어떤 구역의 매물인지
 
   const filtered = useMemo(() => {
     return REDEV_PROJECTS.filter(p => {
@@ -1738,6 +1747,62 @@ function RedevelopmentMapPage() {
     setSelected(idx);
     if (mob) setPanelOpen(false);
   };
+
+  // 매물 조회
+  const fetchArticles = async (p, tradTp) => {
+    setArticlesLoading(true);
+    setShowArticles(true);
+    setArticleTarget(p.name);
+    try {
+      const res = await fetch(`/api/naver-land?lat=${p.lat}&lng=${p.lng}&tradTp=${tradTp}&z=15`);
+      const json = await res.json();
+      if (json.success) {
+        setArticles(json.articles || []);
+      } else {
+        setArticles([]);
+      }
+    } catch (_) {
+      setArticles([]);
+    } finally {
+      setArticlesLoading(false);
+    }
+  };
+
+  // 매물 마커 그리기
+  useEffect(() => {
+    const L = window.L;
+    const map = mapInstance.current;
+    if (!L || !map) return;
+    articleMarkersRef.current.forEach(m => map.removeLayer(m));
+    articleMarkersRef.current = [];
+
+    if (!showArticles) return;
+
+    articles.forEach(a => {
+      if (!a.lat || !a.lng) return;
+      const tradColor = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
+      const icon = L.divIcon({
+        className: "",
+        html: `<div style="width:18px;height:18px;border-radius:3px;background:${tradColor};border:1.5px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.4)">${a.trade === "매매" ? "매" : a.trade === "전세" ? "전" : "월"}</div>`,
+        iconSize: [18, 18], iconAnchor: [9, 9]
+      });
+      const popup = `
+        <div style="font-family:'Noto Sans KR',sans-serif;padding:10px;min-width:200px;background:#131729;color:#E8ECF4;border-radius:8px;font-size:12px">
+          <div style="font-weight:700;font-size:13px;margin-bottom:4px">${a.name || a.complex}</div>
+          <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
+          <div style="font-size:16px;font-weight:800;color:${tradColor};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:10px;color:#C5CAD6">
+            ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}
+            ${a.floor ? `<span>${a.floor}</span>` : ""}
+            ${a.direction ? `<span>${a.direction}</span>` : ""}
+          </div>
+          ${a.desc ? `<div style="margin-top:6px;font-size:10px;color:#8B92A5">${a.desc}</div>` : ""}
+          ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
+        </div>`;
+      const marker = L.marker([a.lat, a.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 250, className: "redev-popup" });
+      articleMarkersRef.current.push(marker);
+    });
+  }, [articles, showArticles]);
 
   const types = ["all", "재건축", "재개발", "재정비촉진", "모아타운"];
 
@@ -1859,6 +1924,26 @@ function RedevelopmentMapPage() {
                     <div style={s.detailStat}><div style={s.detailStatLabel}>현황</div><div style={s.detailStatVal}>{p.status}</div></div>
                   </div>
                   <div style={s.detailDesc(p.type)}>{p.desc}</div>
+                  {/* 매물 조회 버튼 */}
+                  <div style={{ marginTop: 12, display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {[
+                      { label: "전체 매물", val: "A1:B1:B2" },
+                      { label: "매매", val: "A1" },
+                      { label: "전세", val: "B1" },
+                      { label: "월세", val: "B2" },
+                    ].map(t => (
+                      <button key={t.val} onClick={() => { setTradFilter(t.val); fetchArticles(p, t.val); }}
+                        style={{ padding: "6px 12px", borderRadius: 8, border: tradFilter === t.val && showArticles ? "1px solid " + C.primary : `1px solid ${C.darkBorder}`, background: tradFilter === t.val && showArticles ? "rgba(0,102,255,.12)" : "rgba(255,255,255,.03)", color: tradFilter === t.val && showArticles ? C.primary : "#C5CAD6", fontSize: 11, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif" }}>
+                        {t.label}
+                      </button>
+                    ))}
+                    {showArticles && (
+                      <button onClick={() => { setShowArticles(false); setArticles([]); }}
+                        style={{ padding: "6px 12px", borderRadius: 8, border: `1px solid rgba(255,71,87,.2)`, background: "rgba(255,71,87,.08)", color: "#FF4757", fontSize: 11, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif" }}>
+                        매물 숨기기
+                      </button>
+                    )}
+                  </div>
                 </div>
               );
             })()}
@@ -1869,6 +1954,60 @@ function RedevelopmentMapPage() {
                 <div style={{ fontSize: 11, color: "#8B92A5" }}>{filtered.length}개 구역 · {totalUnits.toLocaleString()}세대</div>
               </div>
             </div>
+
+            {/* 매물 결과 */}
+            {showArticles && (
+              <div style={{ borderBottom: `1px solid ${C.darkBorder}` }}>
+                <div style={{ padding: "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "rgba(0,102,255,.04)" }}>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: C.primary }}>📍 {articleTarget} 주변 매물</div>
+                    <div style={{ fontSize: 11, color: "#8B92A5" }}>
+                      {articlesLoading ? "조회 중..." : `${articles.length}건`}
+                      <span style={{ marginLeft: 8, fontSize: 10 }}>
+                        <span style={{ color: "#FF4757" }}>●</span> 매매 &nbsp;
+                        <span style={{ color: "#0066FF" }}>●</span> 전세 &nbsp;
+                        <span style={{ color: "#FFA502" }}>●</span> 월세
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {articlesLoading ? (
+                  <div style={{ padding: 24, textAlign: "center", color: "#8B92A5", fontSize: 13 }}>
+                    <div style={{ display: "inline-block", width: 20, height: 20, border: "2px solid #8B92A5", borderTopColor: C.primary, borderRadius: "50%", animation: "spin 1s linear infinite", marginBottom: 8 }} />
+                    <div>매물 조회 중...</div>
+                  </div>
+                ) : articles.length === 0 ? (
+                  <div style={{ padding: 20, textAlign: "center", color: "#8B92A5", fontSize: 12 }}>주변 매물이 없습니다</div>
+                ) : (
+                  <div style={{ maxHeight: 300, overflowY: "auto", padding: 6 }}>
+                    {articles.slice(0, 30).map((a, i) => {
+                      const tradColor = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
+                      return (
+                        <div key={i} style={{ padding: "10px 12px", borderRadius: 8, marginBottom: 3, cursor: "pointer", transition: "background .15s" }}
+                          onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,.04)"}
+                          onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                          onClick={() => { if (a.lat && a.lng && mapInstance.current) { mapInstance.current.flyTo([a.lat, a.lng], 17, { duration: 0.5 }); const m = articleMarkersRef.current[i]; if (m) m.openPopup(); } }}
+                        >
+                          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
+                            <span style={{ fontSize: 9, fontWeight: 700, color: "#fff", background: tradColor, padding: "1px 6px", borderRadius: 3 }}>{a.trade}</span>
+                            <span style={{ fontSize: 13, fontWeight: 600, color: "#E8ECF4", flex: 1 }}>{a.name || a.complex}</span>
+                          </div>
+                          <div style={{ display: "flex", alignItems: "baseline", gap: 6, paddingLeft: 0 }}>
+                            <span style={{ fontSize: 15, fontWeight: 800, color: tradColor }}>{a.price}</span>
+                            {a.deposit && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
+                          </div>
+                          <div style={{ display: "flex", gap: 8, marginTop: 3, fontSize: 10, color: "#8B92A5" }}>
+                            {a.area2 && <span>전용 {a.area2}㎡</span>}
+                            {a.floor && <span>{a.floor}</span>}
+                            {a.direction && <span>{a.direction}</span>}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
 
             <div style={{ padding: 6 }}>
               {filtered.map((p, i) => {
@@ -1894,6 +2033,287 @@ function RedevelopmentMapPage() {
             </div>
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================
+   LISTINGS PAGE — 네이버부동산 매물 검색
+   ================================================================ */
+const LISTING_DISTRICTS = {
+  "강남구":{lat:37.5172,lng:127.0473,code:"1168000000"},
+  "강동구":{lat:37.5301,lng:127.1238,code:"1174000000"},
+  "강북구":{lat:37.6397,lng:127.0255,code:"1130500000"},
+  "강서구":{lat:37.5510,lng:126.8495,code:"1150000000"},
+  "관악구":{lat:37.4784,lng:126.9516,code:"1162000000"},
+  "광진구":{lat:37.5385,lng:127.0823,code:"1121500000"},
+  "구로구":{lat:37.4955,lng:126.8876,code:"1153000000"},
+  "금천구":{lat:37.4568,lng:126.8956,code:"1154500000"},
+  "노원구":{lat:37.6542,lng:127.0568,code:"1135000000"},
+  "도봉구":{lat:37.6688,lng:127.0472,code:"1132000000"},
+  "동대문구":{lat:37.5744,lng:127.0396,code:"1123000000"},
+  "동작구":{lat:37.5124,lng:126.9393,code:"1159000000"},
+  "마포구":{lat:37.5664,lng:126.9014,code:"1144000000"},
+  "서대문구":{lat:37.5791,lng:126.9368,code:"1141000000"},
+  "서초구":{lat:37.4837,lng:127.0324,code:"1165000000"},
+  "성동구":{lat:37.5634,lng:127.0370,code:"1120000000"},
+  "성북구":{lat:37.5894,lng:127.0167,code:"1129000000"},
+  "송파구":{lat:37.5146,lng:127.1060,code:"1171000000"},
+  "양천구":{lat:37.5170,lng:126.8664,code:"1147000000"},
+  "영등포구":{lat:37.5264,lng:126.8963,code:"1156000000"},
+  "용산구":{lat:37.5326,lng:126.9906,code:"1117000000"},
+  "은평구":{lat:37.6027,lng:126.9292,code:"1138000000"},
+  "종로구":{lat:37.5735,lng:126.9790,code:"1111000000"},
+  "중구":{lat:37.5641,lng:126.9979,code:"1114000000"},
+  "중랑구":{lat:37.6066,lng:127.0927,code:"1126000000"},
+};
+
+function ListingsPage() {
+  const mob = useWindowSize() < 768;
+  const mapRef = useRef(null);
+  const mapInst = useRef(null);
+  const mkRef = useRef([]);
+
+  const [district, setDistrict] = useState("강남구");
+  const [tradType, setTradType] = useState("A1:B1:B2");
+  const [rletType, setRletType] = useState("APT");
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
+  const [sortBy, setSortBy] = useState("price"); // price, area
+
+  // Init map
+  useEffect(() => {
+    if (!mapRef.current || mapInst.current) return;
+    const L = window.L;
+    if (!L) return;
+    const map = L.map(mapRef.current, { center: [37.5665, 126.978], zoom: 12, zoomControl: false });
+    L.control.zoom({ position: "topright" }).addTo(map);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      attribution: "&copy; CARTO", subdomains: "abcd", maxZoom: 19
+    }).addTo(map);
+    mapInst.current = map;
+    return () => { map.remove(); mapInst.current = null; };
+  }, []);
+
+  const doSearch = async () => {
+    const d = LISTING_DISTRICTS[district];
+    if (!d) return;
+    setLoading(true);
+    setSearched(true);
+    if (mapInst.current) mapInst.current.flyTo([d.lat, d.lng], 14, { duration: 0.6 });
+    try {
+      const res = await fetch(`/api/naver-land?lat=${d.lat}&lng=${d.lng}&tradTp=${tradType}&rletTp=${rletType}&z=14`);
+      const json = await res.json();
+      setArticles(json.success ? (json.articles || []) : []);
+    } catch (_) {
+      setArticles([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Draw markers
+  useEffect(() => {
+    const L = window.L;
+    const map = mapInst.current;
+    if (!L || !map) return;
+    mkRef.current.forEach(m => map.removeLayer(m));
+    mkRef.current = [];
+
+    articles.forEach((a, i) => {
+      if (!a.lat || !a.lng) return;
+      const tc = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
+      const lbl = a.trade === "매매" ? "매" : a.trade === "전세" ? "전" : "월";
+      const icon = L.divIcon({
+        className: "",
+        html: `<div style="min-width:42px;padding:2px 6px;border-radius:6px;background:${tc};color:#fff;font-size:10px;font-weight:700;font-family:'Noto Sans KR',sans-serif;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.4);white-space:nowrap;border:1.5px solid rgba(255,255,255,.5)">${lbl} ${a.price?.split(" ")[0] || ""}</div>`,
+        iconSize: [50, 20], iconAnchor: [25, 10]
+      });
+      const popup = `
+        <div style="font-family:'Noto Sans KR',sans-serif;padding:12px;min-width:220px;background:#131729;color:#E8ECF4;border-radius:8px">
+          <div style="font-weight:700;font-size:14px;margin-bottom:2px">${a.name || a.complex}</div>
+          <div style="color:#8B92A5;font-size:11px;margin-bottom:8px">${a.type} · ${a.trade}</div>
+          <div style="font-size:18px;font-weight:800;color:${tc};margin-bottom:6px">${a.price}${a.deposit ? " / " + a.deposit : ""}</div>
+          <div style="display:flex;gap:10px;font-size:11px;color:#C5CAD6;flex-wrap:wrap">
+            ${a.area2 ? `<span>전용 ${a.area2}㎡</span>` : ""}
+            ${a.floor ? `<span>${a.floor}</span>` : ""}
+            ${a.direction ? `<span>${a.direction}</span>` : ""}
+          </div>
+          ${a.desc ? `<div style="margin-top:6px;font-size:11px;color:#8B92A5;line-height:1.5">${a.desc}</div>` : ""}
+          ${a.link ? `<a href="${a.link}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#0066FF;text-decoration:none">네이버 부동산에서 보기 →</a>` : ""}
+        </div>`;
+      const marker = L.marker([a.lat, a.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 270, className: "redev-popup" });
+      mkRef.current.push(marker);
+    });
+  }, [articles]);
+
+  const sorted = useMemo(() => {
+    const arr = [...articles];
+    if (sortBy === "area") arr.sort((a, b) => parseFloat(b.area2 || 0) - parseFloat(a.area2 || 0));
+    return arr;
+  }, [articles, sortBy]);
+
+  const stats = useMemo(() => {
+    const s = { total: articles.length, sale: 0, lease: 0, rent: 0 };
+    articles.forEach(a => { if (a.trade === "매매") s.sale++; else if (a.trade === "전세") s.lease++; else s.rent++; });
+    return s;
+  }, [articles]);
+
+  const tradTypes = [
+    { label: "전체", val: "A1:B1:B2" },
+    { label: "매매", val: "A1" },
+    { label: "전세", val: "B1" },
+    { label: "월세", val: "B2" },
+  ];
+  const rletTypes = [
+    { label: "아파트", val: "APT" },
+    { label: "오피스텔", val: "OPST" },
+    { label: "빌라", val: "ABYG" },
+    { label: "전체", val: "APT:OPST:ABYG:JGC" },
+  ];
+
+  const cardStyle = { background: C.darkCard, border: `1px solid ${C.darkBorder}`, borderRadius: 14, overflow: "hidden" };
+  const selectStyle = { padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none", flex: 1, minWidth: 0 };
+  const pillStyle = (active, color) => ({ padding: "6px 14px", borderRadius: 20, border: active ? "1px solid transparent" : `1px solid ${C.darkBorder}`, background: active ? (color || C.primary) : "transparent", color: active ? "#fff" : "#8B92A5", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", transition: "all .15s", whiteSpace: "nowrap" });
+
+  return (
+    <div style={{ paddingTop: 80, minHeight: "100vh", background: C.dark }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: mob ? "0 12px" : "0 24px" }}>
+        {/* Header */}
+        <div className="ani" style={{ marginBottom: 24 }}>
+          <div style={{ fontSize: mob ? 22 : 28, fontWeight: 800, marginBottom: 6, fontFamily: "'Outfit','Noto Sans KR',sans-serif" }}>
+            <Search size={mob ? 22 : 26} style={{ verticalAlign: "middle", marginRight: 8, color: C.primary }} />
+            매물<span style={{ color: C.primary }}>검색</span>
+          </div>
+          <div style={{ fontSize: 14, color: C.darkText }}>네이버 부동산 실시간 매물 조회</div>
+        </div>
+
+        {/* Search Bar */}
+        <div className="ani d1" style={{ ...cardStyle, padding: mob ? 14 : 20, marginBottom: 20 }}>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
+            <select style={selectStyle} value={district} onChange={e => setDistrict(e.target.value)}>
+              {Object.keys(LISTING_DISTRICTS).map(d => <option key={d} value={d}>{d}</option>)}
+            </select>
+            <select style={selectStyle} value={rletType} onChange={e => setRletType(e.target.value)}>
+              {rletTypes.map(r => <option key={r.val} value={r.val}>{r.label}</option>)}
+            </select>
+            <button onClick={doSearch} disabled={loading}
+              style={{ padding: "8px 24px", borderRadius: 8, border: "none", background: C.gradient1, color: "#fff", fontSize: 14, fontWeight: 600, cursor: loading ? "wait" : "pointer", fontFamily: "'Noto Sans KR',sans-serif", display: "flex", alignItems: "center", gap: 6, boxShadow: "0 4px 16px rgba(0,102,255,.3)", whiteSpace: "nowrap" }}>
+              {loading ? <span style={{ display: "inline-block", width: 14, height: 14, border: "2px solid rgba(255,255,255,.3)", borderTopColor: "#fff", borderRadius: "50%", animation: "spin .7s linear infinite" }} /> : <Search size={15} />}
+              검색
+            </button>
+          </div>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+            {tradTypes.map(t => (
+              <button key={t.val} style={pillStyle(tradType === t.val)} onClick={() => setTradType(t.val)}>{t.label}</button>
+            ))}
+          </div>
+        </div>
+
+        {/* Content: Map + List */}
+        <div style={{ display: "flex", gap: 16, flexDirection: mob ? "column" : "row" }}>
+          {/* Map */}
+          <div className="ani d2" style={{ ...cardStyle, flex: mob ? "none" : 1, height: mob ? 300 : 600 }}>
+            <style>{`
+              .redev-popup .leaflet-popup-content-wrapper{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;padding:0!important;color:#E8ECF4!important}
+              .redev-popup .leaflet-popup-content{margin:0!important}
+              .redev-popup .leaflet-popup-tip{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important}
+            `}</style>
+            <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
+          </div>
+
+          {/* List */}
+          <div className="ani d3" style={{ ...cardStyle, width: mob ? "100%" : 400, flexShrink: 0, display: "flex", flexDirection: "column", maxHeight: mob ? "none" : 600 }}>
+            {/* Stats header */}
+            <div style={{ padding: "14px 16px", borderBottom: `1px solid ${C.darkBorder}`, background: "rgba(255,255,255,.01)" }}>
+              {!searched ? (
+                <div style={{ fontSize: 13, color: "#8B92A5", textAlign: "center", padding: 8 }}>구/동을 선택하고 검색하세요</div>
+              ) : loading ? (
+                <div style={{ fontSize: 13, color: "#8B92A5", textAlign: "center", padding: 8 }}>
+                  <span style={{ display: "inline-block", width: 16, height: 16, border: "2px solid #8B92A5", borderTopColor: C.primary, borderRadius: "50%", animation: "spin .7s linear infinite", verticalAlign: "middle", marginRight: 6 }} />
+                  매물 조회 중...
+                </div>
+              ) : (
+                <>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                    <span style={{ fontSize: 14, fontWeight: 600 }}>{district} 매물</span>
+                    <span style={{ fontSize: 12, color: C.primary, fontWeight: 700 }}>{stats.total}건</span>
+                  </div>
+                  <div style={{ display: "flex", gap: 8 }}>
+                    {stats.sale > 0 && <span style={{ fontSize: 11, color: "#FF4757", background: "rgba(255,71,87,.1)", padding: "2px 8px", borderRadius: 4 }}>매매 {stats.sale}</span>}
+                    {stats.lease > 0 && <span style={{ fontSize: 11, color: "#0066FF", background: "rgba(0,102,255,.1)", padding: "2px 8px", borderRadius: 4 }}>전세 {stats.lease}</span>}
+                    {stats.rent > 0 && <span style={{ fontSize: 11, color: "#FFA502", background: "rgba(255,165,2,.1)", padding: "2px 8px", borderRadius: 4 }}>월세 {stats.rent}</span>}
+                    <div style={{ flex: 1 }} />
+                    <select style={{ background: "transparent", border: "none", color: "#8B92A5", fontSize: 11, cursor: "pointer", outline: "none", fontFamily: "'Noto Sans KR',sans-serif" }}
+                      value={sortBy} onChange={e => setSortBy(e.target.value)}>
+                      <option value="price">기본순</option>
+                      <option value="area">면적순</option>
+                    </select>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Article list */}
+            <div style={{ flex: 1, overflowY: "auto", padding: 6 }}>
+              {!searched ? (
+                <div style={{ padding: 40, textAlign: "center" }}>
+                  <MapPin size={40} style={{ color: C.darkBorder, marginBottom: 12 }} />
+                  <div style={{ fontSize: 13, color: "#8B92A5" }}>지역과 조건을 선택한 뒤</div>
+                  <div style={{ fontSize: 13, color: "#8B92A5" }}>검색 버튼을 눌러주세요</div>
+                </div>
+              ) : articles.length === 0 && !loading ? (
+                <div style={{ padding: 40, textAlign: "center" }}>
+                  <div style={{ fontSize: 36, marginBottom: 8 }}>🏠</div>
+                  <div style={{ fontSize: 13, color: "#8B92A5" }}>매물이 없습니다</div>
+                  <div style={{ fontSize: 11, color: "#5a6480", marginTop: 4 }}>다른 조건으로 검색해보세요</div>
+                </div>
+              ) : (
+                sorted.map((a, i) => {
+                  const tc = a.trade === "매매" ? "#FF4757" : a.trade === "전세" ? "#0066FF" : "#FFA502";
+                  return (
+                    <div key={i} style={{ padding: "12px 14px", borderRadius: 10, marginBottom: 4, cursor: "pointer", transition: "background .15s", borderLeft: `3px solid ${tc}` }}
+                      onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,.04)"}
+                      onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                      onClick={() => {
+                        if (a.lat && a.lng && mapInst.current) {
+                          mapInst.current.flyTo([a.lat, a.lng], 17, { duration: 0.5 });
+                          const m = mkRef.current[i];
+                          if (m) setTimeout(() => m.openPopup(), 600);
+                        }
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                        <span style={{ fontSize: 10, fontWeight: 700, color: "#fff", background: tc, padding: "1px 7px", borderRadius: 4 }}>{a.trade}</span>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: "#E8ECF4", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{a.name || a.complex || "매물"}</span>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 4 }}>
+                        <span style={{ fontSize: 17, fontWeight: 800, color: tc }}>{a.price}</span>
+                        {a.deposit && <span style={{ fontSize: 12, color: "#C5CAD6" }}>/ {a.deposit}</span>}
+                      </div>
+                      <div style={{ display: "flex", gap: 10, fontSize: 11, color: "#8B92A5", flexWrap: "wrap" }}>
+                        {a.type && <span>{a.type}</span>}
+                        {a.area2 && <span>전용 {a.area2}㎡</span>}
+                        {a.floor && <span>{a.floor}</span>}
+                        {a.direction && <span>{a.direction}</span>}
+                      </div>
+                      {a.desc && <div style={{ marginTop: 4, fontSize: 11, color: "#5a6480", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{a.desc}</div>}
+                      {a.link && (
+                        <a href={a.link} target="_blank" rel="noopener noreferrer"
+                          onClick={e => e.stopPropagation()}
+                          style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 6, fontSize: 11, color: C.primary, textDecoration: "none" }}>
+                          네이버 부동산 <ExternalLink size={10} />
+                        </a>
+                      )}
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1946,6 +2366,7 @@ export default function App() {
       {page === "calculator" && <CalculatorPage />}
       {page === "analysis" && <AnalysisPage />}
       {page === "redevelop" && <RedevelopmentMapPage />}
+      {page === "listings" && <ListingsPage />}
       {page === "news" && <NewsPage />}
       {page === "prediction" && <PredictionPage />}
       <Footer />
