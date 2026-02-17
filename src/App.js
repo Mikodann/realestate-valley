@@ -455,6 +455,70 @@ function LandingPage({ setCurrentPage }) {
 
 
 
+
+function PopulationMoveChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("./data/population-move.json")
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const chartData = useMemo(() => {
+    if (!data) return [];
+    const inMap = {};
+    const outMap = {};
+    const netMap = {};
+    (data.inbound || []).forEach(x => { inMap[x.month] = x.value; });
+    (data.outbound || []).forEach(x => { outMap[x.month] = x.value; });
+    (data.net || []).forEach(x => { netMap[x.month] = x.value; });
+    const months = [...new Set([...Object.keys(inMap), ...Object.keys(outMap)])].sort();
+    return months.map(m => ({
+      month: m.slice(0,4) + "." + m.slice(4),
+      전입: inMap[m] || 0,
+      전출: -(outMap[m] || 0),
+      순이동: netMap[m] || 0,
+    }));
+  }, [data]);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>인구이동 로딩 중...</div>;
+  if (!data) return null;
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          <TrendingUp size={20} />서울 인구이동 추이
+        </h2>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>전입(파란색) vs 전출(빨간색), 순이동(초록선)</p>
+      </div>
+      <div style={cardS}>
+        <ResponsiveContainer width="100%" height={mob ? 280 : 340}>
+          <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }} stackOffset="sign">
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#8B92A5" }} interval={mob ? 3 : 1} angle={-30} textAnchor="end" height={50} />
+            <YAxis tick={{ fontSize: 10, fill: "#8B92A5" }} tickFormatter={v => (v/1000).toFixed(0) + "k"} />
+            <Tooltip contentStyle={{ background: "#1a1f36", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, fontSize: 12 }}
+              formatter={(val) => Math.abs(val).toLocaleString() + "명"} />
+            <Bar dataKey="전입" fill="#4A90D9" stackId="stack" radius={[2,2,0,0]} />
+            <Bar dataKey="전출" fill="#E57373" stackId="stack" radius={[0,0,2,2]} />
+            <Line type="monotone" dataKey="순이동" stroke="#66BB6A" strokeWidth={2} dot={{ r: 3, fill: "#66BB6A" }} yAxisId={0} />
+          </BarChart>
+        </ResponsiveContainer>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, fontSize: 11, color: "#5a6480" }}>
+          <span>※ 2월 이사철에만 순유입, 나머지 순유출 추세</span>
+          <span>출처: 통계청 KOSIS · 갱신: {data.updated}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function InterestRateChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -1009,6 +1073,9 @@ function DashboardPage() {
 
       {/* ── 금리 추이 ── */}
       <InterestRateChart mob={mob} />
+
+      {/* ── 인구이동 추이 ── */}
+      <PopulationMoveChart mob={mob} />
 
       </div>
     </div>
