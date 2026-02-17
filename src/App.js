@@ -1667,7 +1667,7 @@ function RedevelopmentMapPage() {
   const [articlesLoading, setArticlesLoading] = useState(false);
   const [tradFilter, setTradFilter] = useState("A1:B1:B2"); // 전체
   const [showArticles, setShowArticles] = useState(false);
-  const [articleTarget, setArticleTarget] = useState(null); // 어떤 구역의 매물인지
+  const [articleTarget, setArticleTarget] = useState(null);
 
   const filtered = useMemo(() => {
     return REDEV_PROJECTS.filter(p => {
@@ -2121,7 +2121,11 @@ function ListingsPage() {
     if (!districtData) return [];
     let arr = [...(districtData.articles || [])];
     if (tradFilter !== "all") arr = arr.filter(a => a.trade === tradFilter);
-    if (sortBy === "area") arr.sort((a, b) => parseFloat(b.area2 || 0) - parseFloat(a.area2 || 0));
+    const pn = s => parseFloat(String(s).replace(/[^0-9.]/g, "")) || 0;
+    if (sortBy === "priceAsc") arr.sort((a, b) => pn(a.price) - pn(b.price));
+    else if (sortBy === "priceDesc") arr.sort((a, b) => pn(b.price) - pn(a.price));
+    else if (sortBy === "areaDesc") arr.sort((a, b) => parseFloat(b.area2 || 0) - parseFloat(a.area2 || 0));
+    else if (sortBy === "areaAsc") arr.sort((a, b) => parseFloat(a.area2 || 0) - parseFloat(b.area2 || 0));
     return arr;
   }, [districtData, tradFilter, sortBy]);
 
@@ -2226,7 +2230,10 @@ function ListingsPage() {
             <select value={sortBy} onChange={e => setSortBy(e.target.value)}
               style={{ padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none" }}>
               <option value="default">기본순</option>
-              <option value="area">면적순</option>
+              <option value="priceAsc">가격 낮은순</option>
+              <option value="priceDesc">가격 높은순</option>
+              <option value="areaDesc">면적 큰순</option>
+              <option value="areaAsc">면적 작은순</option>
             </select>
           </div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
