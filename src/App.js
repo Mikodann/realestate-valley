@@ -453,6 +453,115 @@ function LandingPage({ setCurrentPage }) {
    DASHBOARD — Real API data
    ================================================================ */
 
+
+function PriceIndexChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [chartType, setChartType] = useState("매매지수");
+  const [selectedRegions, setSelectedRegions] = useState(["서울", "동남권", "도심권"]);
+
+  const REGION_COLORS = {
+    "서울": "#0066FF",
+    "도심권": "#FF6B6B",
+    "동북권": "#4ECDC4",
+    "서북권": "#45B7D1",
+    "서남권": "#FFA07A",
+    "동남권": "#DDA0DD"
+  };
+
+  const ALL_REGIONS = ["서울", "도심권", "동북권", "서북권", "서남권", "동남권"];
+
+  useEffect(() => {
+    fetch("./data/price-index.json")
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const toggleRegion = (region) => {
+    setSelectedRegions(prev =>
+      prev.includes(region) ? prev.filter(r => r !== region) : [...prev, region]
+    );
+  };
+
+  const chartData = useMemo(() => {
+    if (!data) return [];
+    const months = data.months || [];
+    const typeData = data[chartType] || {};
+    return months.map((m, idx) => {
+      const point = { month: m.slice(0, 4) + "." + m.slice(4) };
+      ALL_REGIONS.forEach(region => {
+        const arr = typeData[region];
+        if (arr && arr[idx]) {
+          point[region] = arr[idx].value;
+        }
+      });
+      return point;
+    });
+  }, [data, chartType]);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>가격지수 로딩 중...</div>;
+  if (!data) return null;
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          <TrendingUp size={20} />아파트 가격지수 추이
+        </h2>
+        <div style={{ display: "flex", gap: 8 }}>
+          {["매매지수", "전세지수"].map(t => (
+            <button key={t} onClick={() => setChartType(t)}
+              style={{
+                padding: "6px 14px", borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: "pointer", border: "none",
+                background: chartType === t ? "#0066FF" : "rgba(255,255,255,.06)",
+                color: chartType === t ? "#fff" : "#8B92A5"
+              }}>{t}</button>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
+        {ALL_REGIONS.map(r => (
+          <button key={r} onClick={() => toggleRegion(r)}
+            style={{
+              padding: "4px 12px", borderRadius: 20, fontSize: 11, fontWeight: 600, cursor: "pointer",
+              border: selectedRegions.includes(r) ? "none" : "1px solid rgba(255,255,255,.1)",
+              background: selectedRegions.includes(r) ? REGION_COLORS[r] + "22" : "transparent",
+              color: selectedRegions.includes(r) ? REGION_COLORS[r] : "#5a6480"
+            }}>
+            <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: REGION_COLORS[r], marginRight: 6 }} />
+            {r}
+          </button>
+        ))}
+      </div>
+
+      <div style={cardS}>
+        <ResponsiveContainer width="100%" height={mob ? 280 : 360}>
+          <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#8B92A5" }} interval={mob ? 3 : 1} angle={-30} textAnchor="end" height={50} />
+            <YAxis tick={{ fontSize: 10, fill: "#8B92A5" }} domain={["auto", "auto"]} />
+            <Tooltip contentStyle={{ background: "#1a1f36", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, fontSize: 12 }}
+              formatter={(val) => val ? val.toFixed(2) : "-"} />
+            {selectedRegions.map(r => (
+              <Line key={r} type="monotone" dataKey={r} name={r}
+                stroke={REGION_COLORS[r]} strokeWidth={r === "서울" ? 3 : 2}
+                dot={{ r: 2 }} activeDot={{ r: 5 }}
+                strokeDasharray={r === "서울" ? "" : ""} connectNulls />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+        <div style={{ marginTop: 10, fontSize: 11, color: "#5a6480", textAlign: "right" }}>
+          출처: 한국부동산원 R-ONE · 기준시점 100.0 · 갱신: {data.updated}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ZoneTrendChart({ mob }) {
   const [trendData, setTrendData] = useState(null);
   const [trendLoading, setTrendLoading] = useState(true);
@@ -824,6 +933,9 @@ function DashboardPage() {
 
       {/* ── 권역별 월별 실거래가 추이 ── */}
       <ZoneTrendChart mob={mob} />
+
+      {/* ── 아파트 가격지수 추이 ── */}
+      <PriceIndexChart mob={mob} />
 
       </div>
     </div>
