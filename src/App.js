@@ -454,6 +454,76 @@ function LandingPage({ setCurrentPage }) {
    ================================================================ */
 
 
+
+function InterestRateChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("./data/interest-rate.json")
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const chartData = useMemo(() => {
+    if (!data) return [];
+    const mortgage = data["주택담보대출"] || [];
+    const household = data["가계대출"] || [];
+    const base = data["기준금리"] || [];
+    const baseMap = {};
+    base.forEach(b => { baseMap[b.month] = b.value; });
+
+    return mortgage.map((m, idx) => {
+      let baseVal = baseMap[m.month];
+      if (!baseVal) {
+        const sorted = Object.keys(baseMap).sort();
+        for (const k of sorted) {
+          if (k <= m.month) baseVal = baseMap[k];
+        }
+      }
+      return {
+        month: m.month.slice(0, 4) + "." + m.month.slice(4),
+        주택담보대출: m.value,
+        가계대출: household[idx] ? household[idx].value : null,
+        기준금리: baseVal || null
+      };
+    });
+  }, [data]);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>금리 데이터 로딩 중...</div>;
+  if (!data) return null;
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          <TrendingUp size={20} />금리 추이
+        </h2>
+      </div>
+      <div style={cardS}>
+        <ResponsiveContainer width="100%" height={mob ? 260 : 320}>
+          <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#8B92A5" }} interval={mob ? 3 : 1} angle={-30} textAnchor="end" height={50} />
+            <YAxis tick={{ fontSize: 10, fill: "#8B92A5" }} domain={["auto", "auto"]} unit="%" />
+            <Tooltip contentStyle={{ background: "#1a1f36", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, fontSize: 12 }}
+              formatter={(val) => val ? val.toFixed(2) + "%" : "-"} />
+            <Line type="stepAfter" dataKey="기준금리" name="한은 기준금리" stroke="#FF6B6B" strokeWidth={3} dot={false} connectNulls strokeDasharray="8 4" />
+            <Line type="monotone" dataKey="주택담보대출" name="주택담보대출" stroke="#0066FF" strokeWidth={2} dot={{ r: 2 }} activeDot={{ r: 5 }} connectNulls />
+            <Line type="monotone" dataKey="가계대출" name="가계대출" stroke="#4ECDC4" strokeWidth={2} dot={{ r: 2 }} activeDot={{ r: 5 }} connectNulls />
+          </LineChart>
+        </ResponsiveContainer>
+        <div style={{ marginTop: 10, fontSize: 11, color: "#5a6480", textAlign: "right" }}>
+          출처: 한국은행 ECOS · 신규취급액 기준 연리(%) · 갱신: {data.updated}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PriceIndexChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -936,6 +1006,9 @@ function DashboardPage() {
 
       {/* ── 아파트 가격지수 추이 ── */}
       <PriceIndexChart mob={mob} />
+
+      {/* ── 금리 추이 ── */}
+      <InterestRateChart mob={mob} />
 
       </div>
     </div>
