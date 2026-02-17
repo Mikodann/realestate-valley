@@ -456,6 +456,67 @@ function LandingPage({ setCurrentPage }) {
 
 
 
+
+function HousingSupplyChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const COLORS = { "전국": "#8B92A5", "수도권": "#4ECDC4", "서울": "#0066FF" };
+
+  useEffect(() => {
+    fetch("./data/housing-supply.json")
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const chartData = useMemo(() => {
+    if (!data) return [];
+    const seoul = data["서울"] || [];
+    const sudo = data["수도권"] || [];
+    const all = data["전국"] || [];
+    return seoul.map((s, i) => ({
+      month: s.month.slice(0,4) + "." + s.month.slice(4),
+      서울: s.value,
+      수도권: sudo[i] ? sudo[i].value : 0,
+      전국: all[i] ? all[i].value : 0,
+    }));
+  }, [data]);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>인허가 데이터 로딩 중...</div>;
+  if (!data) return null;
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          <TrendingUp size={20} />주택 인허가 실적
+        </h2>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>월별 주택건설 인허가 호수 (향후 2~3년 공급 선행지표)</p>
+      </div>
+      <div style={cardS}>
+        <ResponsiveContainer width="100%" height={mob ? 260 : 320}>
+          <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#8B92A5" }} interval={mob ? 3 : 1} angle={-30} textAnchor="end" height={50} />
+            <YAxis tick={{ fontSize: 10, fill: "#8B92A5" }} tickFormatter={v => (v/1000).toFixed(0) + "k"} />
+            <Tooltip contentStyle={{ background: "#1a1f36", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, fontSize: 12 }}
+              formatter={(val) => val.toLocaleString() + "호"} />
+            <Bar dataKey="전국" fill="#8B92A5" radius={[2,2,0,0]} opacity={0.4} />
+            <Bar dataKey="수도권" fill="#4ECDC4" radius={[2,2,0,0]} opacity={0.6} />
+            <Bar dataKey="서울" fill="#0066FF" radius={[2,2,0,0]} />
+          </BarChart>
+        </ResponsiveContainer>
+        <div style={{ marginTop: 10, fontSize: 11, color: "#5a6480", textAlign: "right" }}>
+          출처: 국토교통부 주택건설실적통계 (KOSIS) · 갱신: {data.updated}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PopulationMoveChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -1076,6 +1137,9 @@ function DashboardPage() {
 
       {/* ── 인구이동 추이 ── */}
       <PopulationMoveChart mob={mob} />
+
+      {/* ── 주택 인허가 실적 ── */}
+      <HousingSupplyChart mob={mob} />
 
       </div>
     </div>
