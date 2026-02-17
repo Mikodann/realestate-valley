@@ -457,6 +457,210 @@ function LandingPage({ setCurrentPage }) {
 
 
 
+
+function RentTrendChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState("zone");
+  const [selectedZone, setSelectedZone] = useState("동남권");
+  const [selectedDist, setSelectedDist] = useState("강남구");
+
+  const ZONES = {
+    "도심권": ["종로구","중구","용산구"],
+    "동북권": ["성동구","광진구","동대문구","중랑구","성북구","강북구","도봉구","노원구"],
+    "서북권": ["은평구","서대문구","마포구"],
+    "서남권": ["양천구","강서구","구로구","금천구","영등포구","동작구","관악구"],
+    "동남권": ["서초구","강남구","송파구","강동구"],
+  };
+  const ZONE_COLORS = { "도심권": "#FF6B6B", "동북권": "#4ECDC4", "서북권": "#45B7D1", "서남권": "#FFA07A", "동남권": "#DDA0DD" };
+
+  useEffect(() => {
+    fetch("./data/rent-trend.json")
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const chartData = useMemo(() => {
+    if (!data || !data.districts) return [];
+    const months = data.months || [];
+    if (viewMode === "zone") {
+      return months.map((m, i) => {
+        const row = { month: m.slice(0,4) + "." + m.slice(4) };
+        Object.entries(ZONES).forEach(([zone, dists]) => {
+          let total = 0, cnt = 0;
+          dists.forEach(d => {
+            const dd = data.districts[d];
+            if (dd && dd[i] && dd[i].jeonse_avg > 0) { total += dd[i].jeonse_avg; cnt++; }
+          });
+          row[zone] = cnt > 0 ? Math.round(total / cnt) : 0;
+        });
+        return row;
+      });
+    } else {
+      const dists = ZONES[selectedZone] || [];
+      return months.map((m, i) => {
+        const row = { month: m.slice(0,4) + "." + m.slice(4) };
+        dists.forEach(d => {
+          const dd = data.districts[d];
+          row[d] = dd && dd[i] ? dd[i].jeonse_avg : 0;
+        });
+        return row;
+      });
+    }
+  }, [data, viewMode, selectedZone]);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>전월세 데이터 로딩 중...</div>;
+  if (!data) return null;
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+  const btnS = (active) => ({ padding: "6px 14px", borderRadius: 8, border: "1px solid " + (active ? "#0066FF" : "rgba(255,255,255,.1)"), background: active ? "rgba(0,102,255,.15)" : "transparent", color: active ? "#4A90D9" : "#8B92A5", fontSize: 12, cursor: "pointer" });
+
+  const lines = viewMode === "zone"
+    ? Object.keys(ZONES)
+    : (ZONES[selectedZone] || []);
+  const colors = viewMode === "zone"
+    ? ZONE_COLORS
+    : Object.fromEntries((ZONES[selectedZone] || []).map((d, i) => [d, ["#FF6B6B","#4ECDC4","#45B7D1","#FFA07A","#DDA0DD","#98D8C8","#F7DC6F","#BB8FCE"][i % 8]]));
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          <TrendingUp size={20} />전세 평균가 추이
+        </h2>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>아파트 전세 실거래 평균 보증금 (만원)</p>
+      </div>
+      <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+        <button onClick={() => setViewMode("zone")} style={btnS(viewMode === "zone")}>권역별</button>
+        <button onClick={() => setViewMode("district")} style={btnS(viewMode === "district")}>구별</button>
+        {viewMode === "district" && Object.keys(ZONES).map(z => (
+          <button key={z} onClick={() => { setSelectedZone(z); }} style={btnS(selectedZone === z)}>{z}</button>
+        ))}
+      </div>
+      <div style={cardS}>
+        <ResponsiveContainer width="100%" height={mob ? 280 : 340}>
+          <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#8B92A5" }} interval={mob ? 3 : 1} angle={-30} textAnchor="end" height={50} />
+            <YAxis tick={{ fontSize: 10, fill: "#8B92A5" }} tickFormatter={v => (v/10000).toFixed(1) + "억"} />
+            <Tooltip contentStyle={{ background: "#1a1f36", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, fontSize: 12 }}
+              formatter={(val) => (val/10000).toFixed(2) + "억"} />
+            {lines.map(key => (
+              <Line key={key} type="monotone" dataKey={key} stroke={colors[key] || "#ccc"} strokeWidth={2} dot={{ r: 2 }} />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+        <div style={{ marginTop: 10, fontSize: 11, color: "#5a6480", textAlign: "right" }}>
+          출처: 국토교통부 전월세 실거래가 · 갱신: {data.updated}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function RentTrendChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState("zone");
+  const [selectedZone, setSelectedZone] = useState("동남권");
+  const [selectedDist, setSelectedDist] = useState("강남구");
+
+  const ZONES = {
+    "도심권": ["종로구","중구","용산구"],
+    "동북권": ["성동구","광진구","동대문구","중랑구","성북구","강북구","도봉구","노원구"],
+    "서북권": ["은평구","서대문구","마포구"],
+    "서남권": ["양천구","강서구","구로구","금천구","영등포구","동작구","관악구"],
+    "동남권": ["서초구","강남구","송파구","강동구"],
+  };
+  const ZONE_COLORS = { "도심권": "#FF6B6B", "동북권": "#4ECDC4", "서북권": "#45B7D1", "서남권": "#FFA07A", "동남권": "#DDA0DD" };
+
+  useEffect(() => {
+    fetch("./data/rent-trend.json")
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const chartData = useMemo(() => {
+    if (!data || !data.districts) return [];
+    const months = data.months || [];
+    if (viewMode === "zone") {
+      return months.map((m, i) => {
+        const row = { month: m.slice(0,4) + "." + m.slice(4) };
+        Object.entries(ZONES).forEach(([zone, dists]) => {
+          let total = 0, cnt = 0;
+          dists.forEach(d => {
+            const dd = data.districts[d];
+            if (dd && dd[i] && dd[i].jeonse_avg > 0) { total += dd[i].jeonse_avg; cnt++; }
+          });
+          row[zone] = cnt > 0 ? Math.round(total / cnt) : 0;
+        });
+        return row;
+      });
+    } else {
+      const dists = ZONES[selectedZone] || [];
+      return months.map((m, i) => {
+        const row = { month: m.slice(0,4) + "." + m.slice(4) };
+        dists.forEach(d => {
+          const dd = data.districts[d];
+          row[d] = dd && dd[i] ? dd[i].jeonse_avg : 0;
+        });
+        return row;
+      });
+    }
+  }, [data, viewMode, selectedZone]);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>전월세 데이터 로딩 중...</div>;
+  if (!data) return null;
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+  const btnS = (active) => ({ padding: "6px 14px", borderRadius: 8, border: "1px solid " + (active ? "#0066FF" : "rgba(255,255,255,.1)"), background: active ? "rgba(0,102,255,.15)" : "transparent", color: active ? "#4A90D9" : "#8B92A5", fontSize: 12, cursor: "pointer" });
+
+  const lines = viewMode === "zone"
+    ? Object.keys(ZONES)
+    : (ZONES[selectedZone] || []);
+  const colors = viewMode === "zone"
+    ? ZONE_COLORS
+    : Object.fromEntries((ZONES[selectedZone] || []).map((d, i) => [d, ["#FF6B6B","#4ECDC4","#45B7D1","#FFA07A","#DDA0DD","#98D8C8","#F7DC6F","#BB8FCE"][i % 8]]));
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          <TrendingUp size={20} />전세 평균가 추이
+        </h2>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>아파트 전세 실거래 평균 보증금 (만원)</p>
+      </div>
+      <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+        <button onClick={() => setViewMode("zone")} style={btnS(viewMode === "zone")}>권역별</button>
+        <button onClick={() => setViewMode("district")} style={btnS(viewMode === "district")}>구별</button>
+        {viewMode === "district" && Object.keys(ZONES).map(z => (
+          <button key={z} onClick={() => { setSelectedZone(z); }} style={btnS(selectedZone === z)}>{z}</button>
+        ))}
+      </div>
+      <div style={cardS}>
+        <ResponsiveContainer width="100%" height={mob ? 280 : 340}>
+          <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+            <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#8B92A5" }} interval={mob ? 3 : 1} angle={-30} textAnchor="end" height={50} />
+            <YAxis tick={{ fontSize: 10, fill: "#8B92A5" }} tickFormatter={v => (v/10000).toFixed(1) + "억"} />
+            <Tooltip contentStyle={{ background: "#1a1f36", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, fontSize: 12 }}
+              formatter={(val) => (val/10000).toFixed(2) + "억"} />
+            {lines.map(key => (
+              <Line key={key} type="monotone" dataKey={key} stroke={colors[key] || "#ccc"} strokeWidth={2} dot={{ r: 2 }} />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+        <div style={{ marginTop: 10, fontSize: 11, color: "#5a6480", textAlign: "right" }}>
+          출처: 국토교통부 전월세 실거래가 · 갱신: {data.updated}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HousingSupplyChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -1140,6 +1344,12 @@ function DashboardPage() {
 
       {/* ── 주택 인허가 실적 ── */}
       <HousingSupplyChart mob={mob} />
+
+      {/* ── 전세 평균가 추이 ── */}
+      <RentTrendChart mob={mob} />
+
+      {/* ── 전세 평균가 추이 ── */}
+      <RentTrendChart mob={mob} />
 
       </div>
     </div>
