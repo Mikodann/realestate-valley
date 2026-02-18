@@ -621,6 +621,147 @@ function HousingSupplyChart({ mob }) {
   );
 }
 
+
+function PopulationMoveDistrictChart({ mob }) {
+  const [data, setData] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
+  const [selectedMonth, setSelectedMonth] = React.useState('');
+  const [mode, setMode] = React.useState('순이동'); // 순이동 | 총전입 | 총전출
+
+  React.useEffect(() => {
+    fetch('/data/population_move_district.json')
+      .then(r => r.json())
+      .then(json => {
+        setData(json.data);
+        // 가장 최근 월 자동 선택
+        const first = Object.values(json.data)[0];
+        const months = Object.keys(first).sort();
+        setSelectedMonth(months[months.length - 1]);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const GU_COORDS = {
+    '종로구':[37.5735,126.9790],'중구':[37.5641,126.9979],'용산구':[37.5326,126.9906],
+    '성동구':[37.5634,127.0370],'광진구':[37.5385,127.0823],'동대문구':[37.5744,127.0396],
+    '중랑구':[37.6066,127.0927],'성북구':[37.5894,127.0167],'강북구':[37.6397,127.0255],
+    '도봉구':[37.6688,127.0472],'노원구':[37.6542,127.0568],'은평구':[37.6027,126.9292],
+    '서대문구':[37.5791,126.9368],'마포구':[37.5664,126.9014],'양천구':[37.5170,126.8664],
+    '강서구':[37.5510,126.8495],'구로구':[37.4955,126.8876],'금천구':[37.4568,126.8956],
+    '영등포구':[37.5264,126.8963],'동작구':[37.5124,126.9393],'관악구':[37.4784,126.9516],
+    '서초구':[37.4837,127.0324],'강남구':[37.5173,127.0473],'송파구':[37.5146,127.1060],
+    '강동구':[37.5301,127.1238],
+  };
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>구별 인구이동 로딩 중...</div>;
+  if (!data) return null;
+
+  // 선택 월 데이터 계산
+  const guValues = Object.entries(data).map(([name, months]) => {
+    const m = months[selectedMonth] || {};
+    return { name, value: m[mode] || 0 };
+  });
+
+  const vals = guValues.map(g => g.value);
+  const minV = Math.min(...vals);
+  const maxV = Math.max(...vals);
+
+  const getColor = (v) => {
+    if (maxV === minV) return 'rgba(100,150,255,0.6)';
+    const ratio = (v - minV) / (maxV - minV);
+    if (mode === '순이동') {
+      // 음수(전출>전입)=빨강, 양수(전입>전출)=파랑
+      if (v < 0) {
+        const r = Math.abs(v) / Math.abs(minV);
+        return `rgba(255,${Math.round(100*(1-r))},${Math.round(80*(1-r))},${0.4+r*0.5})`;
+      } else {
+        return `rgba(${Math.round(100*(1-ratio))},${Math.round(150+ratio*50)},255,${0.4+ratio*0.5})`;
+      }
+    }
+    return `rgba(${Math.round(255*(1-ratio))},${Math.round(100+ratio*100)},255,${0.4+ratio*0.5})`;
+  };
+
+  const months = data['강남구'] ? Object.keys(data['강남구']).sort() : [];
+  const fmtMonth = (ym) => ym ? ym.slice(0,4)+'년 '+parseInt(ym.slice(4))+'월' : '';
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16, display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:8 }}>
+        <div>
+          <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+            🗺️ 서울 구별 인구이동 히트맵
+          </h2>
+          <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>구별 전입·전출·순이동 현황 (KOSIS)</p>
+        </div>
+        <div style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
+          {['순이동','총전입','총전출'].map(m => (
+            <button key={m} onClick={()=>setMode(m)}
+              style={{ padding:'4px 12px', borderRadius:20, border:'none', cursor:'pointer', fontSize:12,
+                background: mode===m ? '#0066FF' : 'rgba(255,255,255,.08)',
+                color: mode===m ? '#fff' : '#8B92A5' }}>
+              {m}
+            </button>
+          ))}
+          <select value={selectedMonth} onChange={e=>setSelectedMonth(e.target.value)}
+            style={{ padding:'4px 8px', borderRadius:8, border:'1px solid rgba(255,255,255,.1)',
+              background:'rgba(255,255,255,.05)', color:'#ccc', fontSize:12 }}>
+            {months.map(ym => <option key={ym} value={ym}>{fmtMonth(ym)}</option>)}
+          </select>
+        </div>
+      </div>
+      <div style={cardS}>
+        {/* 버블 맵 */}
+        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'80%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
+          <svg viewBox="126.75 37.39 0.52 0.35" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
+            preserveAspectRatio="xMidYMid meet">
+            {guValues.map(({ name, value }) => {
+              const coords = GU_COORDS[name];
+              if (!coords) return null;
+              const [lat, lng] = coords;
+              const size = Math.abs(value) / Math.max(Math.abs(minV), Math.abs(maxV)) * (mob ? 0.018 : 0.014) + 0.003;
+              return (
+                <g key={name}>
+                  <circle cx={lng} cy={-lat+75} r={size} fill={getColor(value)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
+                  <text x={lng} y={-lat+75+0.003} textAnchor="middle" fontSize={mob?"0.006":"0.005"} fill="rgba(255,255,255,0.85)">
+                    {name.replace('구','')}
+                  </text>
+                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.005":"0.004"} fill="rgba(255,255,255,0.6)">
+                    {value > 0 ? '+' : ''}{value.toLocaleString()}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+        {/* 순위 TOP5 / BOTTOM5 */}
+        <div style={{ marginTop:16, display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
+          <div>
+            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>▲ TOP 5 (유입)</div>
+            {[...guValues].sort((a,b)=>b.value-a.value).slice(0,5).map((g,i)=>(
+              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
+                <span>{i+1}. {g.name}</span>
+                <span style={{color:'#4ECDC4'}}>{g.value > 0 ? '+' : ''}{g.value.toLocaleString()}명</span>
+              </div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>▼ BOTTOM 5 (유출)</div>
+            {[...guValues].sort((a,b)=>a.value-b.value).slice(0,5).map((g,i)=>(
+              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
+                <span>{i+1}. {g.name}</span>
+                <span style={{color:'#FF6B6B'}}>{g.value.toLocaleString()}명</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PopulationMoveChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -1241,6 +1382,9 @@ function DashboardPage() {
 
       {/* ── 인구이동 추이 ── */}
       <PopulationMoveChart mob={mob} />
+
+      {/* ── 구별 인구이동 히트맵 ── */}
+      <PopulationMoveDistrictChart mob={mob} />
 
       {/* ── 주택 인허가 실적 ── */}
       <HousingSupplyChart mob={mob} />
