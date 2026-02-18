@@ -342,7 +342,6 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "history", label: "시세추이", icon: TrendingUp },
     { id: "school", label: "학군정보", icon: MapPin },
     { id: "news", label: "뉴스", icon: Newspaper },
-    { id: "prediction", label: "시세예측", icon: Brain },
   ];
 
   return (
@@ -3732,7 +3731,6 @@ export default function App() {
       {page === "history" && <AptHistoryPage />}
       {page === "school" && <SchoolInfoPage />}
       {page === "news" && <NewsPage />}
-      {page === "prediction" && <PredictionPage />}
       <Footer />
     </>
   );
