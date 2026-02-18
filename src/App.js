@@ -714,21 +714,21 @@ function PopulationMoveDistrictChart({ mob }) {
       </div>
       <div style={cardS}>
         {/* 버블 맵 */}
-        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'80%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
+        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
           <svg viewBox="126.82 37.28 0.34 0.32" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
             preserveAspectRatio="xMidYMid meet">
             {guValues.map(({ name, value }) => {
               const coords = GU_COORDS[name];
               if (!coords) return null;
               const [lat, lng] = coords;
-              const size = Math.abs(value) / Math.max(Math.abs(minV), Math.abs(maxV)) * (mob ? 0.032 : 0.026) + 0.006;
+              const size = Math.abs(value) / Math.max(Math.abs(minV), Math.abs(maxV)) * (mob ? 0.06 : 0.036) + 0.01;
               return (
                 <g key={name}>
                   <circle cx={lng} cy={-lat+75} r={size} fill={getColor(value)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
-                  <text x={lng} y={-lat+75+0.003} textAnchor="middle" fontSize={mob?"0.006":"0.005"} fill="rgba(255,255,255,0.85)">
+                  <text x={lng} y={-lat+75+0.003} textAnchor="middle" fontSize={mob?"0.011":"0.007"} fill="rgba(255,255,255,0.85)">
                     {name.replace(/구$/,'')}
                   </text>
-                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.005":"0.004"} fill="rgba(255,255,255,0.6)">
+                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.009":"0.006"} fill="rgba(255,255,255,0.6)">
                     {value > 0 ? '+' : ''}{value.toLocaleString()}
                   </text>
                 </g>
