@@ -338,6 +338,7 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "analysis", label: "지역분석", icon: MapPin },
     { id: "redevelop", label: "재개발지도", icon: Map },
     { id: "listings", label: "매물검색", icon: Search },
+    { id: "cleanup", label: "정비사업", icon: Building2 },
     { id: "news", label: "뉴스", icon: Newspaper },
     { id: "prediction", label: "시세예측", icon: Brain },
   ];
@@ -2931,6 +2932,181 @@ const LISTING_DISTRICTS = {
   "중랑구":{lat:37.6066,lng:127.0927,code:"1126000000"},
 };
 
+
+function CleanupPage() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filterDistrict, setFilterDistrict] = useState("전체");
+  const [filterType, setFilterType] = useState("전체");
+  const [filterStage, setFilterStage] = useState("전체");
+  const [sortKey, setSortKey] = useState("no");
+  const [sortAsc, setSortAsc] = useState(true);
+  const [viewMode, setViewMode] = useState("table");
+  const mob = window.innerWidth < 768;
+
+  useEffect(() => {
+    fetch("/data/cleanup-status.json").then(r => r.json()).then(d => { setData(d); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>정비사업 데이터 로딩 중...</div>;
+  if (!data) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>데이터를 불러올 수 없습니다.</div>;
+
+  const { summary, items, total, updated } = data;
+  const districts = ["전체", ...Object.keys(summary.by_district)];
+  const types = ["전체", ...Object.keys(summary.by_type)];
+  const stages = ["전체", ...Object.keys(summary.by_stage).filter(s => s)];
+
+  const filtered = items.filter(it => {
+    if (filterDistrict !== "전체" && it.district !== filterDistrict) return false;
+    if (filterType !== "전체" && it.type !== filterType) return false;
+    if (filterStage !== "전체" && it.stage !== filterStage) return false;
+    if (search && !it.name.includes(search) && !it.address.includes(search) && !it.district.includes(search)) return false;
+    return true;
+  });
+
+  const sorted = [...filtered].sort((a, b) => {
+    const v = sortAsc ? 1 : -1;
+    if (sortKey === "no") return (a.no - b.no) * v;
+    return (a[sortKey] || "").localeCompare(b[sortKey] || "") * v;
+  });
+
+  const handleSort = k => { if (sortKey === k) setSortAsc(!sortAsc); else { setSortKey(k); setSortAsc(true); } };
+  const sArr = s => sortKey === s ? (sortAsc ? " ▲" : " ▼") : "";
+
+  const stageColors = { "조합설립인가": "#0066FF", "추진위원회승인": "#00D68F", "정비계획 수립": "#4ECDC4", "사업시행인가": "#FF6B6B", "관리처분인가": "#FFD93D", "이전고시": "#A78BFA", "조합해산": "#6B7280", "착공": "#F97316", "준공인가": "#10B981", "정비구역지정": "#06B6D4", "분양": "#EC4899", "조합청산": "#9CA3AF", "철거": "#EF4444", "안전진단": "#8B5CF6" };
+
+  const districtChart = Object.entries(summary.by_district).slice(0, 15).map(([k, v]) => ({ name: k, count: v }));
+  const typeChart = Object.entries(summary.by_type).map(([k, v]) => ({ name: k, value: v }));
+  const stageChart = Object.entries(summary.by_stage).filter(([k]) => k).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k, v]) => ({ name: k, count: v }));
+  const PIE_COLORS = ["#0066FF", "#00D68F", "#FF6B6B", "#FFD93D", "#4ECDC4", "#A78BFA", "#F97316"];
+
+  const cardS = { background: "rgba(255,255,255,.03)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 20 };
+  const selS = { background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", cursor: "pointer", minWidth: 100 };
+
+  return (
+    <div style={{ minHeight: "100vh", background: "#0A0E1A", paddingTop: 80, paddingBottom: 60 }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: mob ? "0 16px" : "0 24px" }}>
+        <div style={{ marginBottom: 32 }}>
+          <h1 style={{ fontSize: mob ? 22 : 28, fontWeight: 700, color: "#fff", marginBottom: 8 }}>🏗️ 서울 정비사업 현황</h1>
+          <p style={{ fontSize: 14, color: "#5a6480" }}>출처: 서울시 정비사업 정보몽땅 (cleanup.seoul.go.kr) · 갱신: {updated}</p>
+        </div>
+
+        {/* Summary Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: mob ? "repeat(2,1fr)" : "repeat(4,1fr)", gap: 12, marginBottom: 24 }}>
+          {[
+            { label: "전체 사업", value: total.toLocaleString() + "건", color: "#0066FF" },
+            { label: "재건축", value: (summary.by_type["재건축"] || 0).toLocaleString() + "건", color: "#FF6B6B" },
+            { label: "재개발", value: ((summary.by_type["재개발(주택정비형)"] || 0) + (summary.by_type["재개발(도시정비형)"] || 0)).toLocaleString() + "건", color: "#00D68F" },
+            { label: "가로주택·소규모", value: ((summary.by_type["가로주택정비"] || 0) + (summary.by_type["소규모재건축"] || 0)).toLocaleString() + "건", color: "#FFD93D" }
+          ].map((c, i) => (
+            <div key={i} style={{ ...cardS, textAlign: "center" }}>
+              <div style={{ fontSize: 12, color: "#5a6480", marginBottom: 6 }}>{c.label}</div>
+              <div style={{ fontSize: mob ? 20 : 26, fontWeight: 700, color: c.color }}>{c.value}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Charts */}
+        <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 1fr", gap: 16, marginBottom: 24 }}>
+          <div style={cardS}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>📊 자치구별 사업 수 (상위 15)</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={districtChart} margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                <XAxis dataKey="name" tick={{ fill: "#5a6480", fontSize: 11 }} angle={-45} textAnchor="end" height={70} />
+                <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} />
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+                <Bar dataKey="count" fill="#0066FF" radius={[4, 4, 0, 0]} name="사업 수" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <div style={cardS}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🏠 사업유형별 비율</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie data={typeChart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={true} fontSize={11}>
+                  {typeChart.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
+                </Pie>
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Stage Bar Chart */}
+        <div style={{ ...cardS, marginBottom: 24 }}>
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>📈 진행단계별 현황 (상위 10)</h3>
+          <ResponsiveContainer width="100%" height={280}>
+            <BarChart data={stageChart} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 80 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+              <XAxis type="number" tick={{ fill: "#5a6480", fontSize: 11 }} />
+              <YAxis dataKey="name" type="category" tick={{ fill: "#ccc", fontSize: 12 }} width={80} />
+              <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+              <Bar dataKey="count" name="사업 수" radius={[0, 4, 4, 0]}>
+                {stageChart.map((s, i) => <Cell key={i} fill={stageColors[s.name] || "#0066FF"} />)}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Filters */}
+        <div style={{ ...cardS, marginBottom: 16 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="사업장명/주소 검색..." style={{ ...selS, flex: mob ? "1 1 100%" : "1 1 200px", minWidth: 160 }} />
+            <select value={filterDistrict} onChange={e => setFilterDistrict(e.target.value)} style={selS}>
+              {districts.map(d => <option key={d} value={d} style={{ background: "#1a1f35" }}>{d}</option>)}
+            </select>
+            <select value={filterType} onChange={e => setFilterType(e.target.value)} style={selS}>
+              {types.map(t => <option key={t} value={t} style={{ background: "#1a1f35" }}>{t}</option>)}
+            </select>
+            <select value={filterStage} onChange={e => setFilterStage(e.target.value)} style={selS}>
+              {stages.map(s => <option key={s} value={s} style={{ background: "#1a1f35" }}>{s}</option>)}
+            </select>
+            <span style={{ fontSize: 13, color: "#5a6480" }}>결과: {filtered.length}건</span>
+          </div>
+        </div>
+
+        {/* Table */}
+        <div style={{ ...cardS, overflow: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+            <thead>
+              <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+                {[
+                  { k: "no", l: "#" },
+                  { k: "district", l: "자치구" },
+                  { k: "type", l: "사업구분" },
+                  { k: "name", l: "사업장명" },
+                  { k: "address", l: "대표지번" },
+                  { k: "stage", l: "진행단계" }
+                ].map(h => (
+                  <th key={h.k} onClick={() => handleSort(h.k)} style={{ padding: "10px 8px", textAlign: "left", color: "#8B92A5", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, userSelect: "none" }}>{h.l}{sArr(h.k)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.slice(0, 200).map((it, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
+                  <td style={{ padding: "8px", color: "#5a6480" }}>{it.no}</td>
+                  <td style={{ padding: "8px", color: "#ccc", whiteSpace: "nowrap" }}>{it.district}</td>
+                  <td style={{ padding: "8px", color: "#ccc" }}>{it.type}</td>
+                  <td style={{ padding: "8px", color: "#fff", fontWeight: 500 }}>{it.name}</td>
+                  <td style={{ padding: "8px", color: "#8B92A5", fontSize: 12 }}>{it.address}</td>
+                  <td style={{ padding: "8px" }}>
+                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (stageColors[it.stage] || "#6B7280") + "20", color: stageColors[it.stage] || "#6B7280" }}>{it.stage || "-"}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {sorted.length > 200 && <p style={{ textAlign: "center", padding: 12, color: "#5a6480", fontSize: 12 }}>상위 200건 표시 중 (전체 {sorted.length}건)</p>}
+          {sorted.length === 0 && <p style={{ textAlign: "center", padding: 24, color: "#5a6480" }}>검색 결과가 없습니다.</p>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ListingsPage() {
   const mob = useWindowSize() < 768;
   const mapRef = useRef(null);
@@ -3206,6 +3382,7 @@ export default function App() {
       {page === "analysis" && <AnalysisPage />}
       {page === "redevelop" && <RedevelopmentMapPage />}
       {page === "listings" && <ListingsPage />}
+      {page === "cleanup" && <CleanupPage />}
       {page === "news" && <NewsPage />}
       {page === "prediction" && <PredictionPage />}
       <Footer />
