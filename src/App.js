@@ -1038,8 +1038,8 @@ function PopulationMoveDistrictChart({ mob }) {
       </div>
       <div style={cardS}>
         {/* 버블 맵 */}
-        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
-          <svg viewBox="126.76 37.21 0.44 0.44" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
+        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'75%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
+          <svg viewBox="126.74 37.18 0.50 0.50" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
             preserveAspectRatio="xMidYMid meet">
             {guValues.map(({ name, value }) => {
               const coords = GU_COORDS[name];
