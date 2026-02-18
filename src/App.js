@@ -721,14 +721,14 @@ function PopulationMoveDistrictChart({ mob }) {
               const coords = GU_COORDS[name];
               if (!coords) return null;
               const [lat, lng] = coords;
-              const size = Math.abs(value) / Math.max(Math.abs(minV), Math.abs(maxV)) * (mob ? 0.08 : 0.04) + 0.012;
+              const size = Math.abs(value) / Math.max(Math.abs(minV), Math.abs(maxV)) * (mob ? 0.056 : 0.028) + 0.008;
               return (
                 <g key={name}>
                   <circle cx={lng} cy={-lat+75} r={size} fill={getColor(value)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
-                  <text x={lng} y={-lat+75+0.003} textAnchor="middle" fontSize={mob?"0.014":"0.008"} fill="rgba(255,255,255,0.85)">
+                  <text x={lng} y={-lat+75+0.003} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
                     {name.replace(/구$/,'')}
                   </text>
-                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.012":"0.007"} fill="rgba(255,255,255,0.6)">
+                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.6)">
                     {value > 0 ? '+' : ''}{value.toLocaleString()}
                   </text>
                 </g>
