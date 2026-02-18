@@ -623,6 +623,202 @@ function HousingSupplyChart({ mob }) {
 
 
 
+
+function RealTradeChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [listing, setListing] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      fetch('/data/real-trade.json').then(r => r.json()),
+      fetch('/data/naver-listings.json').then(r => r.json()),
+    ]).then(([trade, nav]) => {
+      setData(trade);
+      setListing(nav);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>실거래가 로딩 중...</div>;
+  if (!data) return null;
+
+  const fmtEok = (v) => {
+    const e = Math.floor(v / 10000);
+    const m = Math.round((v % 10000) / 1000) * 1000;
+    return m > 0 ? e + "." + (m/1000) + "억" : e + "억";
+  };
+
+  // 호가 파싱
+  const hogas = {};
+  if (listing && listing.districts) {
+    Object.entries(listing.districts).forEach(([gu, info]) => {
+      const prices = [];
+      (info.articles || []).forEach(a => {
+        const p = String(a.price || "");
+        const m = p.match(/(\d+)억\s*(\d+)?/);
+        if (m) prices.push(parseInt(m[1]) * 10000 + (m[2] ? parseInt(m[2]) : 0));
+      });
+      if (prices.length > 0) hogas[gu] = Math.round(prices.reduce((a,b)=>a+b,0) / prices.length);
+    });
+  }
+
+  const guList = Object.keys(data.trade)
+    .map(gu => ({
+      gu,
+      real: data.trade[gu].avg,
+      hoga: hogas[gu] || 0,
+      gap: hogas[gu] ? Math.round((hogas[gu] - data.trade[gu].avg) / data.trade[gu].avg * 100) : 0,
+      count: data.trade[gu].count,
+    }))
+    .sort((a, b) => b.real - a.real);
+
+  const maxPrice = Math.max(...guList.map(g => Math.max(g.real, g.hoga)));
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          📊 실거래가 vs 매물호가 비교
+        </h2>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>최근 3개월 실거래 평균 vs 네이버 매물 평균호가</p>
+      </div>
+      <div style={cardS}>
+        <div style={{ display: "flex", gap: 16, marginBottom: 12, fontSize: 11 }}>
+          <span><span style={{ display:"inline-block", width:10, height:10, background:"#4ECDC4", borderRadius:2, marginRight:4 }}></span>실거래가</span>
+          <span><span style={{ display:"inline-block", width:10, height:10, background:"#FF6B6B", borderRadius:2, marginRight:4 }}></span>매물호가</span>
+        </div>
+        <div style={{ maxHeight: mob ? 500 : 600, overflowY: "auto" }}>
+          {guList.map(({ gu, real, hoga, gap, count }) => (
+            <div key={gu} style={{ marginBottom: 8 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#ccc", marginBottom: 2 }}>
+                <span>{gu} <span style={{ color: "#666", fontSize: 10 }}>({count}건)</span></span>
+                <span style={{ color: gap > 30 ? "#FF6B6B" : gap > 15 ? "#FFA07A" : "#4ECDC4", fontSize: 10 }}>
+                  {hoga > 0 ? (gap > 0 ? `호가 +${gap}%` : `호가 ${gap}%`) : ""}
+                </span>
+              </div>
+              <div style={{ position: "relative", height: 14 }}>
+                <div style={{ position: "absolute", top: 0, left: 0, height: 7, width: `${(real/maxPrice)*100}%`, background: "#4ECDC4", borderRadius: 3 }}></div>
+                {hoga > 0 && <div style={{ position: "absolute", top: 7, left: 0, height: 7, width: `${(hoga/maxPrice)*100}%`, background: "rgba(255,107,107,0.6)", borderRadius: 3 }}></div>}
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "#666", marginTop: 1 }}>
+                <span>{fmtEok(real)}</span>
+                {hoga > 0 && <span>{fmtEok(hoga)}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function JeonseRatioChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/data/real-trade.json')
+      .then(r => r.json())
+      .then(json => { setData(json); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const GU_COORDS = {
+    '종로구':[37.5950,126.9600],'중구':[37.5450,127.0100],'용산구':[37.5100,126.9750],
+    '성동구':[37.5500,127.0500],'광진구':[37.5350,127.1000],'동대문구':[37.5900,127.0550],
+    '중랑구':[37.6150,127.1100],'성북구':[37.6050,127.0050],'강북구':[37.6450,127.0150],
+    '도봉구':[37.6900,127.0350],'노원구':[37.6650,127.0750],'은평구':[37.6200,126.9100],
+    '서대문구':[37.5800,126.9200],'마포구':[37.5600,126.8800],'양천구':[37.5200,126.8450],
+    '강서구':[37.5600,126.8250],'구로구':[37.4850,126.8650],'금천구':[37.4400,126.8900],
+    '영등포구':[37.5250,126.9000],'동작구':[37.4950,126.9400],'관악구':[37.4600,126.9500],
+    '서초구':[37.4700,127.0350],'강남구':[37.5150,127.0700],'송파구':[37.5050,127.1250],
+    '강동구':[37.5400,127.1450],
+  };
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>전세가율 로딩 중...</div>;
+  if (!data) return null;
+
+  const guValues = Object.entries(data.rent).map(([name, info]) => ({
+    name,
+    ratio: info.jeonse_ratio || 0,
+    jeonseAvg: info.jeonse_avg || 0,
+    tradeAvg: data.trade[name] ? data.trade[name].avg : 0,
+  })).filter(g => g.ratio > 0);
+
+  const ratios = guValues.map(g => g.ratio);
+  const minR = Math.min(...ratios);
+  const maxR = Math.max(...ratios);
+
+  const getColor = (ratio) => {
+    const norm = (ratio - minR) / (maxR - minR || 1);
+    const r = Math.round(50 + norm * 205);
+    const g = Math.round(200 - norm * 120);
+    const b = Math.round(50 + (1-norm) * 150);
+    return "rgba(" + r + "," + g + "," + b + "," + (0.4 + norm * 0.35) + ")";
+  };
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          🏠 서울 구별 전세가율
+        </h2>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>전세가 ÷ 매매가 × 100 (높을수록 갭투자 여지 적음)</p>
+      </div>
+      <div style={cardS}>
+        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
+          <svg viewBox="126.76 37.23 0.44 0.40" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
+            preserveAspectRatio="xMidYMid meet">
+            {guValues.map(({ name, ratio }) => {
+              const coords = GU_COORDS[name];
+              if (!coords) return null;
+              const [lat, lng] = coords;
+              const norm = (ratio - minR) / (maxR - minR || 1);
+              const size = (mob ? 0.015 : 0.01) + norm * (mob ? 0.015 : 0.01);
+              return (
+                <g key={name}>
+                  <circle cx={lng} cy={-lat+75} r={size} fill={getColor(ratio)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
+                  <text x={lng} y={-lat+75-0.001} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
+                    {name.length <= 2 ? name : name.replace(/구$/,'')}
+                  </text>
+                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.7)" fontWeight="bold">
+                    {ratio}%
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+        <div style={{ marginTop:16, display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
+          <div>
+            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>📈 전세가율 높음 (갭 작음)</div>
+            {[...guValues].sort((a,b)=>b.ratio-a.ratio).slice(0,5).map((g,i)=>(
+              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
+                <span>{i+1}. {g.name}</span>
+                <span style={{color:'#FF6B6B'}}>{g.ratio}%</span>
+              </div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>📉 전세가율 낮음 (갭 큼)</div>
+            {[...guValues].sort((a,b)=>a.ratio-b.ratio).slice(0,5).map((g,i)=>(
+              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
+                <span>{i+1}. {g.name}</span>
+                <span style={{color:'#4ECDC4'}}>{g.ratio}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function DistrictPriceChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -1516,6 +1712,12 @@ function DashboardPage() {
 
       {/* ── 구별 매매호가 히트맵 ── */}
       <DistrictPriceChart mob={mob} />
+
+      {/* ── 실거래가 vs 호가 비교 ── */}
+      <RealTradeChart mob={mob} />
+
+      {/* ── 전세가율 히트맵 ── */}
+      <JeonseRatioChart mob={mob} />
 
       {/* ── 주택 인허가 실적 ── */}
       <HousingSupplyChart mob={mob} />
