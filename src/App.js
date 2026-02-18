@@ -624,6 +624,35 @@ function HousingSupplyChart({ mob }) {
 
 
 
+
+function TreemapGrid({ items, labelKey, valueKey, fmtValue, getColor, mob }) {
+  if (!items || items.length === 0) return null;
+  const sorted = [...items].sort((a,b) => Math.abs(b[valueKey]) - Math.abs(a[valueKey]));
+  const perRow = mob ? 4 : 5;
+  const rows = [];
+  for (let i = 0; i < sorted.length; i += perRow) rows.push(sorted.slice(i, i + perRow));
+  const totalAbs = sorted.reduce((s, it) => s + (Math.abs(it[valueKey]) || 1), 0);
+  return (
+    <div style={{ display:"flex", flexDirection:"column", gap: 2 }}>
+      {rows.map((row, ri) => {
+        const rowTotal = row.reduce((s, it) => s + (Math.abs(it[valueKey]) || 1), 0);
+        const rowH = Math.max(mob ? 48 : 52, Math.round((rowTotal / totalAbs) * (mob ? 320 : 380)));
+        return (
+          <div key={ri} style={{ display:"flex", gap: 2, height: rowH }}>
+            {row.map((it) => {
+              const w = (Math.abs(it[valueKey]) || 1) / rowTotal * 100;
+              return (
+                <div key={it[labelKey]} style={{ width: w+"%", background: getColor(it), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:3, overflow:"hidden" }}>
+                  <div style={{ fontSize: mob?11:13, color:"#fff", fontWeight:700, whiteSpace:"nowrap" }}>{it[labelKey].length <= 2 ? it[labelKey] : it[labelKey].replace(/구$/,'')}</div>
+                  <div style={{ fontSize: mob?10:12, color:"rgba(255,255,255,0.85)", fontWeight:600, marginTop:1 }}>{fmtValue(it)}</div>
+                </div>);
+            })}
+          </div>);
+      })}
+    </div>
+  );
+}
+
 function RealTradeChart({ mob }) {
   const [data, setData] = useState(null);
   const [listing, setListing] = useState(null);
@@ -730,13 +759,8 @@ function JeonseRatioChart({ mob }) {
   Object.entries(data.rent).forEach(([gu, info]) => {
     if (info.jeonse_ratio > 0) items.push({ gu, ratio: info.jeonse_ratio });
   });
-  items.sort((a,b) => b.ratio - a.ratio);
-  const maxR = items[0] ? items[0].ratio : 1;
-  const minR = items[items.length-1] ? items[items.length-1].ratio : 0;
-  const getColor = (ratio) => {
-    const norm = (ratio - minR) / (maxR - minR || 1);
-    return "rgba("+Math.round(50+norm*205)+","+Math.round(180-norm*100)+","+Math.round(50+(1-norm)*150)+","+(0.3+norm*0.55)+")";
-  };
+  const vals = items.map(d => d.ratio);
+  const minR = Math.min(...vals), maxR = Math.max(...vals);
   return (
     <div style={{ marginTop: 32 }}>
       <div style={{ marginBottom: 16 }}>
@@ -744,18 +768,13 @@ function JeonseRatioChart({ mob }) {
         <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>전세가 ÷ 매매가 × 100 (크기=전세가율, 높을수록 갭투자 여지 큼)</p>
       </div>
       <div style={cardS}>
-        <div style={{ display:"flex", flexWrap:"wrap", gap: 2 }}>
-          {items.map(({ gu, ratio }) => {
-            const norm = (ratio - minR) / (maxR - minR || 1);
-            const flex = 1 + norm * 8;
-            const h = mob ? 50 + norm * 40 : 55 + norm * 45;
-            return (
-              <div key={gu} style={{ flex: flex+" 1 "+(mob?"50px":"65px"), height: h, background: getColor(ratio), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
-                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
-                <div style={{ fontSize: mob?12:14, color:"rgba(255,255,255,0.9)", fontWeight:700, marginTop:2 }}>{ratio}%</div>
-              </div>);
-          })}
-        </div>
+        <TreemapGrid items={items} labelKey="gu" valueKey="ratio"
+          fmtValue={(it) => it.ratio + "%"}
+          getColor={(it) => {
+            const norm = (it.ratio - minR) / (maxR - minR || 1);
+            return "rgba("+Math.round(50+norm*205)+","+Math.round(180-norm*100)+","+Math.round(50+(1-norm)*150)+","+(0.35+norm*0.55)+")";
+          }}
+          mob={mob} />
       </div>
     </div>
   );
@@ -768,7 +787,7 @@ function DistrictPriceChart({ mob }) {
     fetch('/data/naver-listings.json').then(r => r.json())
       .then(json => {
         const districts = json.districts || {};
-        const parsed = {};
+        const parsed = [];
         Object.entries(districts).forEach(([gu, info]) => {
           const prices = [];
           (info.articles || []).forEach(a => {
@@ -776,7 +795,7 @@ function DistrictPriceChart({ mob }) {
             const m = p.match(/(\d+)억\s*(\d+)?/);
             if (m) prices.push(parseInt(m[1]) * 10000 + (m[2] ? parseInt(m[2]) : 0));
           });
-          if (prices.length > 0) parsed[gu] = Math.round(prices.reduce((a,b)=>a+b,0) / prices.length);
+          if (prices.length > 0) parsed.push({ gu, v: Math.round(prices.reduce((a,b)=>a+b,0) / prices.length) });
         });
         setData(parsed); setLoading(false);
       }).catch(() => setLoading(false));
@@ -784,33 +803,23 @@ function DistrictPriceChart({ mob }) {
   const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>구별 매매호가 로딩 중...</div>;
   if (!data) return null;
-  const items = Object.entries(data).map(([gu,v]) => ({gu,v})).sort((a,b) => b.v - a.v);
-  const maxV = items[0] ? items[0].v : 1;
-  const minV = items[items.length-1] ? items[items.length-1].v : 0;
-  const getColor = (v) => {
-    const ratio = (v - minV) / (maxV - minV || 1);
-    return "rgba("+Math.round(40+ratio*215)+","+Math.round(60+(1-ratio)*100)+","+Math.round(200*(1-ratio))+","+(0.3+ratio*0.55)+")";
-  };
+  const vals = data.map(d => d.v);
+  const minV = Math.min(...vals), maxV = Math.max(...vals);
   const fmtPrice = (v) => { const e=Math.floor(v/10000),m=v%10000; return m>0?e+"."+Math.round(m/1000)+"억":e+"억"; };
   return (
     <div style={{ marginTop: 32 }}>
       <div style={{ marginBottom: 16 }}>
         <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>💰 서울 구별 아파트 평균 매매호가</h2>
-        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>네이버 부동산 매물 기준 (크기=가격 비례, 빨강=고가)</p>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>네이버 부동산 매물 기준 (크기/색상=가격 비례)</p>
       </div>
       <div style={cardS}>
-        <div style={{ display:"flex", flexWrap:"wrap", gap: 2 }}>
-          {items.map(({ gu, v }) => {
-            const ratio = (v - minV) / (maxV - minV || 1);
-            const flex = 1 + ratio * 8;
-            const h = mob ? 50 + ratio * 40 : 55 + ratio * 45;
-            return (
-              <div key={gu} style={{ flex: flex+" 1 "+(mob?"50px":"65px"), height: h, background: getColor(v), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
-                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
-                <div style={{ fontSize: mob?11:13, color:"rgba(255,255,255,0.85)", fontWeight:600, marginTop:2 }}>{fmtPrice(v)}</div>
-              </div>);
-          })}
-        </div>
+        <TreemapGrid items={data} labelKey="gu" valueKey="v"
+          fmtValue={(it) => fmtPrice(it.v)}
+          getColor={(it) => {
+            const ratio = (it.v - minV) / (maxV - minV || 1);
+            return "rgba("+Math.round(40+ratio*215)+","+Math.round(60+(1-ratio)*100)+","+Math.round(200*(1-ratio))+","+(0.35+ratio*0.55)+")";
+          }}
+          mob={mob} />
       </div>
     </div>
   );
@@ -837,12 +846,10 @@ function PopulationMoveDistrictChart({ mob }) {
   Object.entries(data.data).forEach(([gu, mdata]) => {
     const d = mdata[selMonth];
     if (d) {
-          const net = d["순이동"] || (d["총전입"]||0) - (d["총전출"]||0);
-          items.push({ gu, net, abs: Math.abs(net) });
-        }
+      const net = d["순이동"] || (d["총전입"]||0) - (d["총전출"]||0);
+      items.push({ gu, net });
+    }
   });
-  items.sort((a,b) => b.abs - a.abs);
-  const absMax = items[0] ? items[0].abs : 1;
   const fmtMonth = (m) => m ? m.slice(0,4)+"."+m.slice(4) : "";
   return (
     <div style={{ marginTop: 32 }}>
@@ -857,20 +864,15 @@ function PopulationMoveDistrictChart({ mob }) {
         </select>
       </div>
       <div style={cardS}>
-        <div style={{ display:"flex", flexWrap:"wrap", gap: 2 }}>
-          {items.map(({ gu, net, abs }) => {
-            const ratio = abs / (absMax || 1);
-            const alpha = 0.25 + ratio * 0.65;
-            const bg = net >= 0 ? "rgba(78,205,196,"+alpha+")" : "rgba(255,107,107,"+alpha+")";
-            const flex = 1 + ratio * 8;
-            const h = mob ? 50 + ratio * 40 : 55 + ratio * 45;
-            return (
-              <div key={gu} style={{ flex: flex+" 1 "+(mob?"50px":"65px"), height: h, background: bg, borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
-                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
-                <div style={{ fontSize: mob?11:13, color:"rgba(255,255,255,0.85)", fontWeight:600, marginTop:2 }}>{net>0?"+":""}{net.toLocaleString()}</div>
-              </div>);
-          })}
-        </div>
+        <TreemapGrid items={items} labelKey="gu" valueKey="net"
+          fmtValue={(it) => (it.net>0?"+":"") + it.net.toLocaleString()}
+          getColor={(it) => {
+            const nets = items.map(d => Math.abs(d.net));
+            const absMax = Math.max(...nets) || 1;
+            const alpha = 0.2 + (Math.abs(it.net)/absMax) * 0.7;
+            return it.net >= 0 ? "rgba(78,205,196,"+alpha+")" : "rgba(255,107,107,"+alpha+")";
+          }}
+          mob={mob} />
         <div style={{ marginTop:12, display:"flex", justifyContent:"space-between", fontSize:11, color:"#666" }}>
           <span style={{color:"#4ECDC4"}}>● 전입초과</span>
           <span>{fmtMonth(selMonth)} 기준</span>
