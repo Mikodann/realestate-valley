@@ -340,6 +340,7 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "listings", label: "매물검색", icon: Search },
     { id: "cleanup", label: "정비사업", icon: Building2 },
     { id: "history", label: "시세추이", icon: TrendingUp },
+    { id: "school", label: "학군정보", icon: MapPin },
     { id: "news", label: "뉴스", icon: Newspaper },
     { id: "prediction", label: "시세예측", icon: Brain },
   ];
@@ -2935,6 +2936,162 @@ const LISTING_DISTRICTS = {
 
 
 
+
+function SchoolInfoPage() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [filterDistrict, setFilterDistrict] = useState("전체");
+  const [filterType, setFilterType] = useState("전체");
+  const [search, setSearch] = useState("");
+  const [sortKey, setSortKey] = useState("name");
+  const [sortAsc, setSortAsc] = useState(true);
+  const mob = window.innerWidth < 768;
+
+  useEffect(() => {
+    fetch("/data/school-info.json").then(r => r.json()).then(d => { setData(d); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>학교정보 로딩 중...</div>;
+  if (!data) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>데이터를 불러올 수 없습니다.</div>;
+
+  const { schools, by_district, by_type, total, updated } = data;
+  const districts = ["전체", ...Object.keys(by_district)];
+  const types = ["전체", "초등학교", "중학교", "고등학교"];
+
+  const filtered = schools.filter(s => {
+    if (filterDistrict !== "전체" && s.district !== filterDistrict) return false;
+    if (filterType !== "전체" && s.type !== filterType) return false;
+    if (search && !s.name.includes(search) && !s.address.includes(search)) return false;
+    return true;
+  });
+
+  const sorted = [...filtered].sort((a, b) => {
+    const v = sortAsc ? 1 : -1;
+    return (a[sortKey] || "").localeCompare(b[sortKey] || "") * v;
+  });
+
+  const handleSort = k => { if (sortKey === k) setSortAsc(!sortAsc); else { setSortKey(k); setSortAsc(true); } };
+  const sArr = s => sortKey === s ? (sortAsc ? " ▲" : " ▼") : "";
+
+  const distChart = Object.entries(by_district).slice(0, 15).map(([k, v]) => ({ name: k, 초등: v["초등학교"], 중등: v["중학교"], 고등: v["고등학교"] }));
+  const typeChart = Object.entries(by_type).map(([k, v]) => ({ name: k, value: v }));
+  const PIE_COLORS = ["#0066FF", "#00D68F", "#FF6B6B"];
+  const publicCount = schools.filter(s => s.public === "공립").length;
+  const privateCount = schools.filter(s => s.public === "사립").length;
+
+  const cardS = { background: "rgba(255,255,255,.03)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 20 };
+  const selS = { background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", cursor: "pointer" };
+  const typeColors = { "초등학교": "#0066FF", "중학교": "#00D68F", "고등학교": "#FF6B6B" };
+
+  return (
+    <div style={{ minHeight: "100vh", background: "#0A0E1A", paddingTop: 80, paddingBottom: 60 }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: mob ? "0 16px" : "0 24px" }}>
+        <div style={{ marginBottom: 24 }}>
+          <h1 style={{ fontSize: mob ? 22 : 28, fontWeight: 700, color: "#fff", marginBottom: 8 }}>🏫 서울 학군정보</h1>
+          <p style={{ fontSize: 14, color: "#5a6480" }}>출처: 나이스(NEIS) 교육정보 개방 포털 · 갱신: {updated}</p>
+        </div>
+
+        {/* Summary */}
+        <div style={{ display: "grid", gridTemplateColumns: mob ? "repeat(2,1fr)" : "repeat(5,1fr)", gap: 12, marginBottom: 24 }}>
+          {[
+            { label: "전체 학교", value: total.toLocaleString(), color: "#A78BFA" },
+            { label: "초등학교", value: by_type["초등학교"], color: "#0066FF" },
+            { label: "중학교", value: by_type["중학교"], color: "#00D68F" },
+            { label: "고등학교", value: by_type["고등학교"], color: "#FF6B6B" },
+            { label: "공립/사립", value: `${publicCount}/${privateCount}`, color: "#FFD93D" }
+          ].map((c, i) => (
+            <div key={i} style={{ ...cardS, textAlign: "center" }}>
+              <div style={{ fontSize: 12, color: "#5a6480", marginBottom: 6 }}>{c.label}</div>
+              <div style={{ fontSize: mob ? 18 : 24, fontWeight: 700, color: c.color }}>{c.value}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Charts */}
+        <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 1fr", gap: 16, marginBottom: 24 }}>
+          <div style={cardS}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>📊 자치구별 학교 수 (상위 15)</h3>
+            <ResponsiveContainer width="100%" height={320}>
+              <BarChart data={distChart} margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                <XAxis dataKey="name" tick={{ fill: "#5a6480", fontSize: 10 }} angle={-45} textAnchor="end" height={70} />
+                <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} />
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+                <Bar dataKey="초등" stackId="a" fill="#0066FF" name="초등학교" />
+                <Bar dataKey="중등" stackId="a" fill="#00D68F" name="중학교" />
+                <Bar dataKey="고등" stackId="a" fill="#FF6B6B" name="고등학교" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <div style={cardS}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🎓 학교 유형 비율</h3>
+            <ResponsiveContainer width="100%" height={320}>
+              <PieChart>
+                <Pie data={typeChart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={110} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} fontSize={12}>
+                  {typeChart.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
+                </Pie>
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <div style={{ ...cardS, marginBottom: 16 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="학교명/주소 검색..." style={{ ...selS, flex: mob ? "1 1 100%" : "1 1 200px", minWidth: 160 }} />
+            <select value={filterDistrict} onChange={e => setFilterDistrict(e.target.value)} style={selS}>
+              {districts.map(d => <option key={d} value={d} style={{ background: "#1a1f35" }}>{d}</option>)}
+            </select>
+            <select value={filterType} onChange={e => setFilterType(e.target.value)} style={selS}>
+              {types.map(t => <option key={t} value={t} style={{ background: "#1a1f35" }}>{t}</option>)}
+            </select>
+            <span style={{ fontSize: 13, color: "#5a6480" }}>결과: {filtered.length}개</span>
+          </div>
+        </div>
+
+        {/* Table */}
+        <div style={{ ...cardS, overflow: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+            <thead>
+              <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+                {[
+                  { k: "name", l: "학교명" },
+                  { k: "type", l: "구분" },
+                  { k: "district", l: "자치구" },
+                  { k: "address", l: "주소" },
+                  { k: "public", l: "설립" },
+                  { k: "founded", l: "개교" }
+                ].map(h => (
+                  <th key={h.k} onClick={() => handleSort(h.k)} style={{ padding: "10px 8px", textAlign: "left", color: "#8B92A5", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, userSelect: "none" }}>{h.l}{sArr(h.k)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.slice(0, 200).map((s, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
+                  <td style={{ padding: "8px", color: "#fff", fontWeight: 500 }}>
+                    {s.homepage ? <a href={s.homepage} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{s.name}</a> : s.name}
+                  </td>
+                  <td style={{ padding: "8px" }}>
+                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (typeColors[s.type] || "#6B7280") + "20", color: typeColors[s.type] || "#6B7280" }}>{s.type}</span>
+                  </td>
+                  <td style={{ padding: "8px", color: "#ccc", whiteSpace: "nowrap" }}>{s.district}</td>
+                  <td style={{ padding: "8px", color: "#8B92A5", fontSize: 12, maxWidth: 300, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.address}</td>
+                  <td style={{ padding: "8px", color: "#ccc", fontSize: 12 }}>{s.public}</td>
+                  <td style={{ padding: "8px", color: "#5a6480", fontSize: 12 }}>{s.founded ? s.founded.slice(0, 4) + "년" : "-"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {sorted.length > 200 && <p style={{ textAlign: "center", padding: 12, color: "#5a6480", fontSize: 12 }}>상위 200개 표시 중 (전체 {sorted.length}개)</p>}
+          {sorted.length === 0 && <p style={{ textAlign: "center", padding: 24, color: "#5a6480" }}>검색 결과가 없습니다.</p>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AptHistoryPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -3573,6 +3730,7 @@ export default function App() {
       {page === "listings" && <ListingsPage />}
       {page === "cleanup" && <CleanupPage />}
       {page === "history" && <AptHistoryPage />}
+      {page === "school" && <SchoolInfoPage />}
       {page === "news" && <NewsPage />}
       {page === "prediction" && <PredictionPage />}
       <Footer />
