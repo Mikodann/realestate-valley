@@ -623,12 +623,12 @@ function HousingSupplyChart({ mob }) {
 
 
 function PopulationMoveDistrictChart({ mob }) {
-  const [data, setData] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [selectedMonth, setSelectedMonth] = React.useState('');
-  const [mode, setMode] = React.useState('순이동'); // 순이동 | 총전입 | 총전출
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [mode, setMode] = useState('순이동'); // 순이동 | 총전입 | 총전출
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch('/data/population-move-district.json')
       .then(r => r.json())
       .then(json => {
