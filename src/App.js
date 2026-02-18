@@ -629,7 +629,7 @@ function PopulationMoveDistrictChart({ mob }) {
   const [mode, setMode] = React.useState('순이동'); // 순이동 | 총전입 | 총전출
 
   React.useEffect(() => {
-    fetch('/data/population_move_district.json')
+    fetch('/data/population-move-district.json')
       .then(r => r.json())
       .then(json => {
         setData(json.data);
