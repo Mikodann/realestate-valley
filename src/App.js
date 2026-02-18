@@ -710,7 +710,7 @@ function DistrictPriceChart({ mob }) {
               const coords = GU_COORDS[name];
               if (!coords) return null;
               const [lat, lng] = coords;
-              const size = (mob ? 0.039 : 0.02) + 0.006;
+              const ratio = (avg - minV) / (maxV - minV || 1); const size = (mob ? 0.015 : 0.01) + ratio * (mob ? 0.02 : 0.012);
               return (
                 <g key={name}>
                   <circle cx={lng} cy={-lat+75} r={size} fill={getColor(avg)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
