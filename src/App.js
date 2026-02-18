@@ -718,100 +718,61 @@ function RealTradeChart({ mob }) {
 function JeonseRatioChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    fetch('/data/real-trade.json')
-      .then(r => r.json())
+    fetch('/data/real-trade.json').then(r => r.json())
       .then(json => { setData(json); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
-
-  const GU_COORDS = {
-    '종로구':[37.5950,126.9600],'중구':[37.5450,127.0100],'용산구':[37.5100,126.9750],
-    '성동구':[37.5500,127.0500],'광진구':[37.5350,127.1000],'동대문구':[37.5900,127.0550],
-    '중랑구':[37.6150,127.1100],'성북구':[37.6050,127.0050],'강북구':[37.6450,127.0150],
-    '도봉구':[37.6900,127.0350],'노원구':[37.6650,127.0750],'은평구':[37.6200,126.9100],
-    '서대문구':[37.5800,126.9200],'마포구':[37.5600,126.8800],'양천구':[37.5200,126.8450],
-    '강서구':[37.5600,126.8250],'구로구':[37.4850,126.8650],'금천구':[37.4400,126.8900],
-    '영등포구':[37.5250,126.9000],'동작구':[37.4950,126.9400],'관악구':[37.4600,126.9500],
-    '서초구':[37.4700,127.0350],'강남구':[37.5150,127.0700],'송파구':[37.5050,127.1250],
-    '강동구':[37.5400,127.1450],
-  };
-
   const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
-
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>전세가율 로딩 중...</div>;
   if (!data) return null;
-
-  const guValues = Object.entries(data.rent).map(([name, info]) => ({
-    name,
-    ratio: info.jeonse_ratio || 0,
-    jeonseAvg: info.jeonse_avg || 0,
-    tradeAvg: data.trade[name] ? data.trade[name].avg : 0,
-  })).filter(g => g.ratio > 0);
-
-  const ratios = guValues.map(g => g.ratio);
-  const minR = Math.min(...ratios);
-  const maxR = Math.max(...ratios);
-
+  const guRatios = {};
+  Object.entries(data.rent).forEach(([gu, info]) => { if (info.jeonse_ratio > 0) guRatios[gu] = info.jeonse_ratio; });
+  const vals = Object.values(guRatios);
+  const minR = Math.min(...vals), maxR = Math.max(...vals);
   const getColor = (ratio) => {
     const norm = (ratio - minR) / (maxR - minR || 1);
-    const r = Math.round(50 + norm * 205);
-    const g = Math.round(200 - norm * 120);
-    const b = Math.round(50 + (1-norm) * 150);
-    return "rgba(" + r + "," + g + "," + b + "," + (0.4 + norm * 0.35) + ")";
+    return "rgba("+Math.round(50+norm*205)+","+Math.round(180-norm*100)+","+Math.round(50+(1-norm)*150)+","+(0.25+norm*0.55)+")";
   };
-
+  const guGrid = [
+    ["도봉","노원","강북","성북","중랑"],
+    ["은평","종로","동대문","광진","강동"],
+    ["서대문","중","성동","송파",""],
+    ["마포","용산","강남","",""],
+    ["양천","영등포","서초","",""],
+    ["강서","구로","동작","관악",""],
+    ["","금천","","",""],
+  ];
   return (
     <div style={{ marginTop: 32 }}>
       <div style={{ marginBottom: 16 }}>
-        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
-          🏠 서울 구별 전세가율
-        </h2>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>🏠 서울 구별 전세가율</h2>
         <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>전세가 ÷ 매매가 × 100 (높을수록 갭투자 여지 큼)</p>
       </div>
       <div style={cardS}>
-        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
-          <svg viewBox="126.76 37.23 0.44 0.40" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
-            preserveAspectRatio="xMidYMid meet">
-            {guValues.map(({ name, ratio }) => {
-              const coords = GU_COORDS[name];
-              if (!coords) return null;
-              const [lat, lng] = coords;
-              const norm = (ratio - minR) / (maxR - minR || 1);
-              const size = (mob ? 0.015 : 0.01) + norm * (mob ? 0.015 : 0.01);
-              return (
-                <g key={name}>
-                  <circle cx={lng} cy={-lat+75} r={size} fill={getColor(ratio)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
-                  <text x={lng} y={-lat+75-0.001} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
-                    {name.length <= 2 ? name : name.replace(/구$/,'')}
-                  </text>
-                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.7)" fontWeight="bold">
-                    {ratio}%
-                  </text>
-                </g>
-              );
-            })}
-          </svg>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(5, 1fr)", gap: 3 }}>
+          {guGrid.flat().map((name, i) => {
+            const guName = name && !name.includes("구") && name.length > 0 ? name + "구" : name;
+            const ratio = guRatios[guName];
+            if (!name) return <div key={i}></div>;
+            if (!ratio) return <div key={i} style={{ aspectRatio:"1", background:"rgba(255,255,255,0.03)", borderRadius:4, display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:"#444" }}>{name}</div>;
+            return (
+              <div key={i} style={{ aspectRatio:"1", background: getColor(ratio), borderRadius:4, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:2 }}>
+                <div style={{ fontSize: mob?10:11, color:"rgba(255,255,255,0.9)", fontWeight:600 }}>{name}</div>
+                <div style={{ fontSize: mob?9:10, color:"rgba(255,255,255,0.75)", marginTop:1, fontWeight:700 }}>{ratio}%</div>
+              </div>);
+          })}
         </div>
         <div style={{ marginTop:16, display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
           <div>
-            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>📈 전세가율 높음 (갭 작음)</div>
-            {[...guValues].sort((a,b)=>b.ratio-a.ratio).slice(0,5).map((g,i)=>(
-              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
-                <span>{i+1}. {g.name}</span>
-                <span style={{color:'#FF6B6B'}}>{g.ratio}%</span>
-              </div>
-            ))}
+            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>📈 전세가율 높음</div>
+            {Object.entries(guRatios).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([gu,v],i)=>(
+              <div key={gu} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}><span>{i+1}. {gu}</span><span style={{color:'#FF6B6B'}}>{v}%</span></div>))}
           </div>
           <div>
-            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>📉 전세가율 낮음 (갭 큼)</div>
-            {[...guValues].sort((a,b)=>a.ratio-b.ratio).slice(0,5).map((g,i)=>(
-              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
-                <span>{i+1}. {g.name}</span>
-                <span style={{color:'#4ECDC4'}}>{g.ratio}%</span>
-              </div>
-            ))}
+            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>📉 전세가율 낮음</div>
+            {Object.entries(guRatios).sort((a,b)=>a[1]-b[1]).slice(0,5).map(([gu,v],i)=>(
+              <div key={gu} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}><span>{i+1}. {gu}</span><span style={{color:'#4ECDC4'}}>{v}%</span></div>))}
           </div>
         </div>
       </div>
@@ -822,123 +783,72 @@ function JeonseRatioChart({ mob }) {
 function DistrictPriceChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    fetch('/data/naver-listings.json')
-      .then(r => r.json())
+    fetch('/data/naver-listings.json').then(r => r.json())
       .then(json => {
         const districts = json.districts || {};
         const parsed = {};
         Object.entries(districts).forEach(([gu, info]) => {
-          const articles = info.articles || [];
           const prices = [];
-          articles.forEach(a => {
+          (info.articles || []).forEach(a => {
             const p = String(a.price || '');
             const m = p.match(/(\d+)억\s*(\d+)?/);
-            if (m) {
-              const val = parseInt(m[1]) * 10000 + (m[2] ? parseInt(m[2]) : 0);
-              prices.push(val);
-            }
+            if (m) prices.push(parseInt(m[1]) * 10000 + (m[2] ? parseInt(m[2]) : 0));
           });
-          if (prices.length > 0) {
-            parsed[gu] = {
-              avg: Math.round(prices.reduce((a,b)=>a+b,0) / prices.length),
-              count: prices.length,
-              median: prices.sort((a,b)=>a-b)[Math.floor(prices.length/2)]
-            };
-          }
+          if (prices.length > 0) parsed[gu] = Math.round(prices.reduce((a,b)=>a+b,0) / prices.length);
         });
-        setData(parsed);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+        setData(parsed); setLoading(false);
+      }).catch(() => setLoading(false));
   }, []);
-
-  const GU_COORDS = {
-    '종로구':[37.5950,126.9600],'중구':[37.5450,127.0100],'용산구':[37.5100,126.9750],
-    '성동구':[37.5500,127.0500],'광진구':[37.5350,127.1000],'동대문구':[37.5900,127.0550],
-    '중랑구':[37.6150,127.1100],'성북구':[37.6050,127.0050],'강북구':[37.6450,127.0150],
-    '도봉구':[37.6900,127.0350],'노원구':[37.6650,127.0750],'은평구':[37.6200,126.9100],
-    '서대문구':[37.5800,126.9200],'마포구':[37.5600,126.8800],'양천구':[37.5200,126.8450],
-    '강서구':[37.5600,126.8250],'구로구':[37.4850,126.8450],'금천구':[37.4550,126.8900],
-    '영등포구':[37.5250,126.9000],'동작구':[37.4950,126.9400],'관악구':[37.4600,126.9500],
-    '서초구':[37.4700,127.0350],'강남구':[37.5150,127.0700],'송파구':[37.5050,127.1250],
-    '강동구':[37.5400,127.1450],
-  };
-
   const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
-
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>구별 매매호가 로딩 중...</div>;
   if (!data) return null;
-
-  const guValues = Object.entries(data).map(([name, info]) => ({ name, avg: info.avg, count: info.count }));
-  const avgs = guValues.map(g => g.avg);
-  const minV = Math.min(...avgs);
-  const maxV = Math.max(...avgs);
-
+  const vals = Object.values(data);
+  const minV = Math.min(...vals), maxV = Math.max(...vals);
   const getColor = (v) => {
-    if (maxV === minV) return 'rgba(100,150,255,0.5)';
-    const ratio = (v - minV) / (maxV - minV);
-    const r = Math.round(255 * ratio);
-    const b = Math.round(255 * (1 - ratio));
-    return `rgba(${r},${Math.round(80+ratio*40)},${b},${0.35+ratio*0.35})`;
+    const ratio = (v - minV) / (maxV - minV || 1);
+    return "rgba("+Math.round(40+ratio*215)+","+Math.round(60+(1-ratio)*100)+","+Math.round(200*(1-ratio))+","+(0.25+ratio*0.6)+")";
   };
-
-  const fmtPrice = (v) => {
-    const eok = Math.floor(v / 10000);
-    const man = v % 10000;
-    return man > 0 ? `${eok}억${man}` : `${eok}억`;
-  };
-
+  const fmtPrice = (v) => { const e=Math.floor(v/10000),m=v%10000; return m>0?e+"."+Math.round(m/1000)+"억":e+"억"; };
+  const guGrid = [
+    ["도봉","노원","강북","성북","중랑"],
+    ["은평","종로","동대문","광진","강동"],
+    ["서대문","중","성동","송파",""],
+    ["마포","용산","강남","",""],
+    ["양천","영등포","서초","",""],
+    ["강서","구로","동작","관악",""],
+    ["","금천","","",""],
+  ];
   return (
     <div style={{ marginTop: 32 }}>
       <div style={{ marginBottom: 16 }}>
-        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
-          💰 서울 구별 아파트 평균 매매호가
-        </h2>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>💰 서울 구별 아파트 평균 매매호가</h2>
         <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>네이버 부동산 매물 기준 (빨강=고가, 파랑=저가)</p>
       </div>
       <div style={cardS}>
-        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
-          <svg viewBox="126.82 37.26 0.34 0.36" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
-            preserveAspectRatio="xMidYMid meet">
-            {guValues.map(({ name, avg, count }) => {
-              const coords = GU_COORDS[name];
-              if (!coords) return null;
-              const [lat, lng] = coords;
-              const ratio = (avg - minV) / (maxV - minV || 1); const size = (mob ? 0.015 : 0.01) + ratio * (mob ? 0.02 : 0.012);
-              return (
-                <g key={name}>
-                  <circle cx={lng} cy={-lat+75} r={size} fill={getColor(avg)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
-                  <text x={lng} y={-lat+75-0.001} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
-                    {name.length <= 2 ? name : name.replace(/구$/,'')}
-                  </text>
-                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.6)">
-                    {fmtPrice(avg)}
-                  </text>
-                </g>
-              );
-            })}
-          </svg>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(5, 1fr)", gap: 3 }}>
+          {guGrid.flat().map((name, i) => {
+            const guName = name && !name.includes("구") && name.length > 0 ? name + "구" : name;
+            const v = data[guName];
+            if (!name) return <div key={i}></div>;
+            if (!v) return <div key={i} style={{ aspectRatio:"1", background:"rgba(255,255,255,0.03)", borderRadius:4, display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:"#444" }}>{name}</div>;
+            return (
+              <div key={i} style={{ aspectRatio:"1", background: getColor(v), borderRadius:4, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:2 }}>
+                <div style={{ fontSize: mob?10:11, color:"rgba(255,255,255,0.9)", fontWeight:600 }}>{name}</div>
+                <div style={{ fontSize: mob?8:9, color:"rgba(255,255,255,0.7)", marginTop:1 }}>{fmtPrice(v)}</div>
+              </div>);
+          })}
         </div>
         <div style={{ marginTop:16, display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
           <div>
-            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>🔥 TOP 5 (고가)</div>
-            {[...guValues].sort((a,b)=>b.avg-a.avg).slice(0,5).map((g,i)=>(
-              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
-                <span>{i+1}. {g.name}</span>
-                <span style={{color:'#FF6B6B'}}>{fmtPrice(g.avg)}</span>
-              </div>
-            ))}
+            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>🔥 TOP 5</div>
+            {Object.entries(data).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([gu,v],i)=>(
+              <div key={gu} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}><span>{i+1}. {gu}</span><span style={{color:'#FF6B6B'}}>{fmtPrice(v)}</span></div>))}
           </div>
           <div>
-            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>💎 TOP 5 (저가)</div>
-            {[...guValues].sort((a,b)=>a.avg-b.avg).slice(0,5).map((g,i)=>(
-              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
-                <span>{i+1}. {g.name}</span>
-                <span style={{color:'#4ECDC4'}}>{fmtPrice(g.avg)}</span>
-              </div>
-            ))}
+            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>💎 저가 TOP 5</div>
+            {Object.entries(data).sort((a,b)=>a[1]-b[1]).slice(0,5).map(([gu,v],i)=>(
+              <div key={gu} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}><span>{i+1}. {gu}</span><span style={{color:'#4ECDC4'}}>{fmtPrice(v)}</span></div>))}
           </div>
         </div>
       </div>
@@ -949,137 +859,71 @@ function DistrictPriceChart({ mob }) {
 function PopulationMoveDistrictChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedMonth, setSelectedMonth] = useState('');
-  const [mode, setMode] = useState('순이동'); // 순이동 | 총전입 | 총전출
-
+  const [selMonth, setSelMonth] = useState("");
   useEffect(() => {
-    fetch('/data/population-move-district.json')
-      .then(r => r.json())
+    fetch('/data/population-move-district.json').then(r => r.json())
       .then(json => {
-        setData(json.data);
-        // 가장 최근 월 자동 선택
-        const first = Object.values(json.data)[0];
-        const months = Object.keys(first).sort();
-        setSelectedMonth(months[months.length - 1]);
+        setData(json);
+        const ms = Object.keys(json.data[Object.keys(json.data)[0]] || {}).sort();
+        setSelMonth(ms[ms.length - 1] || "");
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      }).catch(() => setLoading(false));
   }, []);
-
-  const GU_COORDS = {
-    '종로구':[37.5950,126.9600],'중구':[37.5450,127.0100],'용산구':[37.5100,126.9750],
-    '성동구':[37.5500,127.0500],'광진구':[37.5350,127.1000],'동대문구':[37.5900,127.0550],
-    '중랑구':[37.6150,127.1100],'성북구':[37.6050,127.0050],'강북구':[37.6450,127.0150],
-    '도봉구':[37.6900,127.0350],'노원구':[37.6650,127.0750],'은평구':[37.6200,126.9100],
-    '서대문구':[37.5800,126.9200],'마포구':[37.5600,126.8800],'양천구':[37.5200,126.8450],
-    '강서구':[37.5600,126.8250],'구로구':[37.4850,126.8650],'금천구':[37.4400,126.8900],
-    '영등포구':[37.5250,126.9000],'동작구':[37.4950,126.9400],'관악구':[37.4750,126.9500],
-    '서초구':[37.4700,127.0350],'강남구':[37.5150,127.0700],'송파구':[37.5050,127.1250],
-    '강동구':[37.5400,127.1450],
-  };
-
   const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
-
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>구별 인구이동 로딩 중...</div>;
   if (!data) return null;
-
-  // 선택 월 데이터 계산
-  const guValues = Object.entries(data).map(([name, months]) => {
-    const m = months[selectedMonth] || {};
-    return { name, value: m[mode] || 0 };
+  const months = Object.keys(data.data[Object.keys(data.data)[0]] || {}).sort();
+  const md = {};
+  Object.entries(data.data).forEach(([gu, mdata]) => {
+    const d = mdata[selMonth];
+    if (d) md[gu] = { net: (d["전입"]||0) - (d["전출"]||0) };
   });
-
-  const vals = guValues.map(g => g.value);
-  const minV = Math.min(...vals);
-  const maxV = Math.max(...vals);
-
-  const getColor = (v) => {
-    if (maxV === minV) return 'rgba(100,150,255,0.6)';
-    const ratio = (v - minV) / (maxV - minV);
-    if (mode === '순이동') {
-      // 음수(전출>전입)=빨강, 양수(전입>전출)=파랑
-      if (v < 0) {
-        const r = Math.abs(v) / Math.abs(minV);
-        return `rgba(255,${Math.round(100*(1-r))},${Math.round(80*(1-r))},${0.35+r*0.35})`;
-      } else {
-        return `rgba(${Math.round(100*(1-ratio))},${Math.round(150+ratio*50)},255,${0.35+ratio*0.35})`;
-      }
-    }
-    return `rgba(${Math.round(255*(1-ratio))},${Math.round(100+ratio*100)},255,${0.35+ratio*0.35})`;
+  const nets = Object.values(md).map(d => d.net);
+  const absMax = Math.max(Math.abs(Math.min(...nets)), Math.abs(Math.max(...nets))) || 1;
+  const getColor = (net) => {
+    const ratio = Math.abs(net) / absMax;
+    return net >= 0 ? "rgba(78,205,196,"+(0.15+ratio*0.7)+")" : "rgba(255,107,107,"+(0.15+ratio*0.7)+")";
   };
-
-  const months = data['강남구'] ? Object.keys(data['강남구']).sort() : [];
-  const fmtMonth = (ym) => ym ? ym.slice(0,4)+'년 '+parseInt(ym.slice(4))+'월' : '';
-
+  const fmtMonth = (m) => m ? m.slice(0,4)+"."+m.slice(4) : "";
+  const guGrid = [
+    ["도봉","노원","강북","성북","중랑"],
+    ["은평","종로","동대문","광진","강동"],
+    ["서대문","중","성동","송파",""],
+    ["마포","용산","강남","",""],
+    ["양천","영등포","서초","",""],
+    ["강서","구로","동작","관악",""],
+    ["","금천","","",""],
+  ];
   return (
     <div style={{ marginTop: 32 }}>
-      <div style={{ marginBottom: 16, display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:8 }}>
+      <div style={{ marginBottom: 16, display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:8 }}>
         <div>
-          <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
-            🗺️ 서울 구별 인구이동 히트맵
-          </h2>
-          <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>구별 전입·전출·순이동 현황 (KOSIS)</p>
+          <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>🗺️ 서울 구별 순이동</h2>
+          <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>파랑=전입초과, 빨강=전출초과</p>
         </div>
-        <div style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
-          {['순이동','총전입','총전출'].map(m => (
-            <button key={m} onClick={()=>setMode(m)}
-              style={{ padding:'4px 12px', borderRadius:20, border:'none', cursor:'pointer', fontSize:12,
-                background: mode===m ? '#0066FF' : 'rgba(255,255,255,.08)',
-                color: mode===m ? '#fff' : '#8B92A5' }}>
-              {m}
-            </button>
-          ))}
-          <select value={selectedMonth} onChange={e=>setSelectedMonth(e.target.value)}
-            style={{ padding:'4px 8px', borderRadius:8, border:'1px solid rgba(255,255,255,.1)',
-              background:'rgba(255,255,255,.05)', color:'#ccc', fontSize:12 }}>
-            {months.map(ym => <option key={ym} value={ym}>{fmtMonth(ym)}</option>)}
-          </select>
-        </div>
+        <select value={selMonth} onChange={e=>setSelMonth(e.target.value)}
+          style={{ background:"rgba(255,255,255,0.06)", color:"#fff", border:"1px solid rgba(255,255,255,0.15)", borderRadius:8, padding:"6px 12px", fontSize:13 }}>
+          {months.map(m => <option key={m} value={m}>{fmtMonth(m)}</option>)}
+        </select>
       </div>
       <div style={cardS}>
-        {/* 버블 맵 */}
-        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
-          <svg viewBox="126.76 37.21 0.44 0.44" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
-            preserveAspectRatio="xMidYMid meet">
-            {guValues.map(({ name, value }) => {
-              const coords = GU_COORDS[name];
-              if (!coords) return null;
-              const [lat, lng] = coords;
-              const size = Math.abs(value) / Math.max(Math.abs(minV), Math.abs(maxV)) * (mob ? 0.056 : 0.028) + 0.008;
-              return (
-                <g key={name}>
-                  <circle cx={lng} cy={-lat+75} r={size} fill={getColor(value)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
-                  <text x={lng} y={-lat+75-0.001} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
-                    {name.length <= 2 ? name : name.replace(/구$/,'')}
-                  </text>
-                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.6)">
-                    {value > 0 ? '+' : ''}{value.toLocaleString()}
-                  </text>
-                </g>
-              );
-            })}
-          </svg>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(5, 1fr)", gap: 3 }}>
+          {guGrid.flat().map((name, i) => {
+            const guName = name && !name.includes("구") && name.length > 0 ? name + "구" : name;
+            const d = md[guName];
+            if (!name) return <div key={i}></div>;
+            if (!d) return <div key={i} style={{ aspectRatio:"1", background:"rgba(255,255,255,0.03)", borderRadius:4, display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:"#444" }}>{name}</div>;
+            return (
+              <div key={i} style={{ aspectRatio:"1", background: getColor(d.net), borderRadius:4, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:2 }}>
+                <div style={{ fontSize: mob?10:11, color:"rgba(255,255,255,0.9)", fontWeight:600 }}>{name}</div>
+                <div style={{ fontSize: mob?9:10, color:"rgba(255,255,255,0.7)", marginTop:1 }}>{d.net>0?"+":""}{d.net.toLocaleString()}</div>
+              </div>);
+          })}
         </div>
-        {/* 순위 TOP5 / BOTTOM5 */}
-        <div style={{ marginTop:16, display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
-          <div>
-            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>▲ TOP 5 (유입)</div>
-            {[...guValues].sort((a,b)=>b.value-a.value).slice(0,5).map((g,i)=>(
-              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
-                <span>{i+1}. {g.name}</span>
-                <span style={{color:'#4ECDC4'}}>{g.value > 0 ? '+' : ''}{g.value.toLocaleString()}명</span>
-              </div>
-            ))}
-          </div>
-          <div>
-            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>▼ BOTTOM 5 (유출)</div>
-            {[...guValues].sort((a,b)=>a.value-b.value).slice(0,5).map((g,i)=>(
-              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
-                <span>{i+1}. {g.name}</span>
-                <span style={{color:'#FF6B6B'}}>{g.value.toLocaleString()}명</span>
-              </div>
-            ))}
-          </div>
+        <div style={{ marginTop:12, display:"flex", justifyContent:"space-between", fontSize:10, color:"#666" }}>
+          <span style={{color:"#4ECDC4"}}>● 전입 초과</span>
+          <span>{fmtMonth(selMonth)} 기준</span>
+          <span style={{color:"#FF6B6B"}}>● 전출 초과</span>
         </div>
       </div>
     </div>
