@@ -622,6 +622,134 @@ function HousingSupplyChart({ mob }) {
 }
 
 
+
+function DistrictPriceChart({ mob }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/data/naver-listings.json')
+      .then(r => r.json())
+      .then(json => {
+        const districts = json.districts || {};
+        const parsed = {};
+        Object.entries(districts).forEach(([gu, info]) => {
+          const articles = info.articles || [];
+          const prices = [];
+          articles.forEach(a => {
+            const p = String(a.price || '');
+            const m = p.match(/(\d+)억\s*(\d+)?/);
+            if (m) {
+              const val = parseInt(m[1]) * 10000 + (m[2] ? parseInt(m[2]) : 0);
+              prices.push(val);
+            }
+          });
+          if (prices.length > 0) {
+            parsed[gu] = {
+              avg: Math.round(prices.reduce((a,b)=>a+b,0) / prices.length),
+              count: prices.length,
+              median: prices.sort((a,b)=>a-b)[Math.floor(prices.length/2)]
+            };
+          }
+        });
+        setData(parsed);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const GU_COORDS = {
+    '종로구':[37.5950,126.9600],'중구':[37.5450,127.0100],'용산구':[37.5100,126.9750],
+    '성동구':[37.5500,127.0500],'광진구':[37.5350,127.1000],'동대문구':[37.5900,127.0550],
+    '중랑구':[37.6150,127.1100],'성북구':[37.6050,127.0050],'강북구':[37.6450,127.0150],
+    '도봉구':[37.6900,127.0350],'노원구':[37.6650,127.0750],'은평구':[37.6200,126.9100],
+    '서대문구':[37.5800,126.9200],'마포구':[37.5600,126.8800],'양천구':[37.5200,126.8450],
+    '강서구':[37.5600,126.8250],'구로구':[37.4850,126.8650],'금천구':[37.4400,126.8900],
+    '영등포구':[37.5250,126.9000],'동작구':[37.4950,126.9400],'관악구':[37.4600,126.9500],
+    '서초구':[37.4700,127.0350],'강남구':[37.5150,127.0700],'송파구':[37.5050,127.1250],
+    '강동구':[37.5400,127.1450],
+  };
+
+  const cardS = { background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 24 };
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>구별 매매호가 로딩 중...</div>;
+  if (!data) return null;
+
+  const guValues = Object.entries(data).map(([name, info]) => ({ name, avg: info.avg, count: info.count }));
+  const avgs = guValues.map(g => g.avg);
+  const minV = Math.min(...avgs);
+  const maxV = Math.max(...avgs);
+
+  const getColor = (v) => {
+    if (maxV === minV) return 'rgba(100,150,255,0.5)';
+    const ratio = (v - minV) / (maxV - minV);
+    const r = Math.round(255 * ratio);
+    const b = Math.round(255 * (1 - ratio));
+    return `rgba(${r},${Math.round(80+ratio*40)},${b},${0.35+ratio*0.35})`;
+  };
+
+  const fmtPrice = (v) => {
+    const eok = Math.floor(v / 10000);
+    const man = v % 10000;
+    return man > 0 ? `${eok}억${man}` : `${eok}억`;
+  };
+
+  return (
+    <div style={{ marginTop: 32 }}>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+          💰 서울 구별 아파트 평균 매매호가
+        </h2>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>네이버 부동산 매물 기준 (빨강=고가, 파랑=저가)</p>
+      </div>
+      <div style={cardS}>
+        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
+          <svg viewBox="126.82 37.28 0.34 0.32" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
+            preserveAspectRatio="xMidYMid meet">
+            {guValues.map(({ name, avg, count }) => {
+              const coords = GU_COORDS[name];
+              if (!coords) return null;
+              const [lat, lng] = coords;
+              const size = (mob ? 0.056 : 0.028) + 0.008;
+              return (
+                <g key={name}>
+                  <circle cx={lng} cy={-lat+75} r={size} fill={getColor(avg)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
+                  <text x={lng} y={-lat+75-0.001} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
+                    {name.replace(/구$/,'')}
+                  </text>
+                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.6)">
+                    {fmtPrice(avg)}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+        <div style={{ marginTop:16, display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
+          <div>
+            <div style={{ fontSize:11, color:'#FF6B6B', marginBottom:6 }}>🔥 TOP 5 (고가)</div>
+            {[...guValues].sort((a,b)=>b.avg-a.avg).slice(0,5).map((g,i)=>(
+              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
+                <span>{i+1}. {g.name}</span>
+                <span style={{color:'#FF6B6B'}}>{fmtPrice(g.avg)}</span>
+              </div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize:11, color:'#4ECDC4', marginBottom:6 }}>💎 TOP 5 (저가)</div>
+            {[...guValues].sort((a,b)=>a.avg-b.avg).slice(0,5).map((g,i)=>(
+              <div key={g.name} style={{ display:'flex', justifyContent:'space-between', fontSize:11, color:'#ccc', marginBottom:3 }}>
+                <span>{i+1}. {g.name}</span>
+                <span style={{color:'#4ECDC4'}}>{fmtPrice(g.avg)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PopulationMoveDistrictChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -1385,6 +1513,9 @@ function DashboardPage() {
 
       {/* ── 구별 인구이동 히트맵 ── */}
       <PopulationMoveDistrictChart mob={mob} />
+
+      {/* ── 구별 매매호가 히트맵 ── */}
+      <DistrictPriceChart mob={mob} />
 
       {/* ── 주택 인허가 실적 ── */}
       <HousingSupplyChart mob={mob} />
