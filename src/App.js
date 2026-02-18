@@ -750,7 +750,7 @@ function JeonseRatioChart({ mob }) {
             const flex = 1 + norm * 4;
             return (
               <div key={gu} style={{ flex: flex+" 1 "+(mob?"60px":"80px"), height: mob?60:70, background: getColor(ratio), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
-                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{gu.replace(/구$/,'')}</div>
+                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
                 <div style={{ fontSize: mob?12:14, color:"rgba(255,255,255,0.9)", fontWeight:700, marginTop:2 }}>{ratio}%</div>
               </div>);
           })}
@@ -804,7 +804,7 @@ function DistrictPriceChart({ mob }) {
             const flex = 1 + ratio * 4;
             return (
               <div key={gu} style={{ flex: flex+" 1 "+(mob?"60px":"80px"), height: mob?60:70, background: getColor(v), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
-                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{gu.replace(/구$/,'')}</div>
+                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
                 <div style={{ fontSize: mob?11:13, color:"rgba(255,255,255,0.85)", fontWeight:600, marginTop:2 }}>{fmtPrice(v)}</div>
               </div>);
           })}
@@ -834,7 +834,12 @@ function PopulationMoveDistrictChart({ mob }) {
   const items = [];
   Object.entries(data.data).forEach(([gu, mdata]) => {
     const d = mdata[selMonth];
-    if (d) items.push({ gu, net: (d["전입"]||0) - (d["전출"]||0), abs: Math.abs((d["전입"]||0) - (d["전출"]||0)) });
+    if (d) {
+          const inV = d["전입"] || d["전입자"] || d["in"] || 0;
+          const outV = d["전출"] || d["전출자"] || d["out"] || 0;
+          const net = inV - outV;
+          items.push({ gu, net, abs: Math.abs(net) });
+        }
   });
   items.sort((a,b) => b.abs - a.abs);
   const absMax = items[0] ? items[0].abs : 1;
@@ -860,7 +865,7 @@ function PopulationMoveDistrictChart({ mob }) {
             const flex = 1 + ratio * 4;
             return (
               <div key={gu} style={{ flex: flex+" 1 "+(mob?"60px":"80px"), height: mob?60:70, background: bg, borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
-                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{gu.replace(/구$/,'')}</div>
+                <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
                 <div style={{ fontSize: mob?11:13, color:"rgba(255,255,255,0.85)", fontWeight:600, marginTop:2 }}>{net>0?"+":""}{net.toLocaleString()}</div>
               </div>);
           })}
