@@ -339,6 +339,7 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "redevelop", label: "재개발지도", icon: Map },
     { id: "listings", label: "매물검색", icon: Search },
     { id: "cleanup", label: "정비사업", icon: Building2 },
+    { id: "history", label: "시세추이", icon: TrendingUp },
     { id: "news", label: "뉴스", icon: Newspaper },
     { id: "prediction", label: "시세예측", icon: Brain },
   ];
@@ -2933,6 +2934,194 @@ const LISTING_DISTRICTS = {
 };
 
 
+
+function AptHistoryPage() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [district, setDistrict] = useState("");
+  const [search, setSearch] = useState("");
+  const [selectedApt, setSelectedApt] = useState(null);
+  const [areaFilter, setAreaFilter] = useState("all");
+  const mob = window.innerWidth < 768;
+
+  useEffect(() => {
+    fetch("/data/apt-history.json").then(r => r.json()).then(d => {
+      setData(d);
+      const firstDist = Object.keys(d.districts || {})[0];
+      if (firstDist) setDistrict(firstDist);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>시세 데이터 로딩 중...</div>;
+  if (!data || !data.districts) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>데이터를 불러올 수 없습니다. 수집이 완료되면 표시됩니다.</div>;
+
+  const districtNames = Object.keys(data.districts);
+  const apts = data.districts[district] || [];
+  const filtered = search ? apts.filter(a => a.apt.includes(search) || a.dong.includes(search)) : apts.slice(0, 50);
+
+  // 선택된 단지의 차트 데이터
+  let chartData = [];
+  let aptAreas = [];
+  if (selectedApt) {
+    aptAreas = selectedApt.areas || [];
+    const grouped = {};
+    for (const t of selectedApt.timeline) {
+      if (areaFilter !== "all" && t.area !== parseInt(areaFilter)) continue;
+      if (!grouped[t.ym]) grouped[t.ym] = { prices: [], counts: 0 };
+      grouped[t.ym].prices.push(t.avg);
+      grouped[t.ym].counts += t.count;
+    }
+    chartData = Object.entries(grouped).sort().map(([ym, v]) => ({
+      ym,
+      label: ym.slice(0, 4) + "." + ym.slice(4),
+      avg: Math.round(v.prices.reduce((a, b) => a + b, 0) / v.prices.length),
+      count: v.counts
+    }));
+  }
+
+  // 선택 단지 가격 변화 계산
+  let priceChange = null;
+  if (chartData.length >= 2) {
+    const first = chartData[0].avg;
+    const last = chartData[chartData.length - 1].avg;
+    priceChange = { first, last, diff: last - first, pct: ((last - first) / first * 100).toFixed(1) };
+  }
+
+  const cardS = { background: "rgba(255,255,255,.03)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 20 };
+  const selS = { background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", cursor: "pointer" };
+
+  const formatPrice = p => {
+    if (p >= 10000) return (p / 10000).toFixed(1) + "억";
+    return p.toLocaleString() + "만";
+  };
+
+  return (
+    <div style={{ minHeight: "100vh", background: "#0A0E1A", paddingTop: 80, paddingBottom: 60 }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: mob ? "0 16px" : "0 24px" }}>
+        <div style={{ marginBottom: 24 }}>
+          <h1 style={{ fontSize: mob ? 22 : 28, fontWeight: 700, color: "#fff", marginBottom: 8 }}>📈 아파트 단지별 시세추이</h1>
+          <p style={{ fontSize: 14, color: "#5a6480" }}>출처: 국토교통부 실거래가 공공데이터 ({data.startYear}년~현재) · 갱신: {data.updated}</p>
+        </div>
+
+        {/* 구 선택 + 검색 */}
+        <div style={{ ...cardS, marginBottom: 16 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+            <select value={district} onChange={e => { setDistrict(e.target.value); setSelectedApt(null); }} style={{ ...selS, minWidth: 120 }}>
+              {districtNames.map(d => <option key={d} value={d} style={{ background: "#1a1f35" }}>{d} ({(data.districts[d] || []).length}개 단지)</option>)}
+            </select>
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="아파트명 또는 동 검색..." style={{ ...selS, flex: 1, minWidth: 200 }} />
+            <span style={{ fontSize: 13, color: "#5a6480" }}>검색결과: {filtered.length}개 단지</span>
+          </div>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "350px 1fr", gap: 16 }}>
+          {/* 아파트 목록 */}
+          <div style={{ ...cardS, maxHeight: mob ? 300 : 700, overflowY: "auto" }}>
+            <h3 style={{ fontSize: 14, fontWeight: 600, color: "#8B92A5", marginBottom: 12 }}>아파트 목록 (거래 많은 순)</h3>
+            {filtered.map((apt, i) => {
+              const isSelected = selectedApt && selectedApt.apt === apt.apt && selectedApt.dong === apt.dong;
+              return (
+                <div key={i} onClick={() => { setSelectedApt(apt); setAreaFilter("all"); }}
+                  style={{ padding: "10px 12px", borderRadius: 10, marginBottom: 4, cursor: "pointer", background: isSelected ? "rgba(0,102,255,.15)" : "rgba(255,255,255,.02)", border: isSelected ? "1px solid rgba(0,102,255,.3)" : "1px solid transparent", transition: "all .2s" }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: isSelected ? "#fff" : "#ccc" }}>{apt.apt}</div>
+                  <div style={{ fontSize: 12, color: "#5a6480", display: "flex", gap: 8, marginTop: 4 }}>
+                    <span>{apt.dong}</span>
+                    <span>·</span>
+                    <span>{apt.buildYear}년</span>
+                    <span>·</span>
+                    <span>{apt.totalTrades}건</span>
+                  </div>
+                </div>
+              );
+            })}
+            {filtered.length === 0 && <p style={{ color: "#5a6480", fontSize: 13, textAlign: "center", padding: 20 }}>검색 결과 없음</p>}
+          </div>
+
+          {/* 차트 영역 */}
+          <div>
+            {!selectedApt ? (
+              <div style={{ ...cardS, display: "flex", alignItems: "center", justifyContent: "center", minHeight: 400 }}>
+                <p style={{ color: "#5a6480", fontSize: 15 }}>← 아파트를 선택하세요</p>
+              </div>
+            ) : (
+              <>
+                {/* 단지 정보 + 가격 변화 */}
+                <div style={{ ...cardS, marginBottom: 16 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12 }}>
+                    <div>
+                      <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, color: "#fff", marginBottom: 4 }}>{selectedApt.apt}</h2>
+                      <p style={{ fontSize: 13, color: "#5a6480" }}>{district} {selectedApt.dong} · {selectedApt.buildYear}년 건축 · 총 {selectedApt.totalTrades}건 거래</p>
+                    </div>
+                    {priceChange && (
+                      <div style={{ textAlign: "right" }}>
+                        <div style={{ fontSize: 12, color: "#5a6480" }}>가격 변화 ({chartData[0].ym.slice(0,4)}→{chartData[chartData.length-1].ym.slice(0,4)})</div>
+                        <div style={{ fontSize: 20, fontWeight: 700, color: priceChange.diff >= 0 ? "#FF6B6B" : "#0066FF" }}>
+                          {priceChange.diff >= 0 ? "+" : ""}{formatPrice(priceChange.diff)} ({priceChange.diff >= 0 ? "+" : ""}{priceChange.pct}%)
+                        </div>
+                        <div style={{ fontSize: 12, color: "#5a6480" }}>{formatPrice(priceChange.first)} → {formatPrice(priceChange.last)}</div>
+                      </div>
+                    )}
+                  </div>
+                  {/* 면적 필터 */}
+                  {aptAreas.length > 1 && (
+                    <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
+                      <button onClick={() => setAreaFilter("all")} style={{ ...selS, padding: "5px 12px", fontSize: 12, background: areaFilter === "all" ? "rgba(0,102,255,.2)" : "rgba(255,255,255,.05)", color: areaFilter === "all" ? "#0066FF" : "#8B92A5", border: areaFilter === "all" ? "1px solid rgba(0,102,255,.3)" : "1px solid rgba(255,255,255,.08)" }}>전체</button>
+                      {aptAreas.map(a => (
+                        <button key={a} onClick={() => setAreaFilter(String(a))} style={{ ...selS, padding: "5px 12px", fontSize: 12, background: areaFilter === String(a) ? "rgba(0,102,255,.2)" : "rgba(255,255,255,.05)", color: areaFilter === String(a) ? "#0066FF" : "#8B92A5", border: areaFilter === String(a) ? "1px solid rgba(0,102,255,.3)" : "1px solid rgba(255,255,255,.08)" }}>{a}㎡</button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* 시세 차트 */}
+                <div style={{ ...cardS, marginBottom: 16 }}>
+                  <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>매매 평균가 추이</h3>
+                  {chartData.length > 0 ? (
+                    <ResponsiveContainer width="100%" height={350}>
+                      <AreaChart data={chartData} margin={{ top: 10, right: 10, bottom: 20, left: 10 }}>
+                        <defs>
+                          <linearGradient id="priceGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#0066FF" stopOpacity={0.3} />
+                            <stop offset="95%" stopColor="#0066FF" stopOpacity={0} />
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                        <XAxis dataKey="label" tick={{ fill: "#5a6480", fontSize: 11 }} angle={-45} textAnchor="end" height={60} interval={Math.max(Math.floor(chartData.length / 15), 0)} />
+                        <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} tickFormatter={v => v >= 10000 ? (v/10000).toFixed(0) + "억" : v.toLocaleString()} />
+                        <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={(v) => [v >= 10000 ? (v/10000).toFixed(1) + "억원" : v.toLocaleString() + "만원", "평균가"]} labelFormatter={l => l} />
+                        <Area type="monotone" dataKey="avg" stroke="#0066FF" strokeWidth={2} fill="url(#priceGrad)" name="평균가" />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <p style={{ color: "#5a6480", textAlign: "center", padding: 40 }}>선택한 면적의 거래 데이터가 없습니다.</p>
+                  )}
+                </div>
+
+                {/* 거래량 차트 */}
+                <div style={cardS}>
+                  <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>월별 거래량</h3>
+                  {chartData.length > 0 ? (
+                    <ResponsiveContainer width="100%" height={200}>
+                      <BarChart data={chartData} margin={{ top: 5, right: 10, bottom: 20, left: 10 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                        <XAxis dataKey="label" tick={{ fill: "#5a6480", fontSize: 10 }} angle={-45} textAnchor="end" height={50} interval={Math.max(Math.floor(chartData.length / 15), 0)} />
+                        <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} />
+                        <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+                        <Bar dataKey="count" fill="#00D68F" radius={[2, 2, 0, 0]} name="거래량" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  ) : null}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CleanupPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -3383,6 +3572,7 @@ export default function App() {
       {page === "redevelop" && <RedevelopmentMapPage />}
       {page === "listings" && <ListingsPage />}
       {page === "cleanup" && <CleanupPage />}
+      {page === "history" && <AptHistoryPage />}
       {page === "news" && <NewsPage />}
       {page === "prediction" && <PredictionPage />}
       <Footer />
