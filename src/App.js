@@ -768,7 +768,7 @@ function JeonseRatioChart({ mob }) {
         <h2 style={{ fontSize: mob ? 18 : 22, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
           🏠 서울 구별 전세가율
         </h2>
-        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>전세가 ÷ 매매가 × 100 (높을수록 갭투자 여지 적음)</p>
+        <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>전세가 ÷ 매매가 × 100 (높을수록 갭투자 여지 큼)</p>
       </div>
       <div style={cardS}>
         <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
