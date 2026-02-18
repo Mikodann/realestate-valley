@@ -725,10 +725,10 @@ function PopulationMoveDistrictChart({ mob }) {
               return (
                 <g key={name}>
                   <circle cx={lng} cy={-lat+75} r={size} fill={getColor(value)} stroke="rgba(255,255,255,0.2)" strokeWidth="0.001" />
-                  <text x={lng} y={-lat+75+0.002} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
+                  <text x={lng} y={-lat+75-0.001} textAnchor="middle" fontSize={mob?"0.01":"0.006"} fill="rgba(255,255,255,0.85)">
                     {name.replace(/구$/,'')}
                   </text>
-                  <text x={lng} y={-lat+75+0.006} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.6)">
+                  <text x={lng} y={-lat+75+0.008} textAnchor="middle" fontSize={mob?"0.0084":"0.005"} fill="rgba(255,255,255,0.6)">
                     {value > 0 ? '+' : ''}{value.toLocaleString()}
                   </text>
                 </g>
