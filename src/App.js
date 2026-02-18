@@ -341,6 +341,7 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "cleanup", label: "정비사업", icon: Building2 },
     { id: "history", label: "시세추이", icon: TrendingUp },
     { id: "school", label: "학군정보", icon: MapPin },
+    { id: "supply", label: "입주물량", icon: Building2 },
     { id: "news", label: "뉴스", icon: Newspaper },
   ];
 
@@ -2936,6 +2937,165 @@ const LISTING_DISTRICTS = {
 
 
 
+
+function SupplyPage() {
+  const [supply, setSupply] = useState(null);
+  const [unsold, setUnsold] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [region, setRegion] = useState("서울");
+  const [unsoldDistrict, setUnsoldDistrict] = useState("전체");
+  const mob = window.innerWidth < 768;
+
+  useEffect(() => {
+    Promise.all([
+      fetch("/data/housing-supply.json").then(r => r.json()),
+      fetch("/data/unsold-district.json").then(r => r.json())
+    ]).then(([s, u]) => { setSupply(s); setUnsold(u); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>입주물량 데이터 로딩 중...</div>;
+  if (!supply) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>데이터를 불러올 수 없습니다.</div>;
+
+  const regions = ["전국", "수도권", "서울"];
+  const supplyData = (supply[region] || []).map(d => ({
+    month: d.month.slice(0, 4) + "." + d.month.slice(4),
+    value: d.value
+  }));
+
+  // 미분양 데이터 처리
+  const unsoldData = unsold ? unsold.data : {};
+  const unsoldDistricts = ["전체", ...Object.keys(unsoldData)];
+  const latestMonth = Object.keys(Object.values(unsoldData)[0] || {}).sort().pop() || "";
+
+  // 구별 최신 미분양
+  const districtUnsold = Object.entries(unsoldData).map(([gu, months]) => {
+    const vals = Object.values(months);
+    return { name: gu, current: vals[vals.length - 1] || 0 };
+  }).filter(d => d.current > 0).sort((a, b) => b.current - a.current);
+
+  // 선택 구 미분양 추이
+  let unsoldTimeline = [];
+  if (unsoldDistrict === "전체") {
+    const months = Object.keys(Object.values(unsoldData)[0] || {}).sort();
+    unsoldTimeline = months.map(m => {
+      let total = 0;
+      Object.values(unsoldData).forEach(gu => { total += gu[m] || 0; });
+      return { month: m.slice(0, 4) + "." + m.slice(4), value: total };
+    });
+  } else {
+    const gu = unsoldData[unsoldDistrict] || {};
+    unsoldTimeline = Object.entries(gu).sort().map(([m, v]) => ({ month: m.slice(0, 4) + "." + m.slice(4), value: v }));
+  }
+
+  // 서울 전체 미분양 합계
+  let seoulTotal = 0;
+  Object.values(unsoldData).forEach(gu => {
+    const vals = Object.values(gu);
+    seoulTotal += vals[vals.length - 1] || 0;
+  });
+
+  // 최근 인허가 합계
+  const seoulSupply = supply["서울"] || [];
+  const latestSupply = seoulSupply.length > 0 ? seoulSupply[seoulSupply.length - 1].value : 0;
+  const prevSupply = seoulSupply.length > 1 ? seoulSupply[seoulSupply.length - 2].value : 0;
+  const supplyChange = latestSupply - prevSupply;
+
+  const cardS = { background: "rgba(255,255,255,.03)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 20 };
+  const selS = { background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", cursor: "pointer" };
+
+  return (
+    <div style={{ minHeight: "100vh", background: "#0A0E1A", paddingTop: 80, paddingBottom: 60 }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: mob ? "0 16px" : "0 24px" }}>
+        <div style={{ marginBottom: 24 }}>
+          <h1 style={{ fontSize: mob ? 22 : 28, fontWeight: 700, color: "#fff", marginBottom: 8 }}>🏠 입주물량 · 미분양 현황</h1>
+          <p style={{ fontSize: 14, color: "#5a6480" }}>출처: 국토교통부 주택인허가(KOSIS) · 미분양(KOSIS) · 갱신: {supply.updated}</p>
+        </div>
+
+        {/* Summary */}
+        <div style={{ display: "grid", gridTemplateColumns: mob ? "repeat(2,1fr)" : "repeat(4,1fr)", gap: 12, marginBottom: 24 }}>
+          {[
+            { label: "서울 최신 인허가", value: latestSupply.toLocaleString() + "호", color: "#0066FF" },
+            { label: "전월 대비", value: (supplyChange >= 0 ? "+" : "") + supplyChange.toLocaleString() + "호", color: supplyChange >= 0 ? "#FF6B6B" : "#00D68F" },
+            { label: "서울 미분양", value: seoulTotal.toLocaleString() + "호", color: seoulTotal > 100 ? "#FF6B6B" : "#00D68F" },
+            { label: "미분양 구 수", value: districtUnsold.length + "개 구", color: "#FFD93D" }
+          ].map((c, i) => (
+            <div key={i} style={{ ...cardS, textAlign: "center" }}>
+              <div style={{ fontSize: 12, color: "#5a6480", marginBottom: 6 }}>{c.label}</div>
+              <div style={{ fontSize: mob ? 18 : 24, fontWeight: 700, color: c.color }}>{c.value}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* 인허가 추이 차트 */}
+        <div style={{ ...cardS, marginBottom: 24 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 8 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>📊 주택 인허가 추이</h3>
+            <div style={{ display: "flex", gap: 6 }}>
+              {regions.map(r => (
+                <button key={r} onClick={() => setRegion(r)} style={{ ...selS, padding: "5px 14px", fontSize: 12, background: region === r ? "rgba(0,102,255,.2)" : "rgba(255,255,255,.05)", color: region === r ? "#0066FF" : "#8B92A5", border: region === r ? "1px solid rgba(0,102,255,.3)" : "1px solid rgba(255,255,255,.08)" }}>{r}</button>
+              ))}
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={supplyData} margin={{ top: 10, right: 10, bottom: 20, left: 10 }}>
+              <defs>
+                <linearGradient id="supplyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#0066FF" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#0066FF" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+              <XAxis dataKey="month" tick={{ fill: "#5a6480", fontSize: 11 }} />
+              <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} tickFormatter={v => (v/1000).toFixed(0) + "천"} />
+              <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={v => [v.toLocaleString() + "호", "인허가"]} />
+              <Area type="monotone" dataKey="value" stroke="#0066FF" strokeWidth={2} fill="url(#supplyGrad)" name="인허가" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 1fr", gap: 16, marginBottom: 24 }}>
+          {/* 미분양 구별 현황 */}
+          <div style={cardS}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🏚️ 서울 구별 미분양 현황</h3>
+            {districtUnsold.length > 0 ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={districtUnsold} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 60 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                  <XAxis type="number" tick={{ fill: "#5a6480", fontSize: 11 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: "#ccc", fontSize: 12 }} width={60} />
+                  <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={v => [v + "호", "미분양"]} />
+                  <Bar dataKey="current" fill="#FF6B6B" radius={[0, 4, 4, 0]} name="미분양" />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div style={{ textAlign: "center", padding: 40, color: "#00D68F", fontSize: 15 }}>서울 전 구 미분양 없음 ✅</div>
+            )}
+          </div>
+
+          {/* 미분양 추이 */}
+          <div style={cardS}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 8 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff" }}>📈 미분양 추이</h3>
+              <select value={unsoldDistrict} onChange={e => setUnsoldDistrict(e.target.value)} style={{ ...selS, fontSize: 12 }}>
+                {unsoldDistricts.map(d => <option key={d} value={d} style={{ background: "#1a1f35" }}>{d}</option>)}
+              </select>
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={unsoldTimeline} margin={{ top: 10, right: 10, bottom: 20, left: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                <XAxis dataKey="month" tick={{ fill: "#5a6480", fontSize: 10 }} angle={-45} textAnchor="end" height={50} />
+                <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} />
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={v => [v + "호", "미분양"]} />
+                <Line type="monotone" dataKey="value" stroke="#FF6B6B" strokeWidth={2} dot={false} name="미분양" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SchoolInfoPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -3730,6 +3890,7 @@ export default function App() {
       {page === "cleanup" && <CleanupPage />}
       {page === "history" && <AptHistoryPage />}
       {page === "school" && <SchoolInfoPage />}
+      {page === "supply" && <SupplyPage />}
       {page === "news" && <NewsPage />}
       <Footer />
     </>
