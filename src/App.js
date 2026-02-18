@@ -747,9 +747,10 @@ function JeonseRatioChart({ mob }) {
         <div style={{ display:"flex", flexWrap:"wrap", gap: 2 }}>
           {items.map(({ gu, ratio }) => {
             const norm = (ratio - minR) / (maxR - minR || 1);
-            const flex = 1 + norm * 4;
+            const flex = 1 + norm * 8;
+            const h = mob ? 50 + norm * 40 : 55 + norm * 45;
             return (
-              <div key={gu} style={{ flex: flex+" 1 "+(mob?"60px":"80px"), height: mob?60:70, background: getColor(ratio), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
+              <div key={gu} style={{ flex: flex+" 1 "+(mob?"50px":"65px"), height: h, background: getColor(ratio), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
                 <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
                 <div style={{ fontSize: mob?12:14, color:"rgba(255,255,255,0.9)", fontWeight:700, marginTop:2 }}>{ratio}%</div>
               </div>);
@@ -801,9 +802,10 @@ function DistrictPriceChart({ mob }) {
         <div style={{ display:"flex", flexWrap:"wrap", gap: 2 }}>
           {items.map(({ gu, v }) => {
             const ratio = (v - minV) / (maxV - minV || 1);
-            const flex = 1 + ratio * 4;
+            const flex = 1 + ratio * 8;
+            const h = mob ? 50 + ratio * 40 : 55 + ratio * 45;
             return (
-              <div key={gu} style={{ flex: flex+" 1 "+(mob?"60px":"80px"), height: mob?60:70, background: getColor(v), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
+              <div key={gu} style={{ flex: flex+" 1 "+(mob?"50px":"65px"), height: h, background: getColor(v), borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
                 <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
                 <div style={{ fontSize: mob?11:13, color:"rgba(255,255,255,0.85)", fontWeight:600, marginTop:2 }}>{fmtPrice(v)}</div>
               </div>);
@@ -835,9 +837,7 @@ function PopulationMoveDistrictChart({ mob }) {
   Object.entries(data.data).forEach(([gu, mdata]) => {
     const d = mdata[selMonth];
     if (d) {
-          const inV = d["전입"] || d["전입자"] || d["in"] || 0;
-          const outV = d["전출"] || d["전출자"] || d["out"] || 0;
-          const net = inV - outV;
+          const net = d["순이동"] || (d["총전입"]||0) - (d["총전출"]||0);
           items.push({ gu, net, abs: Math.abs(net) });
         }
   });
@@ -862,9 +862,10 @@ function PopulationMoveDistrictChart({ mob }) {
             const ratio = abs / (absMax || 1);
             const alpha = 0.25 + ratio * 0.65;
             const bg = net >= 0 ? "rgba(78,205,196,"+alpha+")" : "rgba(255,107,107,"+alpha+")";
-            const flex = 1 + ratio * 4;
+            const flex = 1 + ratio * 8;
+            const h = mob ? 50 + ratio * 40 : 55 + ratio * 45;
             return (
-              <div key={gu} style={{ flex: flex+" 1 "+(mob?"60px":"80px"), height: mob?60:70, background: bg, borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
+              <div key={gu} style={{ flex: flex+" 1 "+(mob?"50px":"65px"), height: h, background: bg, borderRadius:6, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:4, minWidth: mob?55:65 }}>
                 <div style={{ fontSize: mob?12:14, color:"#fff", fontWeight:700 }}>{(gu.length <= 2 ? gu : gu.replace(/구$/,''))}</div>
                 <div style={{ fontSize: mob?11:13, color:"rgba(255,255,255,0.85)", fontWeight:600, marginTop:2 }}>{net>0?"+":""}{net.toLocaleString()}</div>
               </div>);
