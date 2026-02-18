@@ -703,7 +703,7 @@ function DistrictPriceChart({ mob }) {
         <p style={{ fontSize: 12, color: "#5a6480", marginTop: 4 }}>네이버 부동산 매물 기준 (빨강=고가, 파랑=저가)</p>
       </div>
       <div style={cardS}>
-        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'80%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
+        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
           <svg viewBox="126.82 37.28 0.34 0.32" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
             preserveAspectRatio="xMidYMid meet">
             {guValues.map(({ name, avg, count }) => {
@@ -842,7 +842,7 @@ function PopulationMoveDistrictChart({ mob }) {
       </div>
       <div style={cardS}>
         {/* 버블 맵 */}
-        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'80%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
+        <div style={{ position:'relative', width:'100%', paddingBottom: mob?'100%':'60%', background:'rgba(0,40,80,0.3)', borderRadius:12, overflow:'hidden' }}>
           <svg viewBox="126.78 37.24 0.40 0.38" style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }}
             preserveAspectRatio="xMidYMid meet">
             {guValues.map(({ name, value }) => {
