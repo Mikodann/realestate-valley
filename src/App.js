@@ -3017,10 +3017,10 @@ function SupplyPage() {
         {/* Summary */}
         <div style={{ display: "grid", gridTemplateColumns: mob ? "repeat(2,1fr)" : "repeat(4,1fr)", gap: 12, marginBottom: 24 }}>
           {[
-            { label: "서울 최신 인허가", value: latestSupply.toLocaleString() + "호", color: "#0066FF" },
-            { label: "전월 대비", value: (supplyChange >= 0 ? "+" : "") + supplyChange.toLocaleString() + "호", color: supplyChange >= 0 ? "#FF6B6B" : "#00D68F" },
             { label: "서울 미분양", value: seoulTotal.toLocaleString() + "호", color: seoulTotal > 100 ? "#FF6B6B" : "#00D68F" },
-            { label: "미분양 구 수", value: districtUnsold.length + "개 구", color: "#FFD93D" }
+            { label: "전월 대비", value: (unsoldDetail && unsoldDetail.summary ? Object.values(unsoldDetail.summary).reduce((a,b) => a + b.change, 0) : 0) > 0 ? "+" + Math.abs(Object.values(unsoldDetail.summary).reduce((a,b) => a + b.change, 0)) + "호" : Object.values(unsoldDetail.summary).reduce((a,b) => a + b.change, 0) + "호", color: (unsoldDetail && unsoldDetail.summary ? Object.values(unsoldDetail.summary).reduce((a,b) => a + b.change, 0) : 0) > 0 ? "#FF6B6B" : "#00D68F" },
+            { label: "미분양 구 수", value: districtUnsold.length + "개 구", color: "#FFD93D" },
+            { label: "미분양 단지 수", value: (unsoldDetail ? unsoldDetail.total_complexes : 0) + "개", color: "#A78BFA" }
           ].map((c, i) => (
             <div key={i} style={{ ...cardS, textAlign: "center" }}>
               <div style={{ fontSize: 12, color: "#5a6480", marginBottom: 6 }}>{c.label}</div>
