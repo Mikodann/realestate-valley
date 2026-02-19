@@ -3040,7 +3040,15 @@ function SupplyPage() {
                 <Legend wrapperStyle={{ fontSize: 12, color: "#8B92A5" }} />
                 <XAxis dataKey="year" tick={{ fill: "#5a6480", fontSize: 12 }} />
                 <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} tickFormatter={v => (v/1000).toFixed(0) + "천"} />
-                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={v => v.toLocaleString() + "세대"} />
+                <Tooltip content={({ active, payload, label }) => {
+                  if (!active || !payload) return null;
+                  const items = payload.filter(p => p.value > 0);
+                  if (!items.length) return null;
+                  return (<div style={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13 }}>
+                    <div style={{ marginBottom: 4, fontWeight: 600 }}>{label}년</div>
+                    {items.map((p,i) => (<div key={i} style={{ color: p.color }}>{p.name}: {p.value.toLocaleString()}세대</div>))}
+                  </div>);
+                }} />
                 <Bar dataKey="done" fill="#5a6480" radius={[4, 4, 0, 0]} name="입주완료" label={{ position: "top", fill: "#8B92A5", fontSize: 10, formatter: v => v > 0 ? v.toLocaleString() : "" }} />
                 <Bar dataKey="upcoming" fill="#A78BFA" radius={[4, 4, 0, 0]} name="입주예정" label={{ position: "top", fill: "#A78BFA", fontSize: 10, formatter: v => v > 0 ? v.toLocaleString() : "" }} />
               </BarChart>
