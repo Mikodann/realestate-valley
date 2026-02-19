@@ -2941,6 +2941,7 @@ function SupplyPage() {
   const [supply, setSupply] = useState(null);
   const [unsold, setUnsold] = useState(null);
   const [unsoldDetail, setUnsoldDetail] = useState(null);
+  const [supplyDetail, setSupplyDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState("서울");
   const [unsoldDistrict, setUnsoldDistrict] = useState("전체");
@@ -2950,8 +2951,9 @@ function SupplyPage() {
     Promise.all([
       fetch("/data/housing-supply.json").then(r => r.json()),
       fetch("/data/unsold-district.json").then(r => r.json()),
-      fetch("/data/unsold-detail.json").then(r => r.json()).catch(() => null)
-    ]).then(([s, u, ud]) => { setSupply(s); setUnsold(u); setUnsoldDetail(ud); setLoading(false); }).catch(() => setLoading(false));
+      fetch("/data/unsold-detail.json").then(r => r.json()).catch(() => null),
+      fetch("/data/supply-detail.json").then(r => r.json()).catch(() => null)
+    ]).then(([s, u, ud, sd]) => { setSupply(s); setUnsold(u); setUnsoldDetail(ud); setSupplyDetail(sd); setLoading(false); }).catch(() => setLoading(false));
   }, []);
 
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>입주물량 데이터 로딩 중...</div>;
@@ -3027,6 +3029,50 @@ function SupplyPage() {
           ))}
         </div>
 
+
+        {/* 입주예정 물량 */}
+        {supplyDetail && supplyDetail.yearly && (
+          <div style={{ ...cardS, marginBottom: 24 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🏗️ 서울 연도별 입주예정 (청약홈 기준)</h3>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={supplyDetail.yearly.filter(y => parseInt(y.year) >= 2020)} margin={{ top: 10, right: 10, bottom: 5, left: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                <XAxis dataKey="year" tick={{ fill: "#5a6480", fontSize: 12 }} />
+                <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} tickFormatter={v => (v/1000).toFixed(0) + "천"} />
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={v => [v.toLocaleString() + "세대", "입주예정"]} />
+                <Bar dataKey="units" fill="#A78BFA" radius={[4, 4, 0, 0]} name="입주예정" />
+              </BarChart>
+            </ResponsiveContainer>
+            {supplyDetail.recent && supplyDetail.recent.length > 0 && (
+              <div style={{ marginTop: 16 }}>
+                <h4 style={{ fontSize: 13, fontWeight: 600, color: "#8B92A5", marginBottom: 10 }}>📋 최근 분양 공고 (상위 20)</h4>
+                <div style={{ overflow: "auto" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                    <thead>
+                      <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+                        {["단지명","주소","시공사","세대수","공고일","입주예정"].map(h => (
+                          <th key={h} style={{ padding: "7px 6px", textAlign: "left", color: "#8B92A5", fontWeight: 600, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {supplyDetail.recent.slice(0, 20).map((it, i) => (
+                        <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
+                          <td style={{ padding: "6px", color: "#fff", fontWeight: 500 }}>{it.url ? <a href={it.url} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{it.name}</a> : it.name}</td>
+                          <td style={{ padding: "6px", color: "#8B92A5", fontSize: 11, maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{it.address}</td>
+                          <td style={{ padding: "6px", color: "#ccc", fontSize: 11 }}>{it.builder}</td>
+                          <td style={{ padding: "6px", color: "#A78BFA", fontWeight: 600, textAlign: "right" }}>{it.units}</td>
+                          <td style={{ padding: "6px", color: "#5a6480", fontSize: 11 }}>{it.announce_date}</td>
+                          <td style={{ padding: "6px", color: "#00D68F", fontSize: 11 }}>{it.move_in ? it.move_in.slice(0,4)+"."+it.move_in.slice(4) : "-"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
         {/* 인허가 추이 차트 */}
         <div style={{ ...cardS, marginBottom: 24 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 8 }}>
