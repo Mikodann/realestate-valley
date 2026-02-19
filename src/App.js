@@ -165,6 +165,7 @@ const globalStyles = `
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans KR','Outfit',sans-serif;background:${C.dark};color:#E8ECF4;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#root{overflow-x:hidden}
 ::selection{background:rgba(0,102,255,.3)}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#2A3050;border-radius:3px}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
@@ -181,6 +182,12 @@ body{font-family:'Noto Sans KR','Outfit',sans-serif;background:${C.dark};color:#
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:${C.darkBorder};outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:${C.primary};cursor:pointer;border:3px solid ${C.dark}}
 select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B92A5' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px!important}
+@media (max-width: 768px){
+  input,select,button{min-height:40px}
+}
+@media (max-width: 480px){
+  body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+}
 `;
 
 /* ================================================================
@@ -347,8 +354,8 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
 
   return (
     <>
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled || menuOpen ? "rgba(10,14,26,.95)" : "transparent", backdropFilter: scrolled || menuOpen ? "blur(20px) saturate(180%)" : "none", borderBottom: scrolled ? "1px solid rgba(30,35,56,.6)" : "1px solid transparent", transition: "all .4s", padding: "0 20px" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled || menuOpen ? "rgba(10,14,26,.95)" : "transparent", backdropFilter: scrolled || menuOpen ? "blur(20px) saturate(180%)" : "none", borderBottom: scrolled ? "1px solid rgba(30,35,56,.6)" : "1px solid transparent", transition: "all .4s", padding: mob ? "0 12px" : "0 20px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: mob ? 56 : 60 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }} onClick={() => setCurrentPage("home")}>
             <div style={{ width: 32, height: 32, borderRadius: 8, background: C.gradient1, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 15px rgba(0,102,255,.3)" }}><Building2 size={17} color="white" /></div>
             <span style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 18 }}>부동산<span style={{ color: C.primary }}>Valley</span></span>
@@ -1417,7 +1424,7 @@ function DashboardPage() {
               <span style={{ fontSize: 12, color: C.darkText }}>총 {curData?.length || 0}건</span>
             </div>
             <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: mob ? 600 : "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: mob ? 480 : "auto" }}>
                 <thead><tr>{["#","아파트명","매매가","면적(㎡)","층","동","거래일","건축년도"].map(h => <th key={h} style={{ padding: "10px 10px", textAlign: "left", fontSize: 11, fontWeight: 600, color: C.darkText, borderBottom: `1px solid ${C.darkBorder}`, whiteSpace: "nowrap" }}>{h}</th>)}</tr></thead>
                 <tbody>
                   {topTrades.map((t, i) => (
@@ -2080,7 +2087,7 @@ function AnalysisPage() {
             <div className="ani d5" style={{ background: C.darkCard, border: `1px solid ${C.darkBorder}`, borderRadius: 16, padding: mob ? 16 : 24 }}>
               <h3 style={{ fontSize: mob ? 14 : 16, fontWeight: 700, marginBottom: 14 }}>전체 거래 내역</h3>
               <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-                <table style={{ width: "100%", borderCollapse: "collapse", minWidth: mob ? 500 : "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", minWidth: mob ? 440 : "auto" }}>
                   <thead><tr>{["매매가","면적(㎡)","층","동","거래일","거래유형"].map(h => <th key={h} style={{ padding: "10px 10px", textAlign: "left", fontSize: 11, fontWeight: 600, color: C.darkText, borderBottom: `1px solid ${C.darkBorder}`, whiteSpace: "nowrap" }}>{h}</th>)}</tr></thead>
                   <tbody>
                     {aptDetail.trades.map((t, i) => (
@@ -3322,7 +3329,7 @@ function SchoolInfoPage() {
         {/* Filters */}
         <div style={{ ...cardS, marginBottom: 16 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="학교명/주소 검색..." style={{ ...selS, flex: mob ? "1 1 100%" : "1 1 200px", minWidth: 160 }} />
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="학교명/주소 검색..." style={{ ...selS, flex: mob ? "1 1 100%" : "1 1 200px", minWidth: mob ? 0 : 160 }} />
             <select value={filterDistrict} onChange={e => setFilterDistrict(e.target.value)} style={selS}>
               {districts.map(d => <option key={d} value={d} style={{ background: "#1a1f35" }}>{d}</option>)}
             </select>
@@ -3447,10 +3454,10 @@ function AptHistoryPage() {
         {/* 구 선택 + 검색 */}
         <div style={{ ...cardS, marginBottom: 16 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
-            <select value={district} onChange={e => { setDistrict(e.target.value); setSelectedApt(null); }} style={{ ...selS, minWidth: 120 }}>
+            <select value={district} onChange={e => { setDistrict(e.target.value); setSelectedApt(null); }} style={{ ...selS, minWidth: mob ? 0 : 120 }}>
               {districtNames.map(d => <option key={d} value={d} style={{ background: "#1a1f35" }}>{d} ({(data.districts[d] || []).length}개 단지)</option>)}
             </select>
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="아파트명 또는 동 검색..." style={{ ...selS, flex: 1, minWidth: 200 }} />
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="아파트명 또는 동 검색..." style={{ ...selS, flex: 1, minWidth: mob ? 0 : 200 }} />
             <span style={{ fontSize: 13, color: "#5a6480" }}>검색결과: {filtered.length}개 단지</span>
           </div>
         </div>
@@ -3682,7 +3689,7 @@ function CleanupPage() {
         {/* Filters */}
         <div style={{ ...cardS, marginBottom: 16 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="사업장명/주소 검색..." style={{ ...selS, flex: mob ? "1 1 100%" : "1 1 200px", minWidth: 160 }} />
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="사업장명/주소 검색..." style={{ ...selS, flex: mob ? "1 1 100%" : "1 1 200px", minWidth: mob ? 0 : 160 }} />
             <select value={filterDistrict} onChange={e => setFilterDistrict(e.target.value)} style={selS}>
               {districts.map(d => <option key={d} value={d} style={{ background: "#1a1f35" }}>{d}</option>)}
             </select>
