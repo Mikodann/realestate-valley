@@ -2941,6 +2941,7 @@ const LISTING_DISTRICTS = {
 function SupplyPage() {
   const [supply, setSupply] = useState(null);
   const [unsold, setUnsold] = useState(null);
+  const [unsoldDetail, setUnsoldDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState("서울");
   const [unsoldDistrict, setUnsoldDistrict] = useState("전체");
@@ -2949,8 +2950,9 @@ function SupplyPage() {
   useEffect(() => {
     Promise.all([
       fetch("/data/housing-supply.json").then(r => r.json()),
-      fetch("/data/unsold-district.json").then(r => r.json())
-    ]).then(([s, u]) => { setSupply(s); setUnsold(u); setLoading(false); }).catch(() => setLoading(false));
+      fetch("/data/unsold-district.json").then(r => r.json()),
+      fetch("/data/unsold-detail.json").then(r => r.json()).catch(() => null)
+    ]).then(([s, u, ud]) => { setSupply(s); setUnsold(u); setUnsoldDetail(ud); setLoading(false); }).catch(() => setLoading(false));
   }, []);
 
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>입주물량 데이터 로딩 중...</div>;
@@ -3091,6 +3093,38 @@ function SupplyPage() {
             </ResponsiveContainer>
           </div>
         </div>
+
+        {unsoldDetail && unsoldDetail.items && unsoldDetail.items.length > 0 && (
+          <div style={{ ...cardS, marginBottom: 24 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 4 }}>📋 단지별 미분양 상세</h3>
+            <p style={{ fontSize: 12, color: "#5a6480", marginBottom: 16 }}>출처: 서울부동산정보광장 · {unsoldDetail.total_complexes}개 단지, {unsoldDetail.total_unsold}호</p>
+            <div style={{ overflow: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                <thead>
+                  <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+                    {["자치구","동","단지명","시공사","면적(㎡)","총분양","미분양","준공"].map(h => (
+                      <th key={h} style={{ padding: "8px 6px", textAlign: "left", color: "#8B92A5", fontWeight: 600, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {unsoldDetail.items.map((it, i) => (
+                    <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
+                      <td style={{ padding: "7px 6px", color: "#ccc", whiteSpace: "nowrap" }}>{it.district}</td>
+                      <td style={{ padding: "7px 6px", color: "#ccc", whiteSpace: "nowrap" }}>{it.dong}</td>
+                      <td style={{ padding: "7px 6px", color: "#fff", fontWeight: 500 }}>{it.name}</td>
+                      <td style={{ padding: "7px 6px", color: "#8B92A5", fontSize: 11 }}>{it.builder}</td>
+                      <td style={{ padding: "7px 6px", color: "#ccc" }}>{it.area}</td>
+                      <td style={{ padding: "7px 6px", color: "#ccc", textAlign: "right" }}>{it.total}</td>
+                      <td style={{ padding: "7px 6px", textAlign: "right", fontWeight: 600, color: it.unsold_now > 30 ? "#FF6B6B" : it.unsold_now > 10 ? "#FFD93D" : "#00D68F" }}>{it.unsold_now}호</td>
+                      <td style={{ padding: "7px 6px", color: it.completed === "준공" ? "#00D68F" : "#FFD93D", fontSize: 11 }}>{it.completed || "-"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
