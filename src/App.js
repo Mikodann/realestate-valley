@@ -360,7 +360,6 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
               {items.map(it => { const Ic = it.icon, a = currentPage === it.id; return (
                 <button key={it.id} onClick={() => setCurrentPage(it.id)} style={{ background: a ? "rgba(0,102,255,.12)" : "transparent", border: "none", color: a ? C.primary : C.darkTextLight, padding: "8px 16px", borderRadius: 10, cursor: "pointer", fontSize: 14, fontWeight: 500, display: "flex", alignItems: "center", gap: 6, fontFamily: "'Noto Sans KR',sans-serif" }}><Ic size={16} />{it.label}</button>
               ); })}
-              <button onClick={onLogout} style={{ background: "transparent", border: "1px solid transparent", color: C.darkText, padding: "8px 12px", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", gap: 4, fontSize: 13, fontWeight: 500, marginLeft: 8, fontFamily: "'Noto Sans KR',sans-serif" }}><LogOut size={15} />나가기</button>
             </div>
           )}
         </div>
