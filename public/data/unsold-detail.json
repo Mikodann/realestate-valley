@@ -1,0 +1,939 @@
+{
+  "updated": "2026-02-19",
+  "source_file": "unsold_20260131.xlsx",
+  "total_complexes": 7,
+  "total_unsold": 973,
+  "summary": {
+    "종로구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "중구": {
+      "change": 0,
+      "total": 1,
+      "under40": 1,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "용산구": {
+      "change": 0,
+      "total": 1,
+      "under40": 1,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "성동구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "광진구": {
+      "change": -2,
+      "total": 52,
+      "under40": 0,
+      "40to60": 29,
+      "60to85": 1,
+      "over85": 22
+    },
+    "동대문구": {
+      "change": 0,
+      "total": 53,
+      "under40": 12,
+      "40to60": 41,
+      "60to85": 0,
+      "over85": 0
+    },
+    "중랑구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "성북구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "강북구": {
+      "change": -1,
+      "total": 1,
+      "under40": 1,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "도봉구": {
+      "change": 0,
+      "total": 64,
+      "under40": 0,
+      "40to60": 62,
+      "60to85": 0,
+      "over85": 2
+    },
+    "노원구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "은평구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "서대문구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "마포구": {
+      "change": 0,
+      "total": 47,
+      "under40": 26,
+      "40to60": 21,
+      "60to85": 0,
+      "over85": 0
+    },
+    "양천구": {
+      "change": 0,
+      "total": 6,
+      "under40": 0,
+      "40to60": 6,
+      "60to85": 0,
+      "over85": 0
+    },
+    "강서구": {
+      "change": -38,
+      "total": 107,
+      "under40": 7,
+      "40to60": 99,
+      "60to85": 1,
+      "over85": 0
+    },
+    "구로구": {
+      "change": -33,
+      "total": 30,
+      "under40": 14,
+      "40to60": 4,
+      "60to85": 12,
+      "over85": 0
+    },
+    "금천구": {
+      "change": 0,
+      "total": 8,
+      "under40": 0,
+      "40to60": 6,
+      "60to85": 2,
+      "over85": 0
+    },
+    "영등포구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "동작구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "관악구": {
+      "change": 0,
+      "total": 4,
+      "under40": 2,
+      "40to60": 2,
+      "60to85": 0,
+      "over85": 0
+    },
+    "서초구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "강남구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "송파구": {
+      "change": 0,
+      "total": 0,
+      "under40": 0,
+      "40to60": 0,
+      "60to85": 0,
+      "over85": 0
+    },
+    "강동구": {
+      "change": -22,
+      "total": 299,
+      "under40": 191,
+      "40to60": 108,
+      "60to85": 0,
+      "over85": 0
+    }
+  },
+  "by_district": {
+    "": {
+      "count": 1,
+      "unsold": 939
+    },
+    "동대문구": {
+      "count": 1,
+      "unsold": 12
+    },
+    "강동구": {
+      "count": 1,
+      "unsold": 11
+    },
+    "마포구": {
+      "count": 1,
+      "unsold": 6
+    },
+    "구로구": {
+      "count": 1,
+      "unsold": 3
+    },
+    "중구": {
+      "count": 1,
+      "unsold": 1
+    },
+    "관악구": {
+      "count": 1,
+      "unsold": 1
+    }
+  },
+  "items": [
+    {
+      "district": "중구",
+      "dong": "인현동2가",
+      "address": "마른내로 79 (인현동2가 151-1번지) [세운푸르지오헤리시티]",
+      "name": "세운푸르지오헤리시티",
+      "builder": "㈜대우건설",
+      "developer": "우리자산신탁㈜",
+      "type": "분양",
+      "area": "24",
+      "total": 77,
+      "unsold_prev": 1,
+      "unsold_now": 1,
+      "approval_date": "2020-05-28",
+      "move_in": "2023-01-16",
+      "completed": "준공",
+      "areas": [
+        {
+          "area": "39.695",
+          "total": 69,
+          "unsold": 46
+        },
+        {
+          "area": "28.29",
+          "total": 5,
+          "unsold": 1
+        },
+        {
+          "area": "84.0374",
+          "total": 25,
+          "unsold": 1
+        },
+        {
+          "area": "44",
+          "total": 39,
+          "unsold": 8
+        },
+        {
+          "area": "45(45A형)",
+          "total": 34,
+          "unsold": 20
+        },
+        {
+          "area": "45(45B형)",
+          "total": 4,
+          "unsold": 1
+        },
+        {
+          "area": "213.6667",
+          "total": 5,
+          "unsold": 1
+        },
+        {
+          "area": "213.9203",
+          "total": 6,
+          "unsold": 4
+        },
+        {
+          "area": "213.3349",
+          "total": 7,
+          "unsold": 3
+        },
+        {
+          "area": "216.3134",
+          "total": 6,
+          "unsold": 3
+        },
+        {
+          "area": "216.4175",
+          "total": 7,
+          "unsold": 6
+        },
+        {
+          "area": "223.7193",
+          "total": 5,
+          "unsold": 5
+        }
+      ]
+    },
+    {
+      "district": "동대문구",
+      "dong": "용두동",
+      "address": "고산자로 420 일대 (용두동 26-14번지) [힐스테이트청량리메트로블]",
+      "name": "힐스테이트청량리메트로블",
+      "builder": "현대건설㈜",
+      "developer": "㈜하나자산신탁",
+      "type": "분양\n(도생)",
+      "area": "26",
+      "total": 25,
+      "unsold_prev": 12,
+      "unsold_now": 12,
+      "approval_date": "2022-02-09",
+      "move_in": "2025-07-30",
+      "completed": "준공",
+      "areas": [
+        {
+          "area": "41",
+          "total": 24,
+          "unsold": 10
+        },
+        {
+          "area": "44",
+          "total": 24,
+          "unsold": 20
+        },
+        {
+          "area": "48",
+          "total": 140,
+          "unsold": 11
+        },
+        {
+          "area": "99",
+          "total": 20,
+          "unsold": 8
+        },
+        {
+          "area": "19.9815",
+          "total": 44,
+          "unsold": 1
+        },
+        {
+          "area": "74",
+          "total": 70,
+          "unsold": 37
+        },
+        {
+          "area": "84",
+          "total": 19,
+          "unsold": 10
+        },
+        {
+          "area": "58.09",
+          "total": 38,
+          "unsold": 26
+        },
+        {
+          "area": "58.13",
+          "total": 11,
+          "unsold": 11
+        },
+        {
+          "area": "58.85",
+          "total": 19,
+          "unsold": 18
+        },
+        {
+          "area": "59.8",
+          "total": 19,
+          "unsold": 7
+        },
+        {
+          "area": "122.51",
+          "total": 2,
+          "unsold": 2
+        },
+        {
+          "area": "74",
+          "total": 76,
+          "unsold": 20
+        },
+        {
+          "area": "84.94",
+          "total": 103,
+          "unsold": 1
+        },
+        {
+          "area": "84.9",
+          "total": 14,
+          "unsold": 1
+        },
+        {
+          "area": "84.87",
+          "total": 2,
+          "unsold": 2
+        },
+        {
+          "area": "84.95",
+          "total": 1,
+          "unsold": 1
+        },
+        {
+          "area": "84.87",
+          "total": 17,
+          "unsold": 13
+        }
+      ]
+    },
+    {
+      "district": "마포구",
+      "dong": "노고산동",
+      "address": "노고산동 107-46 [빌리브디에이블]",
+      "name": "빌리브디에이블",
+      "builder": "신세계건설㈜",
+      "developer": "KB부동산신탁\n주식회사",
+      "type": "분양",
+      "area": "38.31",
+      "total": 18,
+      "unsold_prev": 6,
+      "unsold_now": 6,
+      "approval_date": "2022-03-30",
+      "move_in": "2025-07-30",
+      "completed": "준공",
+      "areas": [
+        {
+          "area": "38.39",
+          "total": 135,
+          "unsold": 20
+        },
+        {
+          "area": "42.56",
+          "total": 17,
+          "unsold": 9
+        },
+        {
+          "area": "43.82",
+          "total": 8,
+          "unsold": 4
+        },
+        {
+          "area": "44.3",
+          "total": 17,
+          "unsold": 8
+        },
+        {
+          "area": "54.64",
+          "total": 4,
+          "unsold": 2
+        },
+        {
+          "area": "59.9700B",
+          "total": 12,
+          "unsold": 3
+        },
+        {
+          "area": "59.5700C",
+          "total": 2,
+          "unsold": 1
+        },
+        {
+          "area": "30.2834",
+          "total": 12,
+          "unsold": 3
+        },
+        {
+          "area": "33.6582",
+          "total": 12,
+          "unsold": 4
+        },
+        {
+          "area": "41.9321",
+          "total": 12,
+          "unsold": 1
+        },
+        {
+          "area": "50.5599",
+          "total": 12,
+          "unsold": 9
+        },
+        {
+          "area": "55.8931",
+          "total": 36,
+          "unsold": 33
+        },
+        {
+          "area": "59.0072",
+          "total": 44,
+          "unsold": 6
+        },
+        {
+          "area": "59.6202",
+          "total": 66,
+          "unsold": 4
+        },
+        {
+          "area": "84.9702",
+          "total": 4,
+          "unsold": 1
+        },
+        {
+          "area": "51.464",
+          "total": 43,
+          "unsold": 1
+        },
+        {
+          "area": "44.27",
+          "total": 30,
+          "unsold": 30
+        },
+        {
+          "area": "44.81",
+          "total": 15,
+          "unsold": 15
+        }
+      ]
+    },
+    {
+      "district": "구로구",
+      "dong": "오류동",
+      "address": "오류동 213-1번지 일원 [천왕역모아엘가트레뷰]",
+      "name": "천왕역모아엘가트레뷰",
+      "builder": "혜림건설㈜",
+      "developer": "㈜이레에이치앤씨",
+      "type": "분양",
+      "area": "67.9639",
+      "total": 11,
+      "unsold_prev": 3,
+      "unsold_now": 3,
+      "approval_date": "2022-08-29",
+      "move_in": "2025-08-08",
+      "completed": "준공\n(25.08.08.)",
+      "areas": [
+        {
+          "area": "84.8949",
+          "total": 34,
+          "unsold": 1
+        },
+        {
+          "area": "33.6443",
+          "total": 6,
+          "unsold": 4
+        },
+        {
+          "area": "35.2843",
+          "total": 4,
+          "unsold": 2
+        },
+        {
+          "area": "36.9845",
+          "total": 7,
+          "unsold": 2
+        },
+        {
+          "area": "37.3188",
+          "total": 14,
+          "unsold": 4
+        },
+        {
+          "area": "38.6542",
+          "total": 6,
+          "unsold": 2
+        },
+        {
+          "area": "42.384",
+          "total": 25,
+          "unsold": 1
+        },
+        {
+          "area": "43.1175",
+          "total": 4,
+          "unsold": 2
+        },
+        {
+          "area": "43.146",
+          "total": 4,
+          "unsold": 1
+        },
+        {
+          "area": "84.787",
+          "total": 41,
+          "unsold": 8
+        },
+        {
+          "area": "42.10",
+          "total": 64,
+          "unsold": 36
+        },
+        {
+          "area": "42.15",
+          "total": 20,
+          "unsold": 10
+        },
+        {
+          "area": "42.55",
+          "total": 55,
+          "unsold": 18
+        },
+        {
+          "area": "74",
+          "total": 28,
+          "unsold": 2
+        },
+        {
+          "area": "84",
+          "total": 22,
+          "unsold": 3
+        },
+        {
+          "area": "59.1669",
+          "total": 3,
+          "unsold": 3
+        },
+        {
+          "area": "59.1638",
+          "total": 1,
+          "unsold": 1
+        },
+        {
+          "area": "59.5063",
+          "total": 2,
+          "unsold": 1
+        },
+        {
+          "area": "59.8811",
+          "total": 1,
+          "unsold": 1
+        },
+        {
+          "area": "60.5723",
+          "total": 1,
+          "unsold": 1
+        },
+        {
+          "area": "61.7919",
+          "total": 1,
+          "unsold": 1
+        }
+      ]
+    },
+    {
+      "district": "관악구",
+      "dong": "신림동",
+      "address": "신림동 1744 [신림 스카이 아파트]",
+      "name": "신림 스카이 아파트",
+      "builder": "㈜제이더블유\n종합건설",
+      "developer": "이계홍",
+      "type": "분양",
+      "area": "35.71",
+      "total": 1,
+      "unsold_prev": 1,
+      "unsold_now": 1,
+      "approval_date": "2021-07-20",
+      "move_in": "2021-09-01",
+      "completed": "준공",
+      "areas": [
+        {
+          "area": "38.34",
+          "total": 9,
+          "unsold": 1
+        },
+        {
+          "area": "56.45",
+          "total": 9,
+          "unsold": 2
+        },
+        {
+          "area": "13.45",
+          "total": 12,
+          "unsold": 6
+        },
+        {
+          "area": "13.98",
+          "total": 12,
+          "unsold": 7
+        },
+        {
+          "area": "14.33",
+          "total": 14,
+          "unsold": 4
+        },
+        {
+          "area": "14.12",
+          "total": 68,
+          "unsold": 15
+        },
+        {
+          "area": "12.88",
+          "total": 118,
+          "unsold": 6
+        },
+        {
+          "area": "20.03",
+          "total": 3,
+          "unsold": 1
+        },
+        {
+          "area": "18.47",
+          "total": 2,
+          "unsold": 1
+        },
+        {
+          "area": "13",
+          "total": 52,
+          "unsold": 25
+        },
+        {
+          "area": "14.07",
+          "total": 16,
+          "unsold": 15
+        },
+        {
+          "area": "46.68(46A)",
+          "total": 8,
+          "unsold": 8
+        },
+        {
+          "area": "46.68(46B)",
+          "total": 4,
+          "unsold": 2
+        },
+        {
+          "area": "44.06(44C)",
+          "total": 8,
+          "unsold": 2
+        },
+        {
+          "area": "44.28(44D)",
+          "total": 6,
+          "unsold": 1
+        },
+        {
+          "area": "41.89(41E)",
+          "total": 8,
+          "unsold": 3
+        },
+        {
+          "area": "44.28(44G)",
+          "total": 8,
+          "unsold": 4
+        },
+        {
+          "area": "49.87(49I)",
+          "total": 8,
+          "unsold": 7
+        },
+        {
+          "area": "49.87(49J)",
+          "total": 5,
+          "unsold": 1
+        },
+        {
+          "area": "49.89(49K)",
+          "total": 8,
+          "unsold": 4
+        },
+        {
+          "area": "22.34",
+          "total": 8,
+          "unsold": 8
+        },
+        {
+          "area": "26.13",
+          "total": 13,
+          "unsold": 13
+        },
+        {
+          "area": "26.89",
+          "total": 5,
+          "unsold": 5
+        },
+        {
+          "area": "33.84",
+          "total": 14,
+          "unsold": 14
+        },
+        {
+          "area": "35.87",
+          "total": 5,
+          "unsold": 5
+        }
+      ]
+    },
+    {
+      "district": "강동구",
+      "dong": "길동",
+      "address": "386-4 [에스아이팰리스강동센텀2]",
+      "name": "에스아이팰리스강동센텀2",
+      "builder": "㈜성우에스아이",
+      "developer": "㈜성우에스아이",
+      "type": "분양",
+      "area": "27.3",
+      "total": 13,
+      "unsold_prev": 13,
+      "unsold_now": 11,
+      "approval_date": "2023-12-13",
+      "move_in": "2024-01-18",
+      "completed": "준공",
+      "areas": [
+        {
+          "area": "29.65",
+          "total": 13,
+          "unsold": 10
+        },
+        {
+          "area": "39.52",
+          "total": 13,
+          "unsold": 4
+        },
+        {
+          "area": "42.03",
+          "total": 13,
+          "unsold": 10
+        },
+        {
+          "area": "42.4",
+          "total": 14,
+          "unsold": 9
+        },
+        {
+          "area": "42.48",
+          "total": 14,
+          "unsold": 9
+        },
+        {
+          "area": "33.291",
+          "total": 16,
+          "unsold": 12
+        },
+        {
+          "area": "32.607",
+          "total": 8,
+          "unsold": 6
+        },
+        {
+          "area": "38.56",
+          "total": 8,
+          "unsold": 1
+        },
+        {
+          "area": "31.84",
+          "total": 8,
+          "unsold": 4
+        },
+        {
+          "area": "34.156",
+          "total": 8,
+          "unsold": 2
+        },
+        {
+          "area": "31.629",
+          "total": 8,
+          "unsold": 2
+        },
+        {
+          "area": "34.771",
+          "total": 8,
+          "unsold": 3
+        },
+        {
+          "area": "30.1316",
+          "total": 20,
+          "unsold": 3
+        },
+        {
+          "area": "33.2328",
+          "total": 15,
+          "unsold": 2
+        },
+        {
+          "area": "38.1851",
+          "total": 20,
+          "unsold": 5
+        },
+        {
+          "area": "38.1851",
+          "total": 2,
+          "unsold": 1
+        },
+        {
+          "area": "43.3253",
+          "total": 14,
+          "unsold": 3
+        },
+        {
+          "area": "52.5256(52A)",
+          "total": 50,
+          "unsold": 37
+        },
+        {
+          "area": "52.5256(52T)",
+          "total": 4,
+          "unsold": 4
+        },
+        {
+          "area": "52.5256(52P)",
+          "total": 4,
+          "unsold": 4
+        },
+        {
+          "area": "59.99",
+          "total": 64,
+          "unsold": 58
+        }
+      ]
+    },
+    {
+      "district": "",
+      "dong": "",
+      "address": "",
+      "name": "",
+      "builder": "",
+      "developer": "",
+      "type": "",
+      "area": "",
+      "total": 4917,
+      "unsold_prev": 1037,
+      "unsold_now": 939,
+      "approval_date": "",
+      "move_in": "",
+      "completed": ""
+    }
+  ]
+}
