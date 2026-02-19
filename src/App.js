@@ -3037,11 +3037,12 @@ function SupplyPage() {
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={supplyDetail.yearly.filter(y => parseInt(y.year) >= 2020).map(y => ({...y, done: parseInt(y.year) < 2026 ? y.units : 0, upcoming: parseInt(y.year) >= 2026 ? y.units : 0}))} margin={{ top: 10, right: 10, bottom: 5, left: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                <Legend wrapperStyle={{ fontSize: 12, color: "#8B92A5" }} />
                 <XAxis dataKey="year" tick={{ fill: "#5a6480", fontSize: 12 }} />
                 <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} tickFormatter={v => (v/1000).toFixed(0) + "천"} />
                 <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={v => v.toLocaleString() + "세대"} />
-                <Bar dataKey="done" fill="#5a6480" radius={[4, 4, 0, 0]} name="입주완료" />
-                <Bar dataKey="upcoming" fill="#A78BFA" radius={[4, 4, 0, 0]} name="입주예정" />
+                <Bar dataKey="done" fill="#5a6480" radius={[4, 4, 0, 0]} name="입주완료" label={{ position: "top", fill: "#8B92A5", fontSize: 10, formatter: v => v > 0 ? v.toLocaleString() : "" }} />
+                <Bar dataKey="upcoming" fill="#A78BFA" radius={[4, 4, 0, 0]} name="입주예정" label={{ position: "top", fill: "#A78BFA", fontSize: 10, formatter: v => v > 0 ? v.toLocaleString() : "" }} />
               </BarChart>
             </ResponsiveContainer>
             {supplyDetail.recent && supplyDetail.recent.length > 0 && (
