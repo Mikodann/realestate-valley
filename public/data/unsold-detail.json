@@ -1,8 +1,8 @@
 {
   "updated": "2026-02-19",
   "source_file": "unsold_20260131.xlsx",
-  "total_complexes": 7,
-  "total_unsold": 973,
+  "total_complexes": 37,
+  "total_unsold": 939,
   "summary": {
     "종로구": {
       "change": 0,
@@ -206,113 +206,271 @@
     }
   },
   "by_district": {
-    "": {
+    "강동구": {
+      "count": 11,
+      "unsold": 357
+    },
+    "강서구": {
+      "count": 4,
+      "unsold": 107
+    },
+    "구로구": {
+      "count": 5,
+      "unsold": 99
+    },
+    "도봉구": {
       "count": 1,
-      "unsold": 939
+      "unsold": 64
     },
     "동대문구": {
-      "count": 1,
-      "unsold": 12
+      "count": 2,
+      "unsold": 61
     },
-    "강동구": {
-      "count": 1,
-      "unsold": 11
+    "광진구": {
+      "count": 3,
+      "unsold": 52
+    },
+    "강북구": {
+      "count": 2,
+      "unsold": 48
+    },
+    "중구": {
+      "count": 2,
+      "unsold": 47
     },
     "마포구": {
       "count": 1,
+      "unsold": 47
+    },
+    "은평구": {
+      "count": 1,
+      "unsold": 20
+    },
+    "서대문구": {
+      "count": 1,
+      "unsold": 18
+    },
+    "금천구": {
+      "count": 1,
+      "unsold": 8
+    },
+    "양천구": {
+      "count": 1,
       "unsold": 6
     },
-    "구로구": {
-      "count": 1,
-      "unsold": 3
-    },
-    "중구": {
-      "count": 1,
-      "unsold": 1
-    },
     "관악구": {
+      "count": 1,
+      "unsold": 4
+    },
+    "용산구": {
       "count": 1,
       "unsold": 1
     }
   },
   "items": [
     {
-      "district": "중구",
-      "dong": "인현동2가",
-      "address": "마른내로 79 (인현동2가 151-1번지) [세운푸르지오헤리시티]",
-      "name": "세운푸르지오헤리시티",
-      "builder": "㈜대우건설",
-      "developer": "우리자산신탁㈜",
+      "district": "도봉구",
+      "dong": "창동",
+      "address": "창동 662-7 일원 [창동다우아트리체]",
+      "name": "창동다우아트리체",
+      "builder": "강산건설㈜",
+      "developer": "시행위탁사 : ㈜진다우\n시행수탁사 : ㈜하나자산신탁",
       "type": "분양",
-      "area": "24",
-      "total": 77,
-      "unsold_prev": 1,
-      "unsold_now": 1,
-      "approval_date": "2020-05-28",
-      "move_in": "2023-01-16",
-      "completed": "준공",
+      "total": 89,
+      "unsold_prev": 64,
+      "unsold_now": 64,
       "areas": [
         {
-          "area": "39.695",
-          "total": 69,
-          "unsold": 46
+          "area": "58.09",
+          "total": 38,
+          "unsold_prev": 26,
+          "unsold_now": 26
         },
         {
-          "area": "28.29",
-          "total": 5,
-          "unsold": 1
+          "area": "58.13",
+          "total": 11,
+          "unsold_prev": 11,
+          "unsold_now": 11
         },
         {
-          "area": "84.0374",
-          "total": 25,
-          "unsold": 1
+          "area": "58.85",
+          "total": 19,
+          "unsold_prev": 18,
+          "unsold_now": 18
         },
         {
-          "area": "44",
-          "total": 39,
-          "unsold": 8
+          "area": "59.8",
+          "total": 19,
+          "unsold_prev": 7,
+          "unsold_now": 7
         },
         {
-          "area": "45(45A형)",
-          "total": 34,
-          "unsold": 20
-        },
-        {
-          "area": "45(45B형)",
-          "total": 4,
-          "unsold": 1
-        },
-        {
-          "area": "213.6667",
-          "total": 5,
-          "unsold": 1
-        },
-        {
-          "area": "213.9203",
-          "total": 6,
-          "unsold": 4
-        },
-        {
-          "area": "213.3349",
-          "total": 7,
-          "unsold": 3
-        },
-        {
-          "area": "216.3134",
-          "total": 6,
-          "unsold": 3
-        },
-        {
-          "area": "216.4175",
-          "total": 7,
-          "unsold": 6
-        },
-        {
-          "area": "223.7193",
-          "total": 5,
-          "unsold": 5
+          "area": "122.51",
+          "total": 2,
+          "unsold_prev": 2,
+          "unsold_now": 2
         }
-      ]
+      ],
+      "approval_date": "2022-05-11",
+      "contract_deadline": "2022-06-17",
+      "move_in": "2025-02-28",
+      "completed": "준공"
+    },
+    {
+      "district": "구로구",
+      "dong": "개봉동",
+      "address": "312-38번지 외 1필지 [개봉루브루]",
+      "name": "개봉루브루",
+      "builder": "㈜성호건설",
+      "developer": "길훈아파트\n주택재건축정비사업조합",
+      "type": "분양",
+      "total": 295,
+      "unsold_prev": 64,
+      "unsold_now": 64,
+      "areas": [
+        {
+          "area": "37.35",
+          "total": 5,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "42.10",
+          "total": 64,
+          "unsold_prev": 36,
+          "unsold_now": 36
+        },
+        {
+          "area": "42.15",
+          "total": 20,
+          "unsold_prev": 10,
+          "unsold_now": 10
+        },
+        {
+          "area": "42.55",
+          "total": 55,
+          "unsold_prev": 18,
+          "unsold_now": 18
+        },
+        {
+          "area": "52.72",
+          "total": 26,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.38",
+          "total": 28,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.91",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.94",
+          "total": 83,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.95",
+          "total": 13,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2022-06-01",
+      "contract_deadline": "-",
+      "move_in": "2026-08-30",
+      "completed": "미준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "길동",
+      "address": "336-1번지 [디아테온아파트]",
+      "name": "디아테온아파트",
+      "builder": "에이블피엔지",
+      "developer": "에이블피엔지",
+      "type": "분양",
+      "total": 64,
+      "unsold_prev": 58,
+      "unsold_now": 58,
+      "areas": [
+        {
+          "area": "59.99",
+          "total": 64,
+          "unsold_prev": 58,
+          "unsold_now": 58
+        }
+      ],
+      "approval_date": "2025-05-22",
+      "contract_deadline": "2025-06-25",
+      "move_in": "2026-07-30",
+      "completed": "미준공"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡동",
+      "address": "화곡동 1175 [화곡더리브스카이아파트]",
+      "name": "화곡더리브스카이아파트",
+      "builder": "에스지씨이\n테크건설(주)",
+      "developer": "케이비부동산신탁(주), \n천수산업개발(주)",
+      "type": "분양",
+      "total": 140,
+      "unsold_prev": 94,
+      "unsold_now": 56,
+      "areas": [
+        {
+          "area": "30.2834",
+          "total": 12,
+          "unsold_prev": 6,
+          "unsold_now": 3
+        },
+        {
+          "area": "33.6582",
+          "total": 12,
+          "unsold_prev": 5,
+          "unsold_now": 4
+        },
+        {
+          "area": "40.9212",
+          "total": 12,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "41.9321",
+          "total": 12,
+          "unsold_prev": 8,
+          "unsold_now": 1
+        },
+        {
+          "area": "50.5599",
+          "total": 12,
+          "unsold_prev": 10,
+          "unsold_now": 9
+        },
+        {
+          "area": "55.8931",
+          "total": 36,
+          "unsold_prev": 35,
+          "unsold_now": 33
+        },
+        {
+          "area": "59.0072",
+          "total": 44,
+          "unsold_prev": 30,
+          "unsold_now": 6
+        }
+      ],
+      "approval_date": "2022-11-10",
+      "contract_deadline": "-",
+      "move_in": "2022-12-20",
+      "completed": "준공"
     },
     {
       "district": "동대문구",
@@ -322,479 +480,39 @@
       "builder": "현대건설㈜",
       "developer": "㈜하나자산신탁",
       "type": "분양\n(도생)",
-      "area": "26",
-      "total": 25,
-      "unsold_prev": 12,
-      "unsold_now": 12,
-      "approval_date": "2022-02-09",
-      "move_in": "2025-07-30",
-      "completed": "준공",
+      "total": 213,
+      "unsold_prev": 53,
+      "unsold_now": 53,
       "areas": [
+        {
+          "area": "26",
+          "total": 25,
+          "unsold_prev": 12,
+          "unsold_now": 12
+        },
         {
           "area": "41",
           "total": 24,
-          "unsold": 10
+          "unsold_prev": 10,
+          "unsold_now": 10
         },
         {
           "area": "44",
           "total": 24,
-          "unsold": 20
+          "unsold_prev": 20,
+          "unsold_now": 20
         },
         {
           "area": "48",
           "total": 140,
-          "unsold": 11
-        },
-        {
-          "area": "99",
-          "total": 20,
-          "unsold": 8
-        },
-        {
-          "area": "19.9815",
-          "total": 44,
-          "unsold": 1
-        },
-        {
-          "area": "74",
-          "total": 70,
-          "unsold": 37
-        },
-        {
-          "area": "84",
-          "total": 19,
-          "unsold": 10
-        },
-        {
-          "area": "58.09",
-          "total": 38,
-          "unsold": 26
-        },
-        {
-          "area": "58.13",
-          "total": 11,
-          "unsold": 11
-        },
-        {
-          "area": "58.85",
-          "total": 19,
-          "unsold": 18
-        },
-        {
-          "area": "59.8",
-          "total": 19,
-          "unsold": 7
-        },
-        {
-          "area": "122.51",
-          "total": 2,
-          "unsold": 2
-        },
-        {
-          "area": "74",
-          "total": 76,
-          "unsold": 20
-        },
-        {
-          "area": "84.94",
-          "total": 103,
-          "unsold": 1
-        },
-        {
-          "area": "84.9",
-          "total": 14,
-          "unsold": 1
-        },
-        {
-          "area": "84.87",
-          "total": 2,
-          "unsold": 2
-        },
-        {
-          "area": "84.95",
-          "total": 1,
-          "unsold": 1
-        },
-        {
-          "area": "84.87",
-          "total": 17,
-          "unsold": 13
+          "unsold_prev": 11,
+          "unsold_now": 11
         }
-      ]
-    },
-    {
-      "district": "마포구",
-      "dong": "노고산동",
-      "address": "노고산동 107-46 [빌리브디에이블]",
-      "name": "빌리브디에이블",
-      "builder": "신세계건설㈜",
-      "developer": "KB부동산신탁\n주식회사",
-      "type": "분양",
-      "area": "38.31",
-      "total": 18,
-      "unsold_prev": 6,
-      "unsold_now": 6,
-      "approval_date": "2022-03-30",
+      ],
+      "approval_date": "2022-02-09",
+      "contract_deadline": "2022-03-04",
       "move_in": "2025-07-30",
-      "completed": "준공",
-      "areas": [
-        {
-          "area": "38.39",
-          "total": 135,
-          "unsold": 20
-        },
-        {
-          "area": "42.56",
-          "total": 17,
-          "unsold": 9
-        },
-        {
-          "area": "43.82",
-          "total": 8,
-          "unsold": 4
-        },
-        {
-          "area": "44.3",
-          "total": 17,
-          "unsold": 8
-        },
-        {
-          "area": "54.64",
-          "total": 4,
-          "unsold": 2
-        },
-        {
-          "area": "59.9700B",
-          "total": 12,
-          "unsold": 3
-        },
-        {
-          "area": "59.5700C",
-          "total": 2,
-          "unsold": 1
-        },
-        {
-          "area": "30.2834",
-          "total": 12,
-          "unsold": 3
-        },
-        {
-          "area": "33.6582",
-          "total": 12,
-          "unsold": 4
-        },
-        {
-          "area": "41.9321",
-          "total": 12,
-          "unsold": 1
-        },
-        {
-          "area": "50.5599",
-          "total": 12,
-          "unsold": 9
-        },
-        {
-          "area": "55.8931",
-          "total": 36,
-          "unsold": 33
-        },
-        {
-          "area": "59.0072",
-          "total": 44,
-          "unsold": 6
-        },
-        {
-          "area": "59.6202",
-          "total": 66,
-          "unsold": 4
-        },
-        {
-          "area": "84.9702",
-          "total": 4,
-          "unsold": 1
-        },
-        {
-          "area": "51.464",
-          "total": 43,
-          "unsold": 1
-        },
-        {
-          "area": "44.27",
-          "total": 30,
-          "unsold": 30
-        },
-        {
-          "area": "44.81",
-          "total": 15,
-          "unsold": 15
-        }
-      ]
-    },
-    {
-      "district": "구로구",
-      "dong": "오류동",
-      "address": "오류동 213-1번지 일원 [천왕역모아엘가트레뷰]",
-      "name": "천왕역모아엘가트레뷰",
-      "builder": "혜림건설㈜",
-      "developer": "㈜이레에이치앤씨",
-      "type": "분양",
-      "area": "67.9639",
-      "total": 11,
-      "unsold_prev": 3,
-      "unsold_now": 3,
-      "approval_date": "2022-08-29",
-      "move_in": "2025-08-08",
-      "completed": "준공\n(25.08.08.)",
-      "areas": [
-        {
-          "area": "84.8949",
-          "total": 34,
-          "unsold": 1
-        },
-        {
-          "area": "33.6443",
-          "total": 6,
-          "unsold": 4
-        },
-        {
-          "area": "35.2843",
-          "total": 4,
-          "unsold": 2
-        },
-        {
-          "area": "36.9845",
-          "total": 7,
-          "unsold": 2
-        },
-        {
-          "area": "37.3188",
-          "total": 14,
-          "unsold": 4
-        },
-        {
-          "area": "38.6542",
-          "total": 6,
-          "unsold": 2
-        },
-        {
-          "area": "42.384",
-          "total": 25,
-          "unsold": 1
-        },
-        {
-          "area": "43.1175",
-          "total": 4,
-          "unsold": 2
-        },
-        {
-          "area": "43.146",
-          "total": 4,
-          "unsold": 1
-        },
-        {
-          "area": "84.787",
-          "total": 41,
-          "unsold": 8
-        },
-        {
-          "area": "42.10",
-          "total": 64,
-          "unsold": 36
-        },
-        {
-          "area": "42.15",
-          "total": 20,
-          "unsold": 10
-        },
-        {
-          "area": "42.55",
-          "total": 55,
-          "unsold": 18
-        },
-        {
-          "area": "74",
-          "total": 28,
-          "unsold": 2
-        },
-        {
-          "area": "84",
-          "total": 22,
-          "unsold": 3
-        },
-        {
-          "area": "59.1669",
-          "total": 3,
-          "unsold": 3
-        },
-        {
-          "area": "59.1638",
-          "total": 1,
-          "unsold": 1
-        },
-        {
-          "area": "59.5063",
-          "total": 2,
-          "unsold": 1
-        },
-        {
-          "area": "59.8811",
-          "total": 1,
-          "unsold": 1
-        },
-        {
-          "area": "60.5723",
-          "total": 1,
-          "unsold": 1
-        },
-        {
-          "area": "61.7919",
-          "total": 1,
-          "unsold": 1
-        }
-      ]
-    },
-    {
-      "district": "관악구",
-      "dong": "신림동",
-      "address": "신림동 1744 [신림 스카이 아파트]",
-      "name": "신림 스카이 아파트",
-      "builder": "㈜제이더블유\n종합건설",
-      "developer": "이계홍",
-      "type": "분양",
-      "area": "35.71",
-      "total": 1,
-      "unsold_prev": 1,
-      "unsold_now": 1,
-      "approval_date": "2021-07-20",
-      "move_in": "2021-09-01",
-      "completed": "준공",
-      "areas": [
-        {
-          "area": "38.34",
-          "total": 9,
-          "unsold": 1
-        },
-        {
-          "area": "56.45",
-          "total": 9,
-          "unsold": 2
-        },
-        {
-          "area": "13.45",
-          "total": 12,
-          "unsold": 6
-        },
-        {
-          "area": "13.98",
-          "total": 12,
-          "unsold": 7
-        },
-        {
-          "area": "14.33",
-          "total": 14,
-          "unsold": 4
-        },
-        {
-          "area": "14.12",
-          "total": 68,
-          "unsold": 15
-        },
-        {
-          "area": "12.88",
-          "total": 118,
-          "unsold": 6
-        },
-        {
-          "area": "20.03",
-          "total": 3,
-          "unsold": 1
-        },
-        {
-          "area": "18.47",
-          "total": 2,
-          "unsold": 1
-        },
-        {
-          "area": "13",
-          "total": 52,
-          "unsold": 25
-        },
-        {
-          "area": "14.07",
-          "total": 16,
-          "unsold": 15
-        },
-        {
-          "area": "46.68(46A)",
-          "total": 8,
-          "unsold": 8
-        },
-        {
-          "area": "46.68(46B)",
-          "total": 4,
-          "unsold": 2
-        },
-        {
-          "area": "44.06(44C)",
-          "total": 8,
-          "unsold": 2
-        },
-        {
-          "area": "44.28(44D)",
-          "total": 6,
-          "unsold": 1
-        },
-        {
-          "area": "41.89(41E)",
-          "total": 8,
-          "unsold": 3
-        },
-        {
-          "area": "44.28(44G)",
-          "total": 8,
-          "unsold": 4
-        },
-        {
-          "area": "49.87(49I)",
-          "total": 8,
-          "unsold": 7
-        },
-        {
-          "area": "49.87(49J)",
-          "total": 5,
-          "unsold": 1
-        },
-        {
-          "area": "49.89(49K)",
-          "total": 8,
-          "unsold": 4
-        },
-        {
-          "area": "22.34",
-          "total": 8,
-          "unsold": 8
-        },
-        {
-          "area": "26.13",
-          "total": 13,
-          "unsold": 13
-        },
-        {
-          "area": "26.89",
-          "total": 5,
-          "unsold": 5
-        },
-        {
-          "area": "33.84",
-          "total": 14,
-          "unsold": 14
-        },
-        {
-          "area": "35.87",
-          "total": 5,
-          "unsold": 5
-        }
-      ]
+      "completed": "준공"
     },
     {
       "district": "강동구",
@@ -804,136 +522,1983 @@
       "builder": "㈜성우에스아이",
       "developer": "㈜성우에스아이",
       "type": "분양",
-      "area": "27.3",
-      "total": 13,
-      "unsold_prev": 13,
-      "unsold_now": 11,
-      "approval_date": "2023-12-13",
-      "move_in": "2024-01-18",
-      "completed": "준공",
+      "total": 80,
+      "unsold_prev": 75,
+      "unsold_now": 53,
       "areas": [
+        {
+          "area": "27.3",
+          "total": 13,
+          "unsold_prev": 13,
+          "unsold_now": 11
+        },
         {
           "area": "29.65",
           "total": 13,
-          "unsold": 10
+          "unsold_prev": 12,
+          "unsold_now": 10
         },
         {
           "area": "39.52",
           "total": 13,
-          "unsold": 4
+          "unsold_prev": 12,
+          "unsold_now": 4
         },
         {
           "area": "42.03",
           "total": 13,
-          "unsold": 10
+          "unsold_prev": 12,
+          "unsold_now": 10
         },
         {
           "area": "42.4",
           "total": 14,
-          "unsold": 9
+          "unsold_prev": 14,
+          "unsold_now": 9
         },
         {
           "area": "42.48",
           "total": 14,
-          "unsold": 9
+          "unsold_prev": 12,
+          "unsold_now": 9
+        }
+      ],
+      "approval_date": "2023-12-13",
+      "contract_deadline": "2024-01-18",
+      "move_in": "2024-01-18",
+      "completed": "준공"
+    },
+    {
+      "district": "강북구",
+      "dong": "미아동",
+      "address": "미아동 195번지 일대 [엘리프미아역2단지]  ※ 4.15.자 이후  업데이트 안됨",
+      "name": "엘리프미아역2단지",
+      "builder": "계룡건설산업㈜",
+      "developer": "주식회사 케이티엔지",
+      "type": "분양",
+      "total": 226,
+      "unsold_prev": 47,
+      "unsold_now": 47,
+      "areas": [
+        {
+          "area": "49",
+          "total": 11,
+          "unsold_prev": 0,
+          "unsold_now": 0
         },
         {
-          "area": "33.291",
-          "total": 16,
-          "unsold": 12
+          "area": "59",
+          "total": 126,
+          "unsold_prev": 0,
+          "unsold_now": 0
         },
         {
-          "area": "32.607",
+          "area": "74",
+          "total": 70,
+          "unsold_prev": 37,
+          "unsold_now": 37
+        },
+        {
+          "area": "84",
+          "total": 19,
+          "unsold_prev": 10,
+          "unsold_now": 10
+        }
+      ],
+      "approval_date": "2023-04-14",
+      "contract_deadline": "2023-05-18",
+      "move_in": "2026-08-31",
+      "completed": "미준공"
+    },
+    {
+      "district": "마포구",
+      "dong": "노고산동",
+      "address": "노고산동 107-46 [빌리브디에이블]",
+      "name": "빌리브디에이블",
+      "builder": "신세계건설㈜",
+      "developer": "KB부동산신탁\n주식회사",
+      "type": "분양",
+      "total": 256,
+      "unsold_prev": 47,
+      "unsold_now": 47,
+      "areas": [
+        {
+          "area": "38.31",
+          "total": 18,
+          "unsold_prev": 6,
+          "unsold_now": 6
+        },
+        {
+          "area": "38.39",
+          "total": 135,
+          "unsold_prev": 20,
+          "unsold_now": 20
+        },
+        {
+          "area": "40.73",
+          "total": 17,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "42.56",
+          "total": 17,
+          "unsold_prev": 9,
+          "unsold_now": 9
+        },
+        {
+          "area": "43.03",
+          "total": 17,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "43.82",
           "total": 8,
-          "unsold": 6
+          "unsold_prev": 4,
+          "unsold_now": 4
         },
         {
-          "area": "38.56",
-          "total": 8,
-          "unsold": 1
+          "area": "44.3",
+          "total": 17,
+          "unsold_prev": 8,
+          "unsold_now": 8
         },
         {
-          "area": "31.84",
-          "total": 8,
-          "unsold": 4
+          "area": "44.36",
+          "total": 17,
+          "unsold_prev": 0,
+          "unsold_now": 0
         },
         {
-          "area": "34.156",
-          "total": 8,
-          "unsold": 2
+          "area": "46.92",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
         },
         {
-          "area": "31.629",
-          "total": 8,
-          "unsold": 2
+          "area": "47.44",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
         },
         {
-          "area": "34.771",
-          "total": 8,
-          "unsold": 3
+          "area": "48.55",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
         },
         {
-          "area": "30.1316",
-          "total": 20,
-          "unsold": 3
+          "area": "48.86",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
         },
         {
-          "area": "33.2328",
+          "area": "49.06",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "49.6",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "49.76",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "49.81",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "49.89",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "49.93",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2022-03-30",
+      "contract_deadline": "2022-04-22",
+      "move_in": "2025-07-30",
+      "completed": "준공"
+    },
+    {
+      "district": "중구",
+      "dong": "황학동",
+      "address": "황학동 1756 일대 [청계노르웨이숲]",
+      "name": "청계노르웨이숲",
+      "builder": "㈜유림이엔씨",
+      "developer": "황학청계\n지역주택조합",
+      "type": "분양",
+      "total": 97,
+      "unsold_prev": 46,
+      "unsold_now": 46,
+      "areas": [
+        {
+          "area": "39.695",
+          "total": 69,
+          "unsold_prev": 46,
+          "unsold_now": 46
+        },
+        {
+          "area": "059.9860A",
+          "total": 11,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "059.9850B",
+          "total": 5,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "059.7990C",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "059.8420D",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2025-04-16",
+      "contract_deadline": "2025-05-28",
+      "move_in": "2028-07-01",
+      "completed": "미준공"
+    },
+    {
+      "district": "강서구",
+      "dong": "내발산동",
+      "address": "내발산동 766 [우장산동문디이스트]",
+      "name": "우장산동문디이스트",
+      "builder": "세담종합건설",
+      "developer": "신한자산신탁\n(주)",
+      "type": "분양",
+      "total": 45,
+      "unsold_prev": 45,
+      "unsold_now": 45,
+      "areas": [
+        {
+          "area": "44.27",
+          "total": 30,
+          "unsold_prev": 30,
+          "unsold_now": 30
+        },
+        {
+          "area": "44.81",
           "total": 15,
-          "unsold": 2
+          "unsold_prev": 15,
+          "unsold_now": 15
+        }
+      ],
+      "approval_date": "2023-11-24",
+      "contract_deadline": "",
+      "move_in": "2024-04-26",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "길동",
+      "address": "413-16 [퍼스원시티]",
+      "name": "퍼스원시티",
+      "builder": "대상건설㈜",
+      "developer": "교보자산신탁\n주식회사",
+      "type": "분양",
+      "total": 45,
+      "unsold_prev": 45,
+      "unsold_now": 45,
+      "areas": [
+        {
+          "area": "22.34",
+          "total": 8,
+          "unsold_prev": 8,
+          "unsold_now": 8
         },
         {
-          "area": "38.1851",
-          "total": 20,
-          "unsold": 5
+          "area": "26.13",
+          "total": 13,
+          "unsold_prev": 13,
+          "unsold_now": 13
         },
         {
-          "area": "38.1851",
-          "total": 2,
-          "unsold": 1
+          "area": "26.89",
+          "total": 5,
+          "unsold_prev": 5,
+          "unsold_now": 5
         },
         {
-          "area": "43.3253",
+          "area": "33.84",
           "total": 14,
-          "unsold": 3
+          "unsold_prev": 14,
+          "unsold_now": 14
         },
+        {
+          "area": "35.87",
+          "total": 5,
+          "unsold_prev": 5,
+          "unsold_now": 5
+        }
+      ],
+      "approval_date": "2024-03-25",
+      "contract_deadline": "",
+      "move_in": "2024-04-29",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "성내동",
+      "address": "459-3번지 [에스아이팰리스올림픽공원 아파트]",
+      "name": "에스아이팰리스올림픽공원 아파트",
+      "builder": "이엔건설",
+      "developer": "교보자산신탁\n주식회사",
+      "type": "분양",
+      "total": 58,
+      "unsold_prev": 45,
+      "unsold_now": 45,
+      "areas": [
         {
           "area": "52.5256(52A)",
           "total": 50,
-          "unsold": 37
+          "unsold_prev": 37,
+          "unsold_now": 37
         },
         {
           "area": "52.5256(52T)",
           "total": 4,
-          "unsold": 4
+          "unsold_prev": 4,
+          "unsold_now": 4
         },
         {
           "area": "52.5256(52P)",
           "total": 4,
-          "unsold": 4
-        },
-        {
-          "area": "59.99",
-          "total": 64,
-          "unsold": 58
+          "unsold_prev": 4,
+          "unsold_now": 4
         }
-      ]
+      ],
+      "approval_date": "2024-02-23",
+      "contract_deadline": "2024-03-27",
+      "move_in": "2024-02-22",
+      "completed": "준공"
     },
     {
-      "district": "",
-      "dong": "",
-      "address": "",
-      "name": "",
-      "builder": "",
-      "developer": "",
-      "type": "",
-      "area": "",
-      "total": 4917,
-      "unsold_prev": 1037,
-      "unsold_now": 939,
-      "approval_date": "",
-      "move_in": "",
-      "completed": ""
+      "district": "강동구",
+      "dong": "길동",
+      "address": "길동 413-11 외2필지 [길동경지아리움]",
+      "name": "길동경지아리움",
+      "builder": "경지건설\n주식회사",
+      "developer": "김경주",
+      "type": "분양",
+      "total": 124,
+      "unsold_prev": 32,
+      "unsold_now": 32,
+      "areas": [
+        {
+          "area": "13.45",
+          "total": 12,
+          "unsold_prev": 6,
+          "unsold_now": 6
+        },
+        {
+          "area": "13.98",
+          "total": 12,
+          "unsold_prev": 7,
+          "unsold_now": 7
+        },
+        {
+          "area": "14.33",
+          "total": 14,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "14.12",
+          "total": 68,
+          "unsold_prev": 15,
+          "unsold_now": 15
+        },
+        {
+          "area": "19.39",
+          "total": 14,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "22.81",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "26.29",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2019-07-03",
+      "contract_deadline": "2019-07-29",
+      "move_in": "2019-08-30",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "길동",
+      "address": "415-5 [강동중앙하이츠]",
+      "name": "강동중앙하이츠",
+      "builder": "동우개발㈜",
+      "developer": "한국자산\n신탁㈜",
+      "type": "분양",
+      "total": 81,
+      "unsold_prev": 32,
+      "unsold_now": 32,
+      "areas": [
+        {
+          "area": "46.68(46A)",
+          "total": 8,
+          "unsold_prev": 8,
+          "unsold_now": 8
+        },
+        {
+          "area": "46.68(46B)",
+          "total": 4,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "44.06(44C)",
+          "total": 8,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "44.28(44D)",
+          "total": 6,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "41.89(41E)",
+          "total": 8,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "41.89(41F)",
+          "total": 7,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "44.28(44G)",
+          "total": 8,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "44.06(44H)",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "49.87(49I)",
+          "total": 8,
+          "unsold_prev": 7,
+          "unsold_now": 7
+        },
+        {
+          "area": "49.87(49J)",
+          "total": 5,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "49.89(49K)",
+          "total": 8,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "49.89(49L)",
+          "total": 5,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2021-12-02",
+      "contract_deadline": "2021-12-21",
+      "move_in": "2024-04-30",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "길동",
+      "address": "388-2 [에스아이팰리스강동센텀1]",
+      "name": "에스아이팰리스강동센텀1",
+      "builder": "㈜성우에스아이",
+      "developer": "신영부동산신탁주식회사",
+      "type": "분양",
+      "total": 64,
+      "unsold_prev": 30,
+      "unsold_now": 30,
+      "areas": [
+        {
+          "area": "33.291",
+          "total": 16,
+          "unsold_prev": 12,
+          "unsold_now": 12
+        },
+        {
+          "area": "32.607",
+          "total": 8,
+          "unsold_prev": 6,
+          "unsold_now": 6
+        },
+        {
+          "area": "38.56",
+          "total": 8,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "31.84",
+          "total": 8,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "34.156",
+          "total": 8,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "31.629",
+          "total": 8,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "34.771",
+          "total": 8,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        }
+      ],
+      "approval_date": "2023-09-12",
+      "contract_deadline": "2023-09-27",
+      "move_in": "2023-09-28",
+      "completed": "준공"
+    },
+    {
+      "district": "광진구",
+      "dong": "구의동",
+      "address": "자양로228, 229 (구의동 80-9) [광진파크하우스아파트]",
+      "name": "광진파크하우스아파트",
+      "builder": "삼정건설\n산업㈜",
+      "developer": "대신자산신탁",
+      "type": "분양",
+      "total": 77,
+      "unsold_prev": 31,
+      "unsold_now": 29,
+      "areas": [
+        {
+          "area": "44",
+          "total": 39,
+          "unsold_prev": 10,
+          "unsold_now": 8
+        },
+        {
+          "area": "45(45A형)",
+          "total": 34,
+          "unsold_prev": 20,
+          "unsold_now": 20
+        },
+        {
+          "area": "45(45B형)",
+          "total": 4,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        }
+      ],
+      "approval_date": "2021-10-25",
+      "contract_deadline": "2021-11-05",
+      "move_in": "2023-03-30",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "천호동",
+      "address": "452-15 [미사아름채아파트]",
+      "name": "미사아름채아파트",
+      "builder": "주식회사\n미사종합건설",
+      "developer": "이종식",
+      "type": "분양",
+      "total": 131,
+      "unsold_prev": 25,
+      "unsold_now": 25,
+      "areas": [
+        {
+          "area": "12.14",
+          "total": 26,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "12.56",
+          "total": 13,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "12.62",
+          "total": 13,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "13",
+          "total": 52,
+          "unsold_prev": 25,
+          "unsold_now": 25
+        },
+        {
+          "area": "13.01",
+          "total": 13,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "13.32",
+          "total": 13,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "26.42",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2020-06-10",
+      "contract_deadline": "2021-12-31",
+      "move_in": "2020-07-01",
+      "completed": "준공"
+    },
+    {
+      "district": "광진구",
+      "dong": "광장동",
+      "address": "광장동 188-2 일원 [포제스한강]",
+      "name": "포제스한강",
+      "builder": "㈜DL이앤씨",
+      "developer": "㈜한국자산신탁",
+      "type": "분양",
+      "total": 128,
+      "unsold_prev": 22,
+      "unsold_now": 22,
+      "areas": [
+        {
+          "area": "84.9318",
+          "total": 7,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.9825",
+          "total": 14,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.6328",
+          "total": 7,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.3536",
+          "total": 8,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.1414",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "115.4906",
+          "total": 15,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "115.3529",
+          "total": 8,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "115.5819",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "123.3567",
+          "total": 8,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "123.8214",
+          "total": 8,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "126.0683",
+          "total": 7,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "213.6667",
+          "total": 5,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "213.9203",
+          "total": 6,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "213.3349",
+          "total": 7,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "216.3134",
+          "total": 6,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "216.4175",
+          "total": 7,
+          "unsold_prev": 6,
+          "unsold_now": 6
+        },
+        {
+          "area": "223.7193",
+          "total": 5,
+          "unsold_prev": 5,
+          "unsold_now": 5
+        },
+        {
+          "area": "244.7652",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "244.9903",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2023-12-29",
+      "contract_deadline": "2024-02-17",
+      "move_in": "2025-08-30",
+      "completed": "준공"
+    },
+    {
+      "district": "은평구",
+      "dong": "대조동",
+      "address": "대조동 88, 89번지 일대 [힐스테이트 메디알레]",
+      "name": "힐스테이트 메디알레",
+      "builder": "㈜현대건설",
+      "developer": "대조제1구역 \n주택재개발사업조합",
+      "type": "분양",
+      "total": 483,
+      "unsold_prev": 20,
+      "unsold_now": 20,
+      "areas": [
+        {
+          "area": "51",
+          "total": 84,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59",
+          "total": 323,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "74",
+          "total": 76,
+          "unsold_prev": 20,
+          "unsold_now": 20
+        }
+      ],
+      "approval_date": "2025-05-08",
+      "contract_deadline": "2025-06-11",
+      "move_in": "2026-10-31",
+      "completed": "미준공"
+    },
+    {
+      "district": "서대문구",
+      "dong": "홍은동",
+      "address": "홍은동 11-111 일대 [서대문센트럴아이파크]",
+      "name": "서대문센트럴아이파크",
+      "builder": "현대산업개발",
+      "developer": "홍은제13구역\n주택재개발정비사업조합",
+      "type": "분양",
+      "total": 137,
+      "unsold_prev": 18,
+      "unsold_now": 18,
+      "areas": [
+        {
+          "area": "84.94",
+          "total": 103,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "84.9",
+          "total": 14,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "84.87",
+          "total": 2,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "84.95",
+          "total": 1,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "84.87",
+          "total": 17,
+          "unsold_prev": 13,
+          "unsold_now": 13
+        }
+      ],
+      "approval_date": "2024-05-10",
+      "contract_deadline": "2024-06-19",
+      "move_in": "2025-06-30",
+      "completed": "미준공\n(부분준공)"
+    },
+    {
+      "district": "구로구",
+      "dong": "가리봉동",
+      "address": "가리봉동 113-1번지 [남구로역동일센타시아]",
+      "name": "남구로역동일센타시아",
+      "builder": "동일건설㈜",
+      "developer": "우리자산신탁㈜",
+      "type": "분양",
+      "total": 91,
+      "unsold_prev": 21,
+      "unsold_now": 18,
+      "areas": [
+        {
+          "area": "33.6443",
+          "total": 6,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "34.4916",
+          "total": 6,
+          "unsold_prev": 3,
+          "unsold_now": 0
+        },
+        {
+          "area": "35.2843",
+          "total": 4,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "36.9845",
+          "total": 7,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "37.3188",
+          "total": 14,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "38.6542",
+          "total": 6,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "40.294",
+          "total": 4,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "42.384",
+          "total": 5,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "42.384",
+          "total": 25,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "43.1175",
+          "total": 4,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "43.146",
+          "total": 4,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "48.0152",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "54.052",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "60.9817",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "61.1445",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "67.948",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2022-08-29",
+      "contract_deadline": "2022-09-21",
+      "move_in": "2024-07-30",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "길동",
+      "address": "416-17 [다성이즈빌]",
+      "name": "다성이즈빌",
+      "builder": "다성건설㈜",
+      "developer": "다성건설㈜",
+      "type": "분양",
+      "total": 77,
+      "unsold_prev": 15,
+      "unsold_now": 15,
+      "areas": [
+        {
+          "area": "27.58",
+          "total": 15,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "26.27",
+          "total": 30,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "14.07",
+          "total": 16,
+          "unsold_prev": 15,
+          "unsold_now": 15
+        },
+        {
+          "area": "33.12",
+          "total": 15,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "14.07",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2021-11-11",
+      "contract_deadline": "2021-11-17",
+      "move_in": "2021-11-22",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "천호동",
+      "address": "334-2번지 [천호역마에스트로]",
+      "name": "천호역마에스트로",
+      "builder": "한미글로벌이앤씨",
+      "developer": "㈜무궁화신탁",
+      "type": "분양",
+      "total": 77,
+      "unsold_prev": 14,
+      "unsold_now": 14,
+      "areas": [
+        {
+          "area": "30.1316",
+          "total": 20,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "30.1316",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "33.2328",
+          "total": 15,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "33.2328",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "38.1851",
+          "total": 20,
+          "unsold_prev": 5,
+          "unsold_now": 5
+        },
+        {
+          "area": "38.1851",
+          "total": 2,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "43.3253",
+          "total": 14,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "55.4227",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2022-11-04",
+      "contract_deadline": "2022-12-08",
+      "move_in": "2025-01-30",
+      "completed": "준공"
+    },
+    {
+      "district": "동대문구",
+      "dong": "이문동",
+      "address": "이문동 149-8번지 일대 [이문아이파크자이]",
+      "name": "이문아이파크자이",
+      "builder": "HDC현대산업개발㈜\nGS건설㈜",
+      "developer": "이문3 \n주택재개발정비사업조합",
+      "type": "분양",
+      "total": 118,
+      "unsold_prev": 10,
+      "unsold_now": 8,
+      "areas": [
+        {
+          "area": "20",
+          "total": 0,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "41",
+          "total": 0,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59",
+          "total": 37,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84",
+          "total": 61,
+          "unsold_prev": 2,
+          "unsold_now": 0
+        },
+        {
+          "area": "99",
+          "total": 20,
+          "unsold_prev": 8,
+          "unsold_now": 8
+        },
+        {
+          "area": "102",
+          "total": 0,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2023-10-19",
+      "contract_deadline": "미정",
+      "move_in": "2025-12-30",
+      "completed": "미준공\n(부분준공)"
+    },
+    {
+      "district": "구로구",
+      "dong": "개봉동",
+      "address": "68-64번지 일원 [호반써밋개봉]",
+      "name": "호반써밋개봉",
+      "builder": "㈜호반건설",
+      "developer": "개봉5구역\n주택재건축\n정비사업조합",
+      "type": "분양",
+      "total": 190,
+      "unsold_prev": 38,
+      "unsold_now": 8,
+      "areas": [
+        {
+          "area": "49.913",
+          "total": 15,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.927",
+          "total": 41,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.611",
+          "total": 32,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.787",
+          "total": 41,
+          "unsold_prev": 8,
+          "unsold_now": 8
+        },
+        {
+          "area": "84.614",
+          "total": 42,
+          "unsold_prev": 22,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.879",
+          "total": 16,
+          "unsold_prev": 7,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.730",
+          "total": 3,
+          "unsold_prev": 1,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2023-09-04",
+      "contract_deadline": "2023-09-27",
+      "move_in": "2024-12-30",
+      "completed": "준공"
+    },
+    {
+      "district": "금천구",
+      "dong": "독산동",
+      "address": "독산동 234-72번지 [신독산솔리힐뉴포레]",
+      "name": "신독산솔리힐뉴포레",
+      "builder": "㈜금도건설",
+      "developer": "동진빌라\n가로주택\n정비사업\n조합",
+      "type": "분양",
+      "total": 35,
+      "unsold_prev": 8,
+      "unsold_now": 8,
+      "areas": [
+        {
+          "area": "59.1669",
+          "total": 3,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "59.1638",
+          "total": 1,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "59.5063",
+          "total": 2,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "59.8811",
+          "total": 1,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "60.5723",
+          "total": 1,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "61.7919",
+          "total": 1,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "68.5534",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "68.5501",
+          "total": 3,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "68.7601",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "68.7509",
+          "total": 5,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "68.6006",
+          "total": 3,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "68.739",
+          "total": 3,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2022-06-15",
+      "contract_deadline": "2022-07-20",
+      "move_in": "2022-06-10",
+      "completed": "준공"
+    },
+    {
+      "district": "강동구",
+      "dong": "천호동",
+      "address": "432-7 [천호아스하임오피스텔]",
+      "name": "천호아스하임오피스텔",
+      "builder": "㈜원플러스\n종합건설",
+      "developer": "케이비\n부동산신탁㈜/ 원플러스종합건설",
+      "type": "분양",
+      "total": 149,
+      "unsold_prev": 8,
+      "unsold_now": 8,
+      "areas": [
+        {
+          "area": "12.88",
+          "total": 118,
+          "unsold_prev": 6,
+          "unsold_now": 6
+        },
+        {
+          "area": "11.33",
+          "total": 26,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "20.03",
+          "total": 3,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "18.47",
+          "total": 2,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        }
+      ],
+      "approval_date": "2019-07-31",
+      "contract_deadline": "2021-07-31",
+      "move_in": "2021-12-01",
+      "completed": "준공"
+    },
+    {
+      "district": "양천구",
+      "dong": "신정동",
+      "address": "신정동 1328 (신목로2길 7-12) [어반클라쎄목동]",
+      "name": "어반클라쎄목동",
+      "builder": "한바로이앤씨㈜,\n아하건설㈜",
+      "developer": "㈜쓰리씨",
+      "type": "분양",
+      "total": 45,
+      "unsold_prev": 6,
+      "unsold_now": 6,
+      "areas": [
+        {
+          "area": "37.42",
+          "total": 10,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "37.4100A",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "54.64",
+          "total": 4,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "54.6400A",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.8600A",
+          "total": 12,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.9700B",
+          "total": 12,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "59.5700C",
+          "total": 2,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "59.6500D",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2023-12-15",
+      "contract_deadline": "-",
+      "move_in": "2023-09-25",
+      "completed": "준공"
+    },
+    {
+      "district": "강서구",
+      "dong": "등촌동",
+      "address": "등촌동 633-12 외 [등촌지와인아파트]",
+      "name": "등촌지와인아파트",
+      "builder": "한동건설(주)",
+      "developer": "주식회사 \n하나자산신탁",
+      "type": "분양",
+      "total": 136,
+      "unsold_prev": 5,
+      "unsold_now": 5,
+      "areas": [
+        {
+          "area": "59.6202",
+          "total": 66,
+          "unsold_prev": 4,
+          "unsold_now": 4
+        },
+        {
+          "area": "74.0328",
+          "total": 44,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "77.3304",
+          "total": 22,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.9702",
+          "total": 4,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        }
+      ],
+      "approval_date": "2023-02-21",
+      "contract_deadline": "-",
+      "move_in": "2023-06-30",
+      "completed": "준공"
+    },
+    {
+      "district": "구로구",
+      "dong": "구로동",
+      "address": "구로5동 33번지 외 1필지 [신도림역 동문 디이스트]",
+      "name": "신도림역 동문 디이스트",
+      "builder": "㈜동문건설",
+      "developer": "우성타운 \n소규모재건축정비사업조합",
+      "type": "분양",
+      "total": 61,
+      "unsold_prev": 5,
+      "unsold_now": 5,
+      "areas": [
+        {
+          "area": "59",
+          "total": 11,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "74",
+          "total": 28,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "84",
+          "total": 22,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        }
+      ],
+      "approval_date": "2021-12-30",
+      "contract_deadline": "-",
+      "move_in": "2026-04-30",
+      "completed": "미준공"
+    },
+    {
+      "district": "구로구",
+      "dong": "오류동",
+      "address": "오류동 213-1번지 일원 [천왕역모아엘가트레뷰]",
+      "name": "천왕역모아엘가트레뷰",
+      "builder": "혜림건설㈜",
+      "developer": "㈜이레에이치앤씨",
+      "type": "분양",
+      "total": 140,
+      "unsold_prev": 4,
+      "unsold_now": 4,
+      "areas": [
+        {
+          "area": "67.9639",
+          "total": 11,
+          "unsold_prev": 3,
+          "unsold_now": 3
+        },
+        {
+          "area": "84.5396",
+          "total": 95,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.8949",
+          "total": 34,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        }
+      ],
+      "approval_date": "2022-08-29",
+      "contract_deadline": "2022-09-21",
+      "move_in": "2025-08-08",
+      "completed": "준공\n(25.08.08.)"
+    },
+    {
+      "district": "관악구",
+      "dong": "신림동",
+      "address": "신림동 1744 [신림 스카이 아파트]",
+      "name": "신림 스카이 아파트",
+      "builder": "㈜제이더블유\n종합건설",
+      "developer": "이계홍",
+      "type": "분양",
+      "total": 43,
+      "unsold_prev": 4,
+      "unsold_now": 4,
+      "areas": [
+        {
+          "area": "35.71",
+          "total": 1,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "38.34",
+          "total": 9,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "45.85",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "49.57",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "50.46",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "53.51",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "55.34",
+          "total": 9,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "56.45",
+          "total": 9,
+          "unsold_prev": 2,
+          "unsold_now": 2
+        },
+        {
+          "area": "56.46",
+          "total": 10,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "56.56",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2021-07-20",
+      "contract_deadline": "2021-08-25",
+      "move_in": "2021-09-01",
+      "completed": "준공"
+    },
+    {
+      "district": "중구",
+      "dong": "인현동2가",
+      "address": "마른내로 79 (인현동2가 151-1번지) [세운푸르지오헤리시티]",
+      "name": "세운푸르지오헤리시티",
+      "builder": "㈜대우건설",
+      "developer": "우리자산신탁㈜",
+      "type": "분양",
+      "total": 293,
+      "unsold_prev": 1,
+      "unsold_now": 1,
+      "areas": [
+        {
+          "area": "24",
+          "total": 77,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "28",
+          "total": 77,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "29",
+          "total": 99,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "40",
+          "total": 29,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "42",
+          "total": 11,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2020-05-28",
+      "contract_deadline": "2020-08-19",
+      "move_in": "2023-01-16",
+      "completed": "준공"
+    },
+    {
+      "district": "용산구",
+      "dong": "원효로2가",
+      "address": "새창로 136 (원효로2가 90-26) [용산씨모어]",
+      "name": "용산씨모어",
+      "builder": "㈜중림종합건설",
+      "developer": "㈜무궁화신탁",
+      "type": "분양",
+      "total": 41,
+      "unsold_prev": 1,
+      "unsold_now": 1,
+      "areas": [
+        {
+          "area": "26.03",
+          "total": 9,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "22.33",
+          "total": 9,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "25.11",
+          "total": 9,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "20.99",
+          "total": 4,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "28.29",
+          "total": 5,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "29.23",
+          "total": 5,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2022-09-06",
+      "contract_deadline": "2022-09-14",
+      "move_in": "2024-01-30",
+      "completed": "준공"
+    },
+    {
+      "district": "광진구",
+      "dong": "자양동",
+      "address": "능동로 69 (자양동 3-7 일대) [자양호반써밋아파트]",
+      "name": "자양호반써밋아파트",
+      "builder": "㈜호반건설",
+      "developer": "가이아",
+      "type": "분양",
+      "total": 305,
+      "unsold_prev": 1,
+      "unsold_now": 1,
+      "areas": [
+        {
+          "area": "40.2673",
+          "total": 25,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "40.183",
+          "total": 38,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "40.2751",
+          "total": 145,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.079",
+          "total": 23,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.5905",
+          "total": 49,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "84.0374",
+          "total": 25,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        }
+      ],
+      "approval_date": "2019-03-05",
+      "contract_deadline": "2019-03-27",
+      "move_in": "2021-08-30",
+      "completed": "준공"
+    },
+    {
+      "district": "강북구",
+      "dong": "수유동",
+      "address": "한천로148길 12-13  (수유동 741) [칸타빌수유팰리스]",
+      "name": "칸타빌수유팰리스",
+      "builder": "㈜대원",
+      "developer": "㈜신한자산신탁,\n시에스네트웍스㈜",
+      "type": "분양",
+      "total": 216,
+      "unsold_prev": 2,
+      "unsold_now": 1,
+      "areas": [
+        {
+          "area": "18.6585",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "18.9021",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "18.5019",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "19.9815",
+          "total": 44,
+          "unsold_prev": 2,
+          "unsold_now": 1
+        },
+        {
+          "area": "19.7295",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "20.774",
+          "total": 9,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "20.93",
+          "total": 6,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "20.665",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "23.8466",
+          "total": 4,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "23.3354",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "23.3354",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "24.335",
+          "total": 4,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "25.9755",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "26.6863",
+          "total": 9,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "56.7067",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "56.7067",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "58.9672",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.9906",
+          "total": 20,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "59.9879",
+          "total": 24,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "66.1059",
+          "total": 1,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "76.1473",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "78.1719",
+          "total": 74,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2022-02-17",
+      "contract_deadline": "2022-03-24",
+      "move_in": "2022-06-30",
+      "completed": "준공\n(2022.06.29.)"
+    },
+    {
+      "district": "강서구",
+      "dong": "내발산동",
+      "address": "내발산동 764 [마곡에이치밸리움]",
+      "name": "마곡에이치밸리움",
+      "builder": "주식회사 \n에이치디한울종합건설",
+      "developer": "신한자산신탁(주)",
+      "type": "분양",
+      "total": 67,
+      "unsold_prev": 1,
+      "unsold_now": 1,
+      "areas": [
+        {
+          "area": "50.433",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "51.464",
+          "total": 43,
+          "unsold_prev": 1,
+          "unsold_now": 1
+        },
+        {
+          "area": "52.218",
+          "total": 20,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        },
+        {
+          "area": "54.803",
+          "total": 2,
+          "unsold_prev": 0,
+          "unsold_now": 0
+        }
+      ],
+      "approval_date": "2021-08-25",
+      "contract_deadline": "",
+      "move_in": "2023-02-16",
+      "completed": "준공"
     }
   ]
 }
