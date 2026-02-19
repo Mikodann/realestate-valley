@@ -2946,14 +2946,16 @@ function SupplyPage() {
   const [region, setRegion] = useState("서울");
   const [unsoldDistrict, setUnsoldDistrict] = useState("전체");
   const mob = window.innerWidth < 768;
+  const [completion, setCompletion] = useState(null);
 
   useEffect(() => {
     Promise.all([
       fetch("/data/housing-supply.json").then(r => r.json()),
       fetch("/data/unsold-district.json").then(r => r.json()),
       fetch("/data/unsold-detail.json").then(r => r.json()).catch(() => null),
-      fetch("/data/supply-detail.json").then(r => r.json()).catch(() => null)
-    ]).then(([s, u, ud, sd]) => { setSupply(s); setUnsold(u); setUnsoldDetail(ud); setSupplyDetail(sd); setLoading(false); }).catch(() => setLoading(false));
+      fetch("/data/supply-detail.json").then(r => r.json()).catch(() => null),
+      fetch("/data/housing-completion.json").then(r => r.json()).catch(() => null)
+    ]).then(([s, u, ud, sd, comp]) => { setSupply(s); setUnsold(u); setUnsoldDetail(ud); setSupplyDetail(sd); setCompletion(comp); setLoading(false); }).catch(() => setLoading(false));
   }, []);
 
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>입주물량 데이터 로딩 중...</div>;
@@ -3109,6 +3111,39 @@ function SupplyPage() {
             </AreaChart>
           </ResponsiveContainer>
         </div>
+
+        {/* 인허가 vs 준공 비교 */}
+        {completion && completion.data && (
+          <div style={{ ...cardS, marginBottom: 24 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🏗️ 인허가 vs 준공 비교 (연도별)</h3>
+            <p style={{ fontSize: 12, color: "#5a6480", marginBottom: 12 }}>인허가는 공급 계획, 준공은 실제 완공 물량. 차이가 클수록 공급 지연</p>
+            <ResponsiveContainer width="100%" height={320}>
+              <BarChart data={(() => {
+                const compData = completion.data[region] || completion.data["서울"] || {};
+                const supYearly = {};
+                (supply[region] || supply["서울"] || []).forEach(d => {
+                  const yr = d.month.slice(0, 4);
+                  supYearly[yr] = (supYearly[yr] || 0) + d.value;
+                });
+                const years = [...new Set([...Object.keys(compData), ...Object.keys(supYearly)])].sort();
+                return years.filter(y => parseInt(y) >= 2015).map(y => ({
+                  year: y,
+                  인허가: supYearly[y] || 0,
+                  준공: compData[y] || 0
+                }));
+              })()} margin={{ top: 10, right: 10, bottom: 5, left: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                <XAxis dataKey="year" tick={{ fill: "#5a6480", fontSize: 12 }} />
+                <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} tickFormatter={v => (v/10000).toFixed(1) + "만"} />
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} formatter={v => [v.toLocaleString() + "호"]} />
+                <Legend wrapperStyle={{ fontSize: 12, color: "#8B92A5" }} />
+                <Bar dataKey="인허가" fill="#0066FF" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="준공" fill="#00D68F" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+
 
         <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 1fr", gap: 16, marginBottom: 24 }}>
           {/* 미분양 구별 현황 */}
