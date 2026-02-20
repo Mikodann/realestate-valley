@@ -332,7 +332,9 @@ function LoadingBar({ text = "실거래 데이터 불러오는 중..." }) {
 function Nav({ currentPage, setCurrentPage, onLogout }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const mob = useWindowSize() < 1024;
+  const ww = useWindowSize();
+  const mob = ww < 1024;
+  const wideMobile = ww >= 700 && ww < 1024;
 
   useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
   useEffect(() => setMenuOpen(false), [currentPage]);
@@ -373,11 +375,11 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
       </nav>
       {mob && menuOpen && (
         <div style={{ position: "fixed", inset: 0, zIndex: 999, background: "rgba(10,14,26,.98)", backdropFilter: "blur(20px)", paddingTop: 80, animation: "fadeIn .2s ease" }}>
-          <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: 8 }}>
+          <div style={{ padding: "20px 24px", display: "grid", gridTemplateColumns: wideMobile ? "1fr 1fr" : "1fr", gap: 8 }}>
             {items.map((it, i) => { const Ic = it.icon, a = currentPage === it.id; return (
               <button key={it.id} onClick={() => setCurrentPage(it.id)} style={{ background: a ? "rgba(0,102,255,.12)" : "rgba(255,255,255,.03)", border: `1px solid ${a ? C.primary + "30" : "transparent"}`, color: a ? C.primary : "#fff", padding: "16px 20px", borderRadius: 14, cursor: "pointer", fontSize: 16, fontWeight: 600, display: "flex", alignItems: "center", gap: 12, fontFamily: "'Noto Sans KR',sans-serif", width: "100%", textAlign: "left", animation: `slideDown .3s ease ${i * .05}s both` }}><Ic size={20} />{it.label}</button>
             ); })}
-            <div style={{ borderTop: `1px solid ${C.darkBorder}`, marginTop: 12, paddingTop: 16 }}>
+            <div style={{ borderTop: `1px solid ${C.darkBorder}`, marginTop: 12, paddingTop: 16, gridColumn: "1 / -1" }}>
               <button onClick={onLogout} style={{ background: "rgba(255,71,87,.08)", border: "1px solid rgba(255,71,87,.2)", color: "#FF4757", padding: "16px 20px", borderRadius: 14, cursor: "pointer", fontSize: 16, fontWeight: 600, display: "flex", alignItems: "center", gap: 12, fontFamily: "'Noto Sans KR',sans-serif", width: "100%", animation: "slideDown .3s ease .2s both" }}><LogOut size={20} />로그아웃</button>
             </div>
           </div>
