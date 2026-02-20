@@ -3736,7 +3736,17 @@ function CleanupPage() {
                 <Pie data={typeChart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={mob ? 78 : 100} label={mob ? false : ({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={!mob} fontSize={11}>
                   {typeChart.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
                 </Pie>
-                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} itemStyle={{ color: "#E6EBFF" }} labelStyle={{ color: "#E6EBFF" }} />
+                <Tooltip
+                  content={({ active, payload }) => {
+                    if (!active || !payload || !payload.length) return null;
+                    const p = payload[0];
+                    return (
+                      <div style={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.14)", borderRadius: 10, padding: "8px 10px", color: "#F4F7FF", fontSize: 14, fontWeight: 600 }}>
+                        {p.name}: {p.value}
+                      </div>
+                    );
+                  }}
+                />
                 {mob && <Legend wrapperStyle={{ fontSize: 11, color: "#D7DCEC" }} />}
               </PieChart>
             </ResponsiveContainer>
