@@ -3106,12 +3106,12 @@ function SupplyPage() {
                           <div style={{ color: "#fff", fontWeight: 700, lineHeight: 1.35, fontSize: 14, marginBottom: 6 }}>
                             {it.url ? <a href={it.url} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{it.name}</a> : it.name}
                           </div>
-                          <div style={{ display: "grid", gap: 5, fontSize: 12, color: "#C5CAD6" }}>
-                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>주소</span>{it.address}</div>
-                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>시공사</span>{it.builder}</div>
-                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>세대수</span><span style={{ color: "#A78BFA", fontWeight: 700 }}>{it.units}</span></div>
-                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>공고일</span>{it.announce_date}</div>
-                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>입주예정</span><span style={{ color: "#00D68F" }}>{it.move_in ? it.move_in.slice(0,4)+"."+it.move_in.slice(4) : "-"}</span></div>
+                          <div style={{ display: "grid", gap: 5, fontSize: 12, color: "#E6EBFF" }}>
+                            <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 48 }}>주소</span>{it.address}</div>
+                            <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 48 }}>시공사</span>{it.builder}</div>
+                            <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 48 }}>세대수</span><span style={{ color: "#CBB7FF", fontWeight: 700 }}>{it.units}</span></div>
+                            <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 48 }}>공고일</span>{it.announce_date}</div>
+                            <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 48 }}>입주예정</span><span style={{ color: "#6CFFC6" }}>{it.move_in ? it.move_in.slice(0,4)+"."+it.move_in.slice(4) : "-"}</span></div>
                           </div>
                         </div>
                       ))}
@@ -3404,10 +3404,10 @@ function SchoolInfoPage() {
                     </div>
                     <span style={{ display: "inline-block", padding: "4px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: (typeColors[s.type] || "#6B7280") + "20", color: typeColors[s.type] || "#6B7280", whiteSpace: "nowrap", height: "fit-content" }}>{s.type}</span>
                   </div>
-                  <div style={{ display: "grid", gap: 6, fontSize: 13, color: "#C5CAD6" }}>
-                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 42 }}>자치구</span>{s.district}</div>
-                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 42 }}>주소</span>{s.address}</div>
-                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 42 }}>설립</span>{s.public} <span style={{ marginLeft: 8, color: "#8B92A5" }}>개교</span> {s.founded ? s.founded.slice(0, 4) + "년" : "-"}</div>
+                  <div style={{ display: "grid", gap: 6, fontSize: 13, color: "#E6EBFF" }}>
+                    <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 42 }}>자치구</span>{s.district}</div>
+                    <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 42 }}>주소</span>{s.address}</div>
+                    <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 42 }}>설립</span>{s.public} <span style={{ marginLeft: 8, color: "#C3CAE0" }}>개교</span> {s.founded ? s.founded.slice(0, 4) + "년" : "-"}</div>
                   </div>
                 </div>
               ))}
@@ -3786,11 +3786,11 @@ function CleanupPage() {
                     <div style={{ color: "#fff", fontWeight: 700, lineHeight: 1.35, fontSize: 15, flex: 1 }}>{it.name}</div>
                     <span style={{ display: "inline-block", padding: "4px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: (stageColors[it.stage] || "#6B7280") + "20", color: stageColors[it.stage] || "#6B7280", whiteSpace: "nowrap" }}>{it.stage || "-"}</span>
                   </div>
-                  <div style={{ display: "grid", gap: 6, fontSize: 13, color: "#C5CAD6" }}>
-                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>번호</span>{it.no}</div>
-                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>자치구</span>{it.district}</div>
-                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>사업구분</span>{it.type}</div>
-                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>대표지번</span>{it.address}</div>
+                  <div style={{ display: "grid", gap: 6, fontSize: 13, color: "#E6EBFF" }}>
+                    <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 52 }}>번호</span>{it.no}</div>
+                    <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 52 }}>자치구</span>{it.district}</div>
+                    <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 52 }}>사업구분</span>{it.type}</div>
+                    <div><span style={{ color: "#C3CAE0", display: "inline-block", minWidth: 52 }}>대표지번</span>{it.address}</div>
                   </div>
                 </div>
               ))}
