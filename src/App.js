@@ -3746,17 +3746,36 @@ function CleanupPage() {
         {/* Stage Bar Chart */}
         <div style={{ ...cardS, marginBottom: 24 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>📈 진행단계별 현황 (상위 10)</h3>
-          <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={stageChart} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: mob ? 108 : 80 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
-              <XAxis type="number" tick={{ fill: "#AEB6CC", fontSize: 11 }} />
-              <YAxis dataKey="name" type="category" tick={{ fill: "#D7DCEC", fontSize: mob ? 11 : 12 }} width={mob ? 104 : 80} />
-              <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
-              <Bar dataKey="count" name="사업 수" radius={[0, 4, 4, 0]}>
-                {stageChart.map((s, i) => <Cell key={i} fill={stageColors[s.name] || "#0066FF"} />)}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          {mob ? (
+            <div style={{ display: "grid", gap: 8 }}>
+              {stageChart.map((s, i) => {
+                const max = stageChart[0]?.count || 1;
+                const w = Math.max(8, Math.round((s.count / max) * 100));
+                const c = stageColors[s.name] || "#0066FF";
+                return (
+                  <div key={i} style={{ display: "grid", gridTemplateColumns: "96px 1fr 36px", gap: 8, alignItems: "center" }}>
+                    <div style={{ fontSize: 12, color: "#D7DCEC", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.name}</div>
+                    <div style={{ height: 10, background: "rgba(255,255,255,.08)", borderRadius: 999, overflow: "hidden" }}>
+                      <div style={{ width: `${w}%`, height: "100%", background: c, borderRadius: 999 }} />
+                    </div>
+                    <div style={{ fontSize: 12, color: "#E6EBFF", textAlign: "right" }}>{s.count}</div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={280}>
+              <BarChart data={stageChart} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 80 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
+                <XAxis type="number" tick={{ fill: "#AEB6CC", fontSize: 11 }} />
+                <YAxis dataKey="name" type="category" tick={{ fill: "#D7DCEC", fontSize: 12 }} width={80} />
+                <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+                <Bar dataKey="count" name="사업 수" radius={[0, 4, 4, 0]}>
+                  {stageChart.map((s, i) => <Cell key={i} fill={stageColors[s.name] || "#0066FF"} />)}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          )}
         </div>
 
         {/* Filters */}
