@@ -3720,9 +3720,9 @@ function CleanupPage() {
           <div style={cardS}>
             <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>📊 자치구별 사업 수 (상위 15)</h3>
             <ResponsiveContainer width="100%" height={mob ? 260 : 300}>
-              <BarChart data={districtChart} margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
+              <BarChart data={districtChart} margin={{ top: 5, right: 5, bottom: mob ? 16 : 5, left: -10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
-                <XAxis dataKey="name" tick={{ fill: "#D7DCEC", fontSize: 11 }} angle={mob ? -30 : -45} interval={mob ? 1 : 0} textAnchor="end" height={mob ? 56 : 70} />
+                <XAxis dataKey="name" tick={{ fill: "#D7DCEC", fontSize: 11 }} tickFormatter={v => mob ? String(v).replace("구", "") : v} angle={mob ? 0 : -45} interval={mob ? 2 : 0} textAnchor={mob ? "middle" : "end"} height={mob ? 36 : 70} tickMargin={mob ? 8 : 0} />
                 <YAxis tick={{ fill: "#D7DCEC", fontSize: 11 }} />
                 <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
                 <Bar dataKey="count" fill="#0066FF" radius={[4, 4, 0, 0]} name="사업 수" />
@@ -3747,10 +3747,10 @@ function CleanupPage() {
         <div style={{ ...cardS, marginBottom: 24 }}>
           <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>📈 진행단계별 현황 (상위 10)</h3>
           <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={stageChart} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 80 }}>
+            <BarChart data={stageChart} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: mob ? 108 : 80 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
               <XAxis type="number" tick={{ fill: "#AEB6CC", fontSize: 11 }} />
-              <YAxis dataKey="name" type="category" tick={{ fill: "#D7DCEC", fontSize: 12 }} width={80} />
+              <YAxis dataKey="name" type="category" tick={{ fill: "#D7DCEC", fontSize: mob ? 11 : 12 }} width={mob ? 104 : 80} />
               <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
               <Bar dataKey="count" name="사업 수" radius={[0, 4, 4, 0]}>
                 {stageChart.map((s, i) => <Cell key={i} fill={stageColors[s.name] || "#0066FF"} />)}
