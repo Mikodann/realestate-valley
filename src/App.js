@@ -3099,27 +3099,46 @@ function SupplyPage() {
               <div style={{ marginTop: 16 }}>
                 <h4 style={{ fontSize: 13, fontWeight: 600, color: "#8B92A5", marginBottom: 10 }}>📋 최근 분양 공고 (상위 20)</h4>
                 <div style={{ overflow: "auto" }}>
-                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-                    <thead>
-                      <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
-                        {["단지명","주소","시공사","세대수","공고일","입주예정"].map(h => (
-                          <th key={h} style={{ padding: "7px 6px", textAlign: "left", color: "#8B92A5", fontWeight: 600, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
+                  {mob ? (
+                    <div style={{ display: "grid", gap: 8 }}>
                       {supplyDetail.recent.slice(0, 20).map((it, i) => (
-                        <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
-                          <td style={{ padding: "6px", color: "#fff", fontWeight: 500 }}>{it.url ? <a href={it.url} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{it.name}</a> : it.name}</td>
-                          <td style={{ padding: "6px", color: "#8B92A5", fontSize: 11, maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{it.address}</td>
-                          <td style={{ padding: "6px", color: "#ccc", fontSize: 11 }}>{it.builder}</td>
-                          <td style={{ padding: "6px", color: "#A78BFA", fontWeight: 600, textAlign: "right" }}>{it.units}</td>
-                          <td style={{ padding: "6px", color: "#5a6480", fontSize: 11 }}>{it.announce_date}</td>
-                          <td style={{ padding: "6px", color: "#00D68F", fontSize: 11 }}>{it.move_in ? it.move_in.slice(0,4)+"."+it.move_in.slice(4) : "-"}</td>
-                        </tr>
+                        <div key={i} style={{ border: "1px solid rgba(255,255,255,.07)", borderRadius: 12, padding: 12, background: "rgba(255,255,255,.02)" }}>
+                          <div style={{ color: "#fff", fontWeight: 700, lineHeight: 1.35, fontSize: 14, marginBottom: 6 }}>
+                            {it.url ? <a href={it.url} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{it.name}</a> : it.name}
+                          </div>
+                          <div style={{ display: "grid", gap: 5, fontSize: 12, color: "#C5CAD6" }}>
+                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>주소</span>{it.address}</div>
+                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>시공사</span>{it.builder}</div>
+                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>세대수</span><span style={{ color: "#A78BFA", fontWeight: 700 }}>{it.units}</span></div>
+                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>공고일</span>{it.announce_date}</div>
+                            <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 48 }}>입주예정</span><span style={{ color: "#00D68F" }}>{it.move_in ? it.move_in.slice(0,4)+"."+it.move_in.slice(4) : "-"}</span></div>
+                          </div>
+                        </div>
                       ))}
-                    </tbody>
-                  </table>
+                    </div>
+                  ) : (
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                      <thead>
+                        <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+                          {["단지명","주소","시공사","세대수","공고일","입주예정"].map(h => (
+                            <th key={h} style={{ padding: "7px 6px", textAlign: "left", color: "#8B92A5", fontWeight: 600, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {supplyDetail.recent.slice(0, 20).map((it, i) => (
+                          <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
+                            <td style={{ padding: "6px", color: "#fff", fontWeight: 500 }}>{it.url ? <a href={it.url} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{it.name}</a> : it.name}</td>
+                            <td style={{ padding: "6px", color: "#8B92A5", fontSize: 11, maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{it.address}</td>
+                            <td style={{ padding: "6px", color: "#ccc", fontSize: 11 }}>{it.builder}</td>
+                            <td style={{ padding: "6px", color: "#A78BFA", fontWeight: 600, textAlign: "right" }}>{it.units}</td>
+                            <td style={{ padding: "6px", color: "#5a6480", fontSize: 11 }}>{it.announce_date}</td>
+                            <td style={{ padding: "6px", color: "#00D68F", fontSize: 11 }}>{it.move_in ? it.move_in.slice(0,4)+"."+it.move_in.slice(4) : "-"}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
                 </div>
               </div>
             )}
