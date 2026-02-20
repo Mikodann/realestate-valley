@@ -1423,25 +1423,45 @@ function DashboardPage() {
               <h3 style={{ fontSize: mob ? 14 : 16, fontWeight: 700 }}>실거래 내역 TOP 20 · {sel}</h3>
               <span style={{ fontSize: 12, color: C.darkText }}>총 {curData?.length || 0}건</span>
             </div>
-            <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: mob ? 480 : "auto" }}>
-                <thead><tr>{["#","아파트명","매매가","면적(㎡)","층","동","거래일","건축년도"].map(h => <th key={h} style={{ padding: "10px 10px", textAlign: "left", fontSize: 11, fontWeight: 600, color: C.darkText, borderBottom: `1px solid ${C.darkBorder}`, whiteSpace: "nowrap" }}>{h}</th>)}</tr></thead>
-                <tbody>
-                  {topTrades.map((t, i) => (
-                    <tr key={i}>
-                      <td style={{ padding: "12px 10px", fontSize: 13, fontWeight: 700, color: i < 3 ? C.primary : C.darkTextLight }}>{i + 1}</td>
-                      <td style={{ padding: "12px 10px", fontSize: 13, fontWeight: 600, maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.aptName}</td>
-                      <td style={{ padding: "12px 10px", fontSize: 13, fontFamily: "'Outfit',sans-serif", fontWeight: 700, color: C.primary }}>{priceToEok(t.price).toFixed(1)}억</td>
-                      <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{parseFloat(t.area).toFixed(1)}</td>
-                      <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.floor}층</td>
-                      <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.dong}</td>
-                      <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.month}/{t.day}</td>
-                      <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.buildYear}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {mob ? (
+              <div style={{ display: "grid", gap: 10 }}>
+                {topTrades.map((t, i) => (
+                  <div key={i} style={{ border: `1px solid ${C.darkBorder}`, borderRadius: 12, padding: 12, background: "rgba(255,255,255,.02)" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: i < 3 ? C.primary : C.darkTextLight }}>#{i + 1} {t.aptName}</div>
+                      <div style={{ fontSize: 16, fontWeight: 800, color: C.primary, fontFamily: "'Outfit',sans-serif" }}>{priceToEok(t.price).toFixed(1)}억</div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 6, fontSize: 12, color: C.darkTextLight }}>
+                      <div>면적 {parseFloat(t.area).toFixed(1)}㎡</div>
+                      <div>층 {t.floor}층</div>
+                      <div>동 {t.dong}</div>
+                      <div>거래일 {t.month}/{t.day}</div>
+                    </div>
+                    <div style={{ marginTop: 6, fontSize: 11, color: C.darkText }}>건축년도 {t.buildYear}</div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                  <thead><tr>{["#","아파트명","매매가","면적(㎡)","층","동","거래일","건축년도"].map(h => <th key={h} style={{ padding: "10px 10px", textAlign: "left", fontSize: 11, fontWeight: 600, color: C.darkText, borderBottom: `1px solid ${C.darkBorder}`, whiteSpace: "nowrap" }}>{h}</th>)}</tr></thead>
+                  <tbody>
+                    {topTrades.map((t, i) => (
+                      <tr key={i}>
+                        <td style={{ padding: "12px 10px", fontSize: 13, fontWeight: 700, color: i < 3 ? C.primary : C.darkTextLight }}>{i + 1}</td>
+                        <td style={{ padding: "12px 10px", fontSize: 13, fontWeight: 600, maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.aptName}</td>
+                        <td style={{ padding: "12px 10px", fontSize: 13, fontFamily: "'Outfit',sans-serif", fontWeight: 700, color: C.primary }}>{priceToEok(t.price).toFixed(1)}억</td>
+                        <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{parseFloat(t.area).toFixed(1)}</td>
+                        <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.floor}층</td>
+                        <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.dong}</td>
+                        <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.month}/{t.day}</td>
+                        <td style={{ padding: "12px 10px", fontSize: 13, color: C.darkTextLight }}>{t.buildYear}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         )}
 
