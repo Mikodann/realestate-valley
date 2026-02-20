@@ -3651,7 +3651,7 @@ function CleanupPage() {
   const [sortKey, setSortKey] = useState("no");
   const [sortAsc, setSortAsc] = useState(true);
   const [viewMode, setViewMode] = useState("table");
-  const mob = useWindowSize() < 768;
+  const mob = useWindowSize() < 1024;
 
   useEffect(() => {
     fetch("/data/cleanup-status.json").then(r => r.json()).then(d => { setData(d); setLoading(false); }).catch(() => setLoading(false));
@@ -3719,11 +3719,11 @@ function CleanupPage() {
         <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 1fr", gap: 16, marginBottom: 24 }}>
           <div style={cardS}>
             <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>📊 자치구별 사업 수 (상위 15)</h3>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={mob ? 260 : 300}>
               <BarChart data={districtChart} margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
-                <XAxis dataKey="name" tick={{ fill: "#AEB6CC", fontSize: 11 }} angle={-45} textAnchor="end" height={70} />
-                <YAxis tick={{ fill: "#AEB6CC", fontSize: 11 }} />
+                <XAxis dataKey="name" tick={{ fill: "#D7DCEC", fontSize: 11 }} angle={mob ? -30 : -45} interval={mob ? 1 : 0} textAnchor="end" height={mob ? 56 : 70} />
+                <YAxis tick={{ fill: "#D7DCEC", fontSize: 11 }} />
                 <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
                 <Bar dataKey="count" fill="#0066FF" radius={[4, 4, 0, 0]} name="사업 수" />
               </BarChart>
