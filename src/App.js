@@ -2591,7 +2591,8 @@ function RedevelopmentMapPage() {
 
     filtered.forEach((p, idx) => {
       const c = REDEV_COLORS[p.type] || REDEV_COLORS["재개발"];
-      const sz = Math.min(Math.max(p.units / 250, 10), 32);
+      const baseSize = Math.min(Math.max(p.units / 250, 10), 32);
+      const sz = mob ? Math.max(8, Math.min(24, baseSize * 0.78)) : baseSize;
 
       const icon = L.divIcon({
         className: "",
@@ -2622,7 +2623,7 @@ function RedevelopmentMapPage() {
       marker.on("click", () => setSelected(idx));
       markersRef.current.push(marker);
     });
-  }, [filtered]);
+  }, [filtered, mob]);
 
   const focusProject = (idx) => {
     const p = filtered[idx];
@@ -2705,9 +2706,9 @@ function RedevelopmentMapPage() {
 
   const s = {
     page: { paddingTop: 60, minHeight: "100vh", background: C.dark, position: "relative" },
-    mapWrap: { position: "relative", height: mob ? "50vh" : "calc(100vh - 60px)", display: "flex" },
+    mapWrap: { position: "relative", height: mob ? (panelOpen ? "46vh" : "calc(100dvh - 60px)") : "calc(100vh - 60px)", display: "flex" },
     map: { flex: 1, background: "#0a0e17", position: "relative" },
-    filterBar: { position: "absolute", top: 12, left: 12, right: mob ? 12 : 392, zIndex: 500, display: "flex", gap: 6, flexWrap: mob ? "nowrap" : "wrap", alignItems: "center", overflowX: mob ? "auto" : "visible", WebkitOverflowScrolling: "touch", paddingBottom: mob ? 4 : 0 },
+    filterBar: { position: "absolute", top: 8, left: 10, right: mob ? 10 : 392, zIndex: 500, display: "flex", gap: 6, flexWrap: mob ? "nowrap" : "wrap", alignItems: "center", overflowX: mob ? "auto" : "visible", WebkitOverflowScrolling: "touch", paddingBottom: mob ? 4 : 0 },
     filterBtn: (active, type) => {
       const base = { padding: "6px 14px", borderRadius: 20, border: "1px solid rgba(255,255,255,.08)", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", transition: "all .2s", whiteSpace: "nowrap", flexShrink: 0 };
       if (!active) return { ...base, background: "rgba(17,23,41,.85)", backdropFilter: "blur(8px)", color: "#8B92A5" };
@@ -2715,7 +2716,7 @@ function RedevelopmentMapPage() {
       const c = REDEV_COLORS[type];
       return { ...base, background: c ? c.color : C.primary, color: "#fff", border: "1px solid transparent", boxShadow: c ? `0 0 14px ${c.glow}` : "none" };
     },
-    searchInput: { padding: "6px 12px", borderRadius: 20, border: "1px solid rgba(255,255,255,.08)", background: "rgba(17,23,41,.85)", backdropFilter: "blur(8px)", color: "#E8ECF4", fontSize: 12, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", width: mob ? "100%" : 180 },
+    searchInput: { padding: "6px 12px", borderRadius: 20, border: "1px solid rgba(255,255,255,.08)", background: "rgba(17,23,41,.82)", backdropFilter: "blur(8px)", color: "#E8ECF4", fontSize: 12, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", width: mob ? 160 : 180, minWidth: mob ? 140 : 180, flexShrink: 0 },
     statsBar: { position: "absolute", bottom: 12, left: 12, zIndex: 500, display: "flex", gap: 10, alignItems: "center" },
     statBadge: { background: "rgba(17,23,41,.9)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 10, padding: "8px 14px", display: "flex", flexDirection: "column", alignItems: "center" },
     statVal: { fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 16, color: "#E8ECF4" },
@@ -2748,6 +2749,10 @@ function RedevelopmentMapPage() {
         .redev-popup .leaflet-popup-content-wrapper{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;padding:0!important;color:#E8ECF4!important}
         .redev-popup .leaflet-popup-content{margin:0!important}
         .redev-popup .leaflet-popup-tip{background:${C.darkCard}!important;border:1px solid ${C.darkBorder}!important}
+        @media (max-width: 1024px){
+          .leaflet-top.leaflet-right{top:auto!important;bottom:74px!important;right:10px!important}
+          .leaflet-control-zoom a{width:34px!important;height:34px!important;line-height:34px!important}
+        }
         @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
       `}</style>
 
