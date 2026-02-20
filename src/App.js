@@ -332,7 +332,7 @@ function LoadingBar({ text = "실거래 데이터 불러오는 중..." }) {
 function Nav({ currentPage, setCurrentPage, onLogout }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const mob = useWindowSize() < 768;
+  const mob = useWindowSize() < 1024;
 
   useEffect(() => { const h = () => setScrolled(window.scrollY > 20); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
   useEffect(() => setMenuOpen(false), [currentPage]);
