@@ -1427,17 +1427,17 @@ function DashboardPage() {
               <div style={{ display: "grid", gap: 10 }}>
                 {topTrades.map((t, i) => (
                   <div key={i} style={{ border: `1px solid ${C.darkBorder}`, borderRadius: 12, padding: 12, background: "rgba(255,255,255,.02)" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: i < 3 ? C.primary : C.darkTextLight }}>#{i + 1} {t.aptName}</div>
-                      <div style={{ fontSize: 16, fontWeight: 800, color: C.primary, fontFamily: "'Outfit',sans-serif" }}>{priceToEok(t.price).toFixed(1)}억</div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, gap: 8 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: i < 3 ? C.primary : C.darkTextLight, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", flex: 1 }}>#{i + 1} {t.aptName}</div>
+                      <div style={{ fontSize: 16, fontWeight: 800, color: C.primary, fontFamily: "'Outfit',sans-serif", whiteSpace: "nowrap" }}>{priceToEok(t.price).toFixed(1)}억</div>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 6, fontSize: 12, color: C.darkTextLight }}>
-                      <div>면적 {parseFloat(t.area).toFixed(1)}㎡</div>
-                      <div>층 {t.floor}층</div>
-                      <div>동 {t.dong}</div>
-                      <div>거래일 {t.month}/{t.day}</div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 12, color: C.darkTextLight }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}><span style={{ color: C.darkText }}>면적</span><span style={{ whiteSpace: "nowrap" }}>{parseFloat(t.area).toFixed(1)}㎡</span></div>
+                      <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}><span style={{ color: C.darkText }}>층</span><span style={{ whiteSpace: "nowrap" }}>{t.floor}층</span></div>
+                      <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}><span style={{ color: C.darkText }}>동</span><span style={{ whiteSpace: "nowrap" }}>{t.dong}</span></div>
+                      <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}><span style={{ color: C.darkText }}>거래일</span><span style={{ whiteSpace: "nowrap" }}>{t.month}/{t.day}</span></div>
+                      <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}><span style={{ color: C.darkText }}>건축년도</span><span style={{ whiteSpace: "nowrap" }}>{t.buildYear}</span></div>
                     </div>
-                    <div style={{ marginTop: 6, fontSize: 11, color: C.darkText }}>건축년도 {t.buildYear}</div>
                   </div>
                 ))}
               </div>
