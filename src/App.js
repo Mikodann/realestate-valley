@@ -3376,19 +3376,19 @@ function SchoolInfoPage() {
         {/* Table */}
         <div style={{ ...cardS, overflow: "auto" }}>
           {mob ? (
-            <div style={{ display: "grid", gap: 8 }}>
+            <div style={{ display: "grid", gap: 10 }}>
               {sorted.slice(0, 200).map((s, i) => (
-                <div key={i} style={{ border: "1px solid rgba(255,255,255,.06)", borderRadius: 10, padding: 10, background: "rgba(255,255,255,.02)" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
-                    <div style={{ color: "#fff", fontWeight: 600, lineHeight: 1.4 }}>
+                <div key={i} style={{ border: "1px solid rgba(255,255,255,.07)", borderRadius: 12, padding: 12, background: "rgba(255,255,255,.02)" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 8 }}>
+                    <div style={{ color: "#fff", fontWeight: 700, lineHeight: 1.35, fontSize: 15, flex: 1 }}>
                       {s.homepage ? <a href={s.homepage} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{s.name}</a> : s.name}
                     </div>
-                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (typeColors[s.type] || "#6B7280") + "20", color: typeColors[s.type] || "#6B7280", whiteSpace: "nowrap", height: "fit-content" }}>{s.type}</span>
+                    <span style={{ display: "inline-block", padding: "4px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: (typeColors[s.type] || "#6B7280") + "20", color: typeColors[s.type] || "#6B7280", whiteSpace: "nowrap", height: "fit-content" }}>{s.type}</span>
                   </div>
-                  <div style={{ display: "grid", gap: 4, fontSize: 12, color: "#C5CAD6" }}>
-                    <div><span style={{ color: "#8B92A5" }}>자치구</span> · {s.district}</div>
-                    <div><span style={{ color: "#8B92A5" }}>주소</span> · {s.address}</div>
-                    <div><span style={{ color: "#8B92A5" }}>설립</span> · {s.public} <span style={{ marginLeft: 8, color: "#8B92A5" }}>개교</span> · {s.founded ? s.founded.slice(0, 4) + "년" : "-"}</div>
+                  <div style={{ display: "grid", gap: 6, fontSize: 13, color: "#C5CAD6" }}>
+                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 42 }}>자치구</span>{s.district}</div>
+                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 42 }}>주소</span>{s.address}</div>
+                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 42 }}>설립</span>{s.public} <span style={{ marginLeft: 8, color: "#8B92A5" }}>개교</span> {s.founded ? s.founded.slice(0, 4) + "년" : "-"}</div>
                   </div>
                 </div>
               ))}
@@ -3759,17 +3759,18 @@ function CleanupPage() {
         {/* Table */}
         <div style={{ ...cardS, overflow: "auto" }}>
           {mob ? (
-            <div style={{ display: "grid", gap: 8 }}>
+            <div style={{ display: "grid", gap: 10 }}>
               {sorted.slice(0, 200).map((it, i) => (
-                <div key={i} style={{ border: "1px solid rgba(255,255,255,.06)", borderRadius: 10, padding: 10, background: "rgba(255,255,255,.02)" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 6 }}>
-                    <div style={{ color: "#fff", fontWeight: 600, lineHeight: 1.4 }}>{it.name}</div>
-                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (stageColors[it.stage] || "#6B7280") + "20", color: stageColors[it.stage] || "#6B7280", whiteSpace: "nowrap" }}>{it.stage || "-"}</span>
+                <div key={i} style={{ border: "1px solid rgba(255,255,255,.07)", borderRadius: 12, padding: 12, background: "rgba(255,255,255,.02)" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 8 }}>
+                    <div style={{ color: "#fff", fontWeight: 700, lineHeight: 1.35, fontSize: 15, flex: 1 }}>{it.name}</div>
+                    <span style={{ display: "inline-block", padding: "4px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700, background: (stageColors[it.stage] || "#6B7280") + "20", color: stageColors[it.stage] || "#6B7280", whiteSpace: "nowrap" }}>{it.stage || "-"}</span>
                   </div>
-                  <div style={{ display: "grid", gap: 4, fontSize: 12, color: "#C5CAD6" }}>
-                    <div><span style={{ color: "#8B92A5" }}>#</span> {it.no} <span style={{ marginLeft: 8, color: "#8B92A5" }}>자치구</span> {it.district}</div>
-                    <div><span style={{ color: "#8B92A5" }}>사업구분</span> · {it.type}</div>
-                    <div><span style={{ color: "#8B92A5" }}>대표지번</span> · {it.address}</div>
+                  <div style={{ display: "grid", gap: 6, fontSize: 13, color: "#C5CAD6" }}>
+                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>번호</span>{it.no}</div>
+                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>자치구</span>{it.district}</div>
+                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>사업구분</span>{it.type}</div>
+                    <div><span style={{ color: "#8B92A5", display: "inline-block", minWidth: 52 }}>대표지번</span>{it.address}</div>
                   </div>
                 </div>
               ))}
