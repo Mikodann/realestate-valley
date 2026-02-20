@@ -182,6 +182,7 @@ body{font-family:'Noto Sans KR','Outfit',sans-serif;background:${C.dark};color:#
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:${C.darkBorder};outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:${C.primary};cursor:pointer;border:3px solid ${C.dark}}
 select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B92A5' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px!important}
+input::placeholder,textarea::placeholder{color:#B8C1D9;opacity:1}
 @media (max-width: 768px){
   input,select,button{min-height:40px}
 }
