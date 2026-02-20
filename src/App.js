@@ -3731,12 +3731,13 @@ function CleanupPage() {
           </div>
           <div style={cardS}>
             <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🏠 사업유형별 비율</h3>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={mob ? 260 : 300}>
               <PieChart>
-                <Pie data={typeChart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={true} fontSize={11}>
+                <Pie data={typeChart} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={mob ? 78 : 100} label={mob ? false : ({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={!mob} fontSize={11}>
                   {typeChart.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
                 </Pie>
                 <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
+                {mob && <Legend wrapperStyle={{ fontSize: 11 }} />}
               </PieChart>
             </ResponsiveContainer>
           </div>
