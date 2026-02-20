@@ -3697,7 +3697,7 @@ function CleanupPage() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: mob ? "0 16px" : "0 24px" }}>
         <div style={{ marginBottom: 32 }}>
           <h1 style={{ fontSize: mob ? 22 : 28, fontWeight: 700, color: "#fff", marginBottom: 8 }}>🏗️ 서울 정비사업 현황</h1>
-          <p style={{ fontSize: 14, color: "#5a6480" }}>출처: 서울시 정비사업 정보몽땅 (cleanup.seoul.go.kr) · 갱신: {updated}</p>
+          <p style={{ fontSize: 14, color: "#9AA3B2" }}>출처: 서울시 정비사업 정보몽땅 (cleanup.seoul.go.kr) · 갱신: {updated}</p>
         </div>
 
         {/* Summary Cards */}
@@ -3722,8 +3722,8 @@ function CleanupPage() {
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={districtChart} margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
-                <XAxis dataKey="name" tick={{ fill: "#5a6480", fontSize: 11 }} angle={-45} textAnchor="end" height={70} />
-                <YAxis tick={{ fill: "#5a6480", fontSize: 11 }} />
+                <XAxis dataKey="name" tick={{ fill: "#AEB6CC", fontSize: 11 }} angle={-45} textAnchor="end" height={70} />
+                <YAxis tick={{ fill: "#AEB6CC", fontSize: 11 }} />
                 <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
                 <Bar dataKey="count" fill="#0066FF" radius={[4, 4, 0, 0]} name="사업 수" />
               </BarChart>
@@ -3737,7 +3737,7 @@ function CleanupPage() {
                   {typeChart.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
                 </Pie>
                 <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
-                {mob && <Legend wrapperStyle={{ fontSize: 11 }} />}
+                {mob && <Legend wrapperStyle={{ fontSize: 11, color: "#D7DCEC" }} />}
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -3749,8 +3749,8 @@ function CleanupPage() {
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={stageChart} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 80 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
-              <XAxis type="number" tick={{ fill: "#5a6480", fontSize: 11 }} />
-              <YAxis dataKey="name" type="category" tick={{ fill: "#ccc", fontSize: 12 }} width={80} />
+              <XAxis type="number" tick={{ fill: "#AEB6CC", fontSize: 11 }} />
+              <YAxis dataKey="name" type="category" tick={{ fill: "#D7DCEC", fontSize: 12 }} width={80} />
               <Tooltip contentStyle={{ background: "#1a1f35", border: "1px solid rgba(255,255,255,.1)", borderRadius: 8, color: "#fff", fontSize: 13 }} />
               <Bar dataKey="count" name="사업 수" radius={[0, 4, 4, 0]}>
                 {stageChart.map((s, i) => <Cell key={i} fill={stageColors[s.name] || "#0066FF"} />)}
@@ -3772,7 +3772,7 @@ function CleanupPage() {
             <select value={filterStage} onChange={e => setFilterStage(e.target.value)} style={selS}>
               {stages.map(s => <option key={s} value={s} style={{ background: "#1a1f35" }}>{s}</option>)}
             </select>
-            <span style={{ fontSize: 13, color: "#5a6480" }}>결과: {filtered.length}건</span>
+            <span style={{ fontSize: 13, color: "#AEB6CC" }}>결과: {filtered.length}건</span>
           </div>
         </div>
 
