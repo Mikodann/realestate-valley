@@ -2536,7 +2536,7 @@ function RedevelopmentMapPage() {
   const mapInstance = useRef(null);
   const markersRef = useRef([]);
   const articleMarkersRef = useRef([]);
-  const mob = useWindowSize() < 768;
+  const mob = useWindowSize() < 1024;
 
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
@@ -2549,6 +2549,10 @@ function RedevelopmentMapPage() {
   const [tradFilter, setTradFilter] = useState("A1:B1:B2"); // 전체
   const [showArticles, setShowArticles] = useState(false);
   const [articleTarget, setArticleTarget] = useState(null);
+
+  useEffect(() => {
+    setPanelOpen(!mob);
+  }, [mob]);
 
   const filtered = useMemo(() => {
     return REDEV_PROJECTS.filter(p => {
@@ -2703,9 +2707,9 @@ function RedevelopmentMapPage() {
     page: { paddingTop: 60, minHeight: "100vh", background: C.dark, position: "relative" },
     mapWrap: { position: "relative", height: mob ? "50vh" : "calc(100vh - 60px)", display: "flex" },
     map: { flex: 1, background: "#0a0e17", position: "relative" },
-    filterBar: { position: "absolute", top: 12, left: 12, right: mob ? 12 : 392, zIndex: 500, display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" },
+    filterBar: { position: "absolute", top: 12, left: 12, right: mob ? 12 : 392, zIndex: 500, display: "flex", gap: 6, flexWrap: mob ? "nowrap" : "wrap", alignItems: "center", overflowX: mob ? "auto" : "visible", WebkitOverflowScrolling: "touch", paddingBottom: mob ? 4 : 0 },
     filterBtn: (active, type) => {
-      const base = { padding: "6px 14px", borderRadius: 20, border: "1px solid rgba(255,255,255,.08)", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", transition: "all .2s", whiteSpace: "nowrap" };
+      const base = { padding: "6px 14px", borderRadius: 20, border: "1px solid rgba(255,255,255,.08)", fontSize: 12, fontWeight: 500, cursor: "pointer", fontFamily: "'Noto Sans KR',sans-serif", transition: "all .2s", whiteSpace: "nowrap", flexShrink: 0 };
       if (!active) return { ...base, background: "rgba(17,23,41,.85)", backdropFilter: "blur(8px)", color: "#8B92A5" };
       if (type === "all") return { ...base, background: "linear-gradient(135deg,#FF6B35,#00D68F)", color: "#fff", border: "1px solid transparent" };
       const c = REDEV_COLORS[type];
@@ -2733,7 +2737,7 @@ function RedevelopmentMapPage() {
     detailStatVal: { fontSize: 14, fontWeight: 600 },
     detailDesc: (type) => { const c = REDEV_COLORS[type]; return { fontSize: 12, lineHeight: 1.7, color: "#C5CAD6", padding: "10px 12px", background: "rgba(255,255,255,.02)", borderRadius: 9, borderLeft: `3px solid ${c ? c.color : "#666"}` }; },
     legend: { display: "flex", gap: 10, flexWrap: "wrap" },
-    legendItem: { display: "flex", alignItems: "center", gap: 5, fontSize: 10, color: "#8B92A5" },
+    legendItem: { display: "flex", alignItems: "center", gap: 5, fontSize: 10, color: "#8B92A5", whiteSpace: "nowrap" },
     legendDot: (type) => { const c = REDEV_COLORS[type]; return { width: 6, height: 6, borderRadius: "50%", background: c ? c.color : "#666" }; },
     toggleBtn: { position: "absolute", top: 12, right: 12, zIndex: 600, background: "rgba(17,23,41,.9)", backdropFilter: "blur(8px)", border: `1px solid ${C.darkBorder}`, borderRadius: 10, padding: "8px 12px", color: "#E8ECF4", cursor: "pointer", fontSize: 12, fontFamily: "'Noto Sans KR',sans-serif", display: mob ? "block" : "none" },
   };
