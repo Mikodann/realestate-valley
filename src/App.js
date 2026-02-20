@@ -3375,38 +3375,58 @@ function SchoolInfoPage() {
 
         {/* Table */}
         <div style={{ ...cardS, overflow: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-            <thead>
-              <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
-                {[
-                  { k: "name", l: "학교명" },
-                  { k: "type", l: "구분" },
-                  { k: "district", l: "자치구" },
-                  { k: "address", l: "주소" },
-                  { k: "public", l: "설립" },
-                  { k: "founded", l: "개교" }
-                ].map(h => (
-                  <th key={h.k} onClick={() => handleSort(h.k)} style={{ padding: "10px 8px", textAlign: "left", color: "#8B92A5", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, userSelect: "none" }}>{h.l}{sArr(h.k)}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
+          {mob ? (
+            <div style={{ display: "grid", gap: 8 }}>
               {sorted.slice(0, 200).map((s, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
-                  <td style={{ padding: "8px", color: "#fff", fontWeight: 500 }}>
-                    {s.homepage ? <a href={s.homepage} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{s.name}</a> : s.name}
-                  </td>
-                  <td style={{ padding: "8px" }}>
-                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (typeColors[s.type] || "#6B7280") + "20", color: typeColors[s.type] || "#6B7280" }}>{s.type}</span>
-                  </td>
-                  <td style={{ padding: "8px", color: "#ccc", whiteSpace: "nowrap" }}>{s.district}</td>
-                  <td style={{ padding: "8px", color: "#8B92A5", fontSize: 12, maxWidth: 300, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.address}</td>
-                  <td style={{ padding: "8px", color: "#ccc", fontSize: 12 }}>{s.public}</td>
-                  <td style={{ padding: "8px", color: "#5a6480", fontSize: 12 }}>{s.founded ? s.founded.slice(0, 4) + "년" : "-"}</td>
-                </tr>
+                <div key={i} style={{ border: "1px solid rgba(255,255,255,.06)", borderRadius: 10, padding: 10, background: "rgba(255,255,255,.02)" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
+                    <div style={{ color: "#fff", fontWeight: 600, lineHeight: 1.4 }}>
+                      {s.homepage ? <a href={s.homepage} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{s.name}</a> : s.name}
+                    </div>
+                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (typeColors[s.type] || "#6B7280") + "20", color: typeColors[s.type] || "#6B7280", whiteSpace: "nowrap", height: "fit-content" }}>{s.type}</span>
+                  </div>
+                  <div style={{ display: "grid", gap: 4, fontSize: 12, color: "#C5CAD6" }}>
+                    <div><span style={{ color: "#8B92A5" }}>자치구</span> · {s.district}</div>
+                    <div><span style={{ color: "#8B92A5" }}>주소</span> · {s.address}</div>
+                    <div><span style={{ color: "#8B92A5" }}>설립</span> · {s.public} <span style={{ marginLeft: 8, color: "#8B92A5" }}>개교</span> · {s.founded ? s.founded.slice(0, 4) + "년" : "-"}</div>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          ) : (
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+                  {[
+                    { k: "name", l: "학교명" },
+                    { k: "type", l: "구분" },
+                    { k: "district", l: "자치구" },
+                    { k: "address", l: "주소" },
+                    { k: "public", l: "설립" },
+                    { k: "founded", l: "개교" }
+                  ].map(h => (
+                    <th key={h.k} onClick={() => handleSort(h.k)} style={{ padding: "10px 8px", textAlign: "left", color: "#8B92A5", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, userSelect: "none" }}>{h.l}{sArr(h.k)}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {sorted.slice(0, 200).map((s, i) => (
+                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
+                    <td style={{ padding: "8px", color: "#fff", fontWeight: 500 }}>
+                      {s.homepage ? <a href={s.homepage} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", borderBottom: "1px dotted rgba(255,255,255,.3)" }}>{s.name}</a> : s.name}
+                    </td>
+                    <td style={{ padding: "8px" }}>
+                      <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (typeColors[s.type] || "#6B7280") + "20", color: typeColors[s.type] || "#6B7280" }}>{s.type}</span>
+                    </td>
+                    <td style={{ padding: "8px", color: "#ccc", whiteSpace: "nowrap" }}>{s.district}</td>
+                    <td style={{ padding: "8px", color: "#8B92A5", fontSize: 12, maxWidth: 300, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.address}</td>
+                    <td style={{ padding: "8px", color: "#ccc", fontSize: 12 }}>{s.public}</td>
+                    <td style={{ padding: "8px", color: "#5a6480", fontSize: 12 }}>{s.founded ? s.founded.slice(0, 4) + "년" : "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
           {sorted.length > 200 && <p style={{ textAlign: "center", padding: 12, color: "#5a6480", fontSize: 12 }}>상위 200개 표시 중 (전체 {sorted.length}개)</p>}
           {sorted.length === 0 && <p style={{ textAlign: "center", padding: 24, color: "#5a6480" }}>검색 결과가 없습니다.</p>}
         </div>
