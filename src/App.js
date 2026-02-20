@@ -1623,7 +1623,7 @@ function CalculatorPage() {
             <div className="ani d3" style={{ display: "flex", flexDirection: "column", gap: mob ? 12 : 20 }}>
               <div style={{ background: C.darkCard, border: `1px solid ${C.darkBorder}`, borderRadius: 16, padding: mob ? 20 : 28 }}>
                 <h3 style={{ fontSize: mob ? 16 : 18, fontWeight: 700, marginBottom: 16 }}>상환 결과</h3>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 1fr", gap: 12 }}>
                   <div style={{ background: "rgba(0,102,255,.08)", borderRadius: 12, padding: mob ? 16 : 20, textAlign: "center" }}>
                     <div style={{ fontSize: 11, color: C.darkText, marginBottom: 6 }}>월 상환금</div>
                     <div style={{ fontSize: mob ? 18 : 22, fontWeight: 700, fontFamily: "'Outfit',sans-serif", color: C.primary }}>{fmt(loanRes.monthly)}</div>
@@ -1702,7 +1702,7 @@ function CalculatorPage() {
               <Slider label="전세 보증금" value={jeonse} onChange={setJeonse} min={0} max={yPrice} step={1e7} format={fmt} />
             </div>
             <div className="ani d3" style={{ display: "flex", flexDirection: "column", gap: mob ? 12 : 20 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 1fr", gap: 12 }}>
                 <div style={{ background: C.darkCard, border: `1px solid ${C.darkBorder}`, borderRadius: 16, padding: mob ? 16 : 24, textAlign: "center" }}>
                   <div style={{ fontSize: 12, color: C.darkText, marginBottom: 6 }}>총 수익률</div>
                   <div style={{ fontSize: mob ? 24 : 28, fontWeight: 800, fontFamily: "'Outfit',sans-serif", color: C.secondary }}>{yieldRes.gross}%</div>
@@ -2705,7 +2705,7 @@ function RedevelopmentMapPage() {
     detail: { padding: 16, background: "rgba(255,255,255,.02)", borderBottom: `1px solid ${C.darkBorder}` },
     detailName: { fontSize: 16, fontWeight: 700, marginBottom: 3 },
     detailDistrict: { fontSize: 12, color: "#8B92A5", marginBottom: 14 },
-    detailGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 14 },
+    detailGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 8, marginBottom: 14 },
     detailStat: { background: "rgba(255,255,255,.03)", padding: "10px 12px", borderRadius: 9 },
     detailStatLabel: { fontSize: 9, color: "#8B92A5", letterSpacing: .5, textTransform: "uppercase", marginBottom: 3 },
     detailStatVal: { fontSize: 14, fontWeight: 600 },
@@ -2952,7 +2952,7 @@ function SupplyPage() {
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState("서울");
   const [unsoldDistrict, setUnsoldDistrict] = useState("전체");
-  const mob = window.innerWidth < 768;
+  const mob = useWindowSize() < 768;
   const [completion, setCompletion] = useState(null);
 
   useEffect(() => {
@@ -3235,7 +3235,7 @@ function SchoolInfoPage() {
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState("name");
   const [sortAsc, setSortAsc] = useState(true);
-  const mob = window.innerWidth < 768;
+  const mob = useWindowSize() < 768;
 
   useEffect(() => {
     fetch("/data/school-info.json").then(r => r.json()).then(d => { setData(d); setLoading(false); }).catch(() => setLoading(false));
@@ -3389,7 +3389,7 @@ function AptHistoryPage() {
   const [search, setSearch] = useState("");
   const [selectedApt, setSelectedApt] = useState(null);
   const [areaFilter, setAreaFilter] = useState("all");
-  const mob = window.innerWidth < 768;
+  const mob = useWindowSize() < 768;
 
   useEffect(() => {
     fetch("/data/apt-history.json").then(r => r.json()).then(d => {
@@ -3579,7 +3579,7 @@ function CleanupPage() {
   const [sortKey, setSortKey] = useState("no");
   const [sortAsc, setSortAsc] = useState(true);
   const [viewMode, setViewMode] = useState("table");
-  const mob = window.innerWidth < 768;
+  const mob = useWindowSize() < 768;
 
   useEffect(() => {
     fetch("/data/cleanup-status.json").then(r => r.json()).then(d => { setData(d); setLoading(false); }).catch(() => setLoading(false));
@@ -3883,14 +3883,14 @@ function ListingsPage() {
         <div className="ani d1" style={{ ...cardS, padding: mob ? 14 : 18, marginBottom: 16 }}>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 12 }}>
             <select value={district} onChange={e => setDistrict(e.target.value)}
-              style={{ padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none", minWidth: 120 }}>
+              style={{ padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none", minWidth: mob ? 0 : 120, flex: mob ? "1 1 100%" : "0 0 auto" }}>
               {Object.keys(LISTING_DISTRICTS).map(d => {
                 const dd = data.districts?.[d];
                 return <option key={d} value={d}>{d} ({dd?.count || 0})</option>;
               })}
             </select>
             <select value={sortBy} onChange={e => setSortBy(e.target.value)}
-              style={{ padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none" }}>
+              style={{ padding: "8px 12px", borderRadius: 8, border: `1px solid ${C.darkBorder}`, background: C.darkCard, color: "#E8ECF4", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", cursor: "pointer", outline: "none", flex: mob ? "1 1 100%" : "0 0 auto" }}>
               <option value="default">기본순</option>
               <option value="priceAsc">가격 낮은순</option>
               <option value="priceDesc">가격 높은순</option>
