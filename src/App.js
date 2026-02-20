@@ -2739,7 +2739,7 @@ function RedevelopmentMapPage() {
     legend: { display: "flex", gap: 10, flexWrap: "wrap" },
     legendItem: { display: "flex", alignItems: "center", gap: 5, fontSize: 10, color: "#8B92A5", whiteSpace: "nowrap" },
     legendDot: (type) => { const c = REDEV_COLORS[type]; return { width: 6, height: 6, borderRadius: "50%", background: c ? c.color : "#666" }; },
-    toggleBtn: { position: "absolute", top: 12, right: 12, zIndex: 600, background: "rgba(17,23,41,.9)", backdropFilter: "blur(8px)", border: `1px solid ${C.darkBorder}`, borderRadius: 10, padding: "8px 12px", color: "#E8ECF4", cursor: "pointer", fontSize: 12, fontFamily: "'Noto Sans KR',sans-serif", display: mob ? "block" : "none" },
+    toggleBtn: { position: "absolute", right: 12, bottom: 14, zIndex: 700, background: "rgba(17,23,41,.92)", backdropFilter: "blur(8px)", border: `1px solid ${C.darkBorder}`, borderRadius: 10, padding: "8px 12px", color: "#E8ECF4", cursor: "pointer", fontSize: 12, fontFamily: "'Noto Sans KR',sans-serif", display: mob ? "block" : "none", boxShadow: "0 8px 24px rgba(0,0,0,.35)" },
   };
 
   return (
@@ -2779,14 +2779,16 @@ function RedevelopmentMapPage() {
               <div style={s.statVal}>{totalUnits.toLocaleString()}</div>
               <div style={s.statLbl}>세대</div>
             </div>
-            <div style={{ ...s.statBadge, flexDirection: "row", gap: 8 }}>
-              {Object.entries(REDEV_COLORS).map(([t, c]) => (
-                <div key={t} style={s.legendItem}>
-                  <div style={s.legendDot(t)} />
-                  <span>{t}</span>
-                </div>
-              ))}
-            </div>
+            {!mob && (
+              <div style={{ ...s.statBadge, flexDirection: "row", gap: 8 }}>
+                {Object.entries(REDEV_COLORS).map(([t, c]) => (
+                  <div key={t} style={s.legendItem}>
+                    <div style={s.legendDot(t)} />
+                    <span>{t}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Mobile toggle */}
