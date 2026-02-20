@@ -3758,36 +3758,54 @@ function CleanupPage() {
 
         {/* Table */}
         <div style={{ ...cardS, overflow: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-            <thead>
-              <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
-                {[
-                  { k: "no", l: "#" },
-                  { k: "district", l: "자치구" },
-                  { k: "type", l: "사업구분" },
-                  { k: "name", l: "사업장명" },
-                  { k: "address", l: "대표지번" },
-                  { k: "stage", l: "진행단계" }
-                ].map(h => (
-                  <th key={h.k} onClick={() => handleSort(h.k)} style={{ padding: "10px 8px", textAlign: "left", color: "#8B92A5", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, userSelect: "none" }}>{h.l}{sArr(h.k)}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
+          {mob ? (
+            <div style={{ display: "grid", gap: 8 }}>
               {sorted.slice(0, 200).map((it, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
-                  <td style={{ padding: "8px", color: "#5a6480" }}>{it.no}</td>
-                  <td style={{ padding: "8px", color: "#ccc", whiteSpace: "nowrap" }}>{it.district}</td>
-                  <td style={{ padding: "8px", color: "#ccc" }}>{it.type}</td>
-                  <td style={{ padding: "8px", color: "#fff", fontWeight: 500 }}>{it.name}</td>
-                  <td style={{ padding: "8px", color: "#8B92A5", fontSize: 12 }}>{it.address}</td>
-                  <td style={{ padding: "8px" }}>
-                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (stageColors[it.stage] || "#6B7280") + "20", color: stageColors[it.stage] || "#6B7280" }}>{it.stage || "-"}</span>
-                  </td>
-                </tr>
+                <div key={i} style={{ border: "1px solid rgba(255,255,255,.06)", borderRadius: 10, padding: 10, background: "rgba(255,255,255,.02)" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 6 }}>
+                    <div style={{ color: "#fff", fontWeight: 600, lineHeight: 1.4 }}>{it.name}</div>
+                    <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (stageColors[it.stage] || "#6B7280") + "20", color: stageColors[it.stage] || "#6B7280", whiteSpace: "nowrap" }}>{it.stage || "-"}</span>
+                  </div>
+                  <div style={{ display: "grid", gap: 4, fontSize: 12, color: "#C5CAD6" }}>
+                    <div><span style={{ color: "#8B92A5" }}>#</span> {it.no} <span style={{ marginLeft: 8, color: "#8B92A5" }}>자치구</span> {it.district}</div>
+                    <div><span style={{ color: "#8B92A5" }}>사업구분</span> · {it.type}</div>
+                    <div><span style={{ color: "#8B92A5" }}>대표지번</span> · {it.address}</div>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          ) : (
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <thead>
+                <tr style={{ borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+                  {[
+                    { k: "no", l: "#" },
+                    { k: "district", l: "자치구" },
+                    { k: "type", l: "사업구분" },
+                    { k: "name", l: "사업장명" },
+                    { k: "address", l: "대표지번" },
+                    { k: "stage", l: "진행단계" }
+                  ].map(h => (
+                    <th key={h.k} onClick={() => handleSort(h.k)} style={{ padding: "10px 8px", textAlign: "left", color: "#8B92A5", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, userSelect: "none" }}>{h.l}{sArr(h.k)}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {sorted.slice(0, 200).map((it, i) => (
+                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}>
+                    <td style={{ padding: "8px", color: "#5a6480" }}>{it.no}</td>
+                    <td style={{ padding: "8px", color: "#ccc", whiteSpace: "nowrap" }}>{it.district}</td>
+                    <td style={{ padding: "8px", color: "#ccc" }}>{it.type}</td>
+                    <td style={{ padding: "8px", color: "#fff", fontWeight: 500 }}>{it.name}</td>
+                    <td style={{ padding: "8px", color: "#8B92A5", fontSize: 12 }}>{it.address}</td>
+                    <td style={{ padding: "8px" }}>
+                      <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: (stageColors[it.stage] || "#6B7280") + "20", color: stageColors[it.stage] || "#6B7280" }}>{it.stage || "-"}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
           {sorted.length > 200 && <p style={{ textAlign: "center", padding: 12, color: "#5a6480", fontSize: 12 }}>상위 200건 표시 중 (전체 {sorted.length}건)</p>}
           {sorted.length === 0 && <p style={{ textAlign: "center", padding: 24, color: "#5a6480" }}>검색 결과가 없습니다.</p>}
         </div>
