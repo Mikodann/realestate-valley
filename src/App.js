@@ -489,19 +489,22 @@ function RentTrendChart({ mob }) {
   useEffect(() => {
     fetch("./data/rent-trend.json")
       .then(r => r.json())
-      .then(d => {// 🔥 마지막 달 제거 (현재월 급락 방지)
-const last = (data.months || [])[(data.months || []).length - 1];
+      ..then(d => {
+  // 🔥 마지막 달 제거 (현재월 급락 방지)
+  const last = (d.months || [])[(d.months || []).length - 1];
 
-const months = (data.months || []).slice(0, -1);
+  const months = (d.months || []).slice(0, -1);
 
-const districts = {};
-for (const [gu, arr] of Object.entries(data.districts || {})) {
-  districts[gu] = (arr || []).filter((row) => row.month !== last);
-}
+  const districts = {};
+  for (const [gu, arr] of Object.entries(d.districts || {})) {
+    districts[gu] = (arr || []).filter((row) => row.month !== last);
+  }
 
-const filtered = { ...data, months, districts }; setData(d); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, []);
+  const filtered = { ...d, months, districts };
+
+  setData(filtered);
+  setLoading(false);
+})
 
   const chartData = useMemo(() => {
     if (!data || !data.districts) return [];
