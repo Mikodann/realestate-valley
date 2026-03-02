@@ -487,24 +487,38 @@ function RentTrendChart({ mob }) {
   const ZONE_COLORS = { "도심권": "#FF6B6B", "동북권": "#4ECDC4", "서북권": "#45B7D1", "서남권": "#FFA07A", "동남권": "#DDA0DD" };
 
   useEffect(() => {
-    fetch("./data/rent-trend.json")
-      .then(r => r.json())
-      .then(d => {
-  // 🔥 마지막 달 제거 (현재월 급락 방지)
-  const last = (d.months || [])[(d.months || []).length - 1];
+  fetch("./data/rent-trend.json")
+    .then((r) => r.json())
+    .then((d) => {
+      // 🔥 마지막 달(현재월) 제거
+      const monthsArr = d.months || [];
 
-  const months = (d.months || []).slice(0, -1);
+      // months가 1개 이하이면 그대로 사용
+      if (monthsArr.length <= 1) {
+        setData(d);
+        setLoading(false);
+        return;
+      }
 
-  const districts = {};
-  for (const [gu, arr] of Object.entries(d.districts || {})) {
-    districts[gu] = (arr || []).filter((row) => row.month !== last);
-  }
+      const last = monthsArr[monthsArr.length - 1];
 
-  const filtered = { ...d, months, districts };
+      const months = monthsArr.slice(0, -1);
 
-  setData(filtered);
-  setLoading(false);
-})
+      const districts = {};
+      for (const [gu, arr] of Object.entries(d.districts || {})) {
+        districts[gu] = (arr || []).filter((row) => row.month !== last);
+      }
+
+      const filtered = { ...d, months, districts };
+
+      setData(filtered);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("rent-trend fetch error:", err);
+      setLoading(false);
+    });
+}, []);
 
   const chartData = useMemo(() => {
     if (!data || !data.districts) return [];
