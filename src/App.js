@@ -489,7 +489,17 @@ function RentTrendChart({ mob }) {
   useEffect(() => {
     fetch("./data/rent-trend.json")
       .then(r => r.json())
-      .then(d => { setData(d); setLoading(false); })
+      .then(d => {// 🔥 마지막 달 제거 (현재월 급락 방지)
+const last = (data.months || [])[(data.months || []).length - 1];
+
+const months = (data.months || []).slice(0, -1);
+
+const districts = {};
+for (const [gu, arr] of Object.entries(data.districts || {})) {
+  districts[gu] = (arr || []).filter((row) => row.month !== last);
+}
+
+const filtered = { ...data, months, districts }; setData(d); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 
