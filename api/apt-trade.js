@@ -39,16 +39,7 @@ module.exports = async (req, res) => {
     return res.status(500).json({ error: "API key not configured" });
   }
 
-  const baseUrl = "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev";
-  const params = new URLSearchParams({
-    serviceKey: API_KEY,
-    LAWD_CD: region,
-    DEAL_YMD: year_month,
-    pageNo: "1",
-    numOfRows: "1000",
-  });
-
-  const url = `${baseUrl}?${params.toString()}`;
+  const url = `https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev?serviceKey=${API_KEY}&LAWD_CD=${region}&DEAL_YMD=${year_month}&pageNo=1&numOfRows=1000`;
 
   return new Promise((resolve) => {
     https.get(url, (apiRes) => {
