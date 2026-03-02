@@ -3120,7 +3120,7 @@ console.log("yearly:", supplyDetail?.yearly);
           <div style={{ ...cardS, marginBottom: 24 }}>
             <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🏗️ 서울 연도별 입주예정 (청약홈 기준)</h3>
             <ResponsiveContainer width="100%" height={260}>
-              <<BarChart data={supplyYearlyBars} margin={{ top: 10, right: 10, bottom: 5, left: 10 }}>
+              <BarChart data={supplyYearlyBars} margin={{ top: 10, right: 10, bottom: 5, left: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
                 <Legend wrapperStyle={{ fontSize: 12, color: "#8B92A5" }} />
                 <XAxis dataKey="year" tick={{ fill: "#5a6480", fontSize: 12 }} />
