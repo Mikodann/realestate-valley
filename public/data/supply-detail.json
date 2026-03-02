@@ -1,6 +1,6 @@
 {
-  "updated": "2026-02-19",
-  "total_records": 172,
+  "updated": "2026-03-03",
+  "total_records": 174,
   "yearly": [
     {
       "year": "2020",
@@ -34,8 +34,8 @@
     },
     {
       "year": "2026",
-      "count": 20,
-      "units": 4470
+      "count": 22,
+      "units": 4912
     },
     {
       "year": "2027",
@@ -1181,8 +1181,8 @@
     },
     {
       "month": "202604",
-      "count": 2,
-      "units": 287,
+      "count": 3,
+      "units": 348,
       "complexes": [
         {
           "name": "청량리 롯데캐슬 하이루체",
@@ -1195,6 +1195,12 @@
           "units": 114,
           "addr": "서울특별시 구로구 개봉동 369-1, 312-38",
           "builder": "(주)성호건설"
+        },
+        {
+          "name": "해링턴플레이스 노원 센트럴",
+          "units": 61,
+          "addr": "서울특별시 노원구 노원로 495 (상계동 690)",
+          "builder": "효성중공업 주식회사"
         }
       ]
     },
@@ -1232,14 +1238,20 @@
     },
     {
       "month": "202608",
-      "count": 3,
-      "units": 732,
+      "count": 4,
+      "units": 1113,
       "complexes": [
         {
           "name": "반포 래미안 트리니원",
           "units": 506,
           "addr": "서울특별시 서초구 반포동 1109번지 일대",
           "builder": "삼성물산(주)"
+        },
+        {
+          "name": "마곡지구 17단지 토지임대부(본청약)",
+          "units": 381,
+          "addr": "서울특별시 강서구 마곡동 747-1, 마곡지구 17단지",
+          "builder": "이수건설(주)"
         },
         {
           "name": "엘리프 미아역 2단지",
@@ -1618,6 +1630,30 @@
     }
   ],
   "recent": [
+    {
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "address": "서울특별시 강서구 마곡동 747-1, 마곡지구 17단지",
+      "builder": "이수건설(주)",
+      "developer": "서울주택도시개발공사",
+      "units": 381,
+      "announce_date": "2026-02-27",
+      "move_in": "202608",
+      "type": "국민",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000041&pblancNo=2026000041"
+    },
+    {
+      "name": "해링턴플레이스 노원 센트럴",
+      "address": "서울특별시 노원구 노원로 495 (상계동 690)",
+      "builder": "효성중공업 주식회사",
+      "developer": "주식회사 엘앤피개발",
+      "units": 61,
+      "announce_date": "2026-02-20",
+      "move_in": "202604",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000028&pblancNo=2026000028"
+    },
     {
       "name": "드파인 연희",
       "address": "서울특별시 서대문구 연희동 533-5번지 일원",
