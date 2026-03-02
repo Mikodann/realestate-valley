@@ -3027,7 +3027,7 @@ console.log("yearly:", supplyDetail?.yearly);
     ]).then(([s, u, ud, sd, comp]) => { setSupply(s); setUnsold(u); setUnsoldDetail(ud); setSupplyDetail(sd); setCompletion(comp); setLoading(false); }).catch(() => setLoading(false));
   }, []);
   // ✅ 청약홈 연도별 입주예정 차트 데이터 정규화
-  const supplyYearlyBars = (supplyDetail?.yearly || [])
+  const supplyYearlyBars = (supplyDetail?.yearly || []).filter(y => parseInt(y.year) >= 2026)
     .map((y) => {
       const yearNum = parseInt(String(y.year || ""), 10);
       const unitsNum = Number(String(y.units ?? 0).replace(/,/g, ""));
