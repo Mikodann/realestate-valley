@@ -126,7 +126,7 @@ function getRecentMonths(count) {
   const months = [];
   const now = new Date();
   for (let i = 0; i < count; i++) {
-    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const d = new Date(now.getFullYear(), now.getMonth() - 1 - i, 1);
     months.push(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`);
   }
   return months.reverse();
@@ -1834,7 +1834,7 @@ function AnalysisPage() {
     const code = REGION_CODES[district];
     const months = [];
     for (let i = 12; i >= 1; i--) {
-      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const d = new Date(now.getFullYear(), now.getMonth() - 1 - i, 1);
       months.push(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`);
     }
     const results = [];
