@@ -3025,7 +3025,21 @@ function SupplyPage() {
       fetch("/data/housing-completion.json").then(r => r.json()).catch(() => null)
     ]).then(([s, u, ud, sd, comp]) => { setSupply(s); setUnsold(u); setUnsoldDetail(ud); setSupplyDetail(sd); setCompletion(comp); setLoading(false); }).catch(() => setLoading(false));
   }, []);
-
+  // ✅ 청약홈 연도별 입주예정 차트 데이터 정규화
+  const supplyYearlyBars = (supplyDetail?.yearly || [])
+    .map((y) => {
+      const yearNum = parseInt(String(y.year || ""), 10);
+      const unitsNum = Number(String(y.units ?? 0).replace(/,/g, ""));
+      return {
+        year: String(y.year),
+        done: yearNum < 2026 ? unitsNum : 0,
+        upcoming: yearNum >= 2026 ? unitsNum : 0,
+      };
+    })
+    .filter((x) => {
+      const yearNum = parseInt(x.year, 10);
+      return yearNum >= 2020 && (x.done > 0 || x.upcoming > 0);
+    });
   if (loading) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>입주물량 데이터 로딩 중...</div>;
   if (!supply) return <div style={{ padding: 40, textAlign: "center", color: "#8B92A5" }}>데이터를 불러올 수 없습니다.</div>;
 
@@ -3105,7 +3119,7 @@ function SupplyPage() {
           <div style={{ ...cardS, marginBottom: 24 }}>
             <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 16 }}>🏗️ 서울 연도별 입주예정 (청약홈 기준)</h3>
             <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={supplyDetail.yearly.filter(y => parseInt(y.year) >= 2020).map(y => ({...y, done: parseInt(y.year) < 2026 ? y.units : 0, upcoming: parseInt(y.year) >= 2026 ? y.units : 0}))} margin={{ top: 10, right: 10, bottom: 5, left: 10 }}>
+              <<BarChart data={supplyYearlyBars} margin={{ top: 10, right: 10, bottom: 5, left: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,.06)" />
                 <Legend wrapperStyle={{ fontSize: 12, color: "#8B92A5" }} />
                 <XAxis dataKey="year" tick={{ fill: "#5a6480", fontSize: 12 }} />
