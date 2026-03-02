@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-22 22:00",
+  "updated": "2026-03-01 22:00",
   "months": [
     "202401",
     "202402",
@@ -26,7 +26,8 @@
     "202511",
     "202512",
     "202601",
-    "202602"
+    "202602",
+    "202603"
   ],
   "districts": {
     "종로구": [
@@ -207,6 +208,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -395,6 +403,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "용산구": [
@@ -575,6 +590,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -763,6 +785,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "광진구": [
@@ -943,6 +972,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -1131,6 +1167,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "중랑구": [
@@ -1311,6 +1354,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -1499,6 +1549,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "강북구": [
@@ -1679,6 +1736,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -1867,6 +1931,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "노원구": [
@@ -2047,6 +2118,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -2235,6 +2313,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "서대문구": [
@@ -2415,6 +2500,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -2603,6 +2695,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "양천구": [
@@ -2783,6 +2882,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -2971,6 +3077,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "구로구": [
@@ -3151,6 +3264,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -3339,6 +3459,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "영등포구": [
@@ -3519,6 +3646,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -3707,6 +3841,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "관악구": [
@@ -3887,6 +4028,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -4075,6 +4223,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "강남구": [
@@ -4255,6 +4410,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
@@ -4443,6 +4605,13 @@
         "jeonse_count": 0,
         "wolse_count": 0,
         "total": 0
+      },
+      {
+        "month": "202603",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
       }
     ],
     "강동구": [
@@ -4623,6 +4792,13 @@
       },
       {
         "month": "202602",
+        "jeonse_avg": 0,
+        "jeonse_count": 0,
+        "wolse_count": 0,
+        "total": 0
+      },
+      {
+        "month": "202603",
         "jeonse_avg": 0,
         "jeonse_count": 0,
         "wolse_count": 0,
