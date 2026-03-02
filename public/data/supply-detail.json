@@ -1,2985 +1,529 @@
 {
   "updated": "2026-03-02",
-  "total_records": 190,
-  "yearly": [
-    {
-      "year": "☎ 02",
-      "count": 19,
-      "units": 0
-    },
-    {
-      "year": "☎ 03",
-      "count": 76,
-      "units": 133
-    },
-    {
-      "year": "☎ 15",
-      "count": 19,
-      "units": 0
-    },
-    {
-      "year": "☎ 16",
-      "count": 38,
-      "units": 342
-    },
-    {
-      "year": "☎ 18",
-      "count": 38,
-      "units": 209
-    }
-  ],
-  "monthly": [
-    {
-      "month": "☎ 0293",
-      "count": 19,
-      "units": 0,
-      "complexes": [
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "효성중공업 주식회사",
-          "move_in": "☎ 0293",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 0312",
-      "count": 19,
-      "units": 0,
-      "complexes": [
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "두산건설 주식회사",
-          "move_in": "☎ 0312",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 0313",
-      "count": 19,
-      "units": 38,
-      "complexes": [
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 2,
-          "announce_date": "현대건설(주)",
-          "move_in": "☎ 0313",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 0316",
-      "count": 19,
-      "units": 95,
-      "complexes": [
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양전환 가능임대",
-          "units": 5,
-          "announce_date": "기해건설(주)",
-          "move_in": "☎ 0316",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 0318",
-      "count": 19,
-      "units": 0,
-      "complexes": [
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "쌍용건설 주식회사",
-          "move_in": "☎ 0318",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 1533",
-      "count": 19,
-      "units": 0,
-      "complexes": [
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 0,
-          "announce_date": "코오롱글로벌(주)",
-          "move_in": "☎ 1533",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 1600",
-      "count": 19,
-      "units": 323,
-      "complexes": [
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        },
-        {
-          "name": "국민",
-          "address": "분양주택",
-          "units": 17,
-          "announce_date": "이수건설(주)",
-          "move_in": "☎ 1600",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 1670",
-      "count": 19,
-      "units": 19,
-      "complexes": [
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 1,
-          "announce_date": "(주)호반건설",
-          "move_in": "☎ 1670",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "month": "☎ 1866",
-      "count": 38,
-      "units": 209,
-      "complexes": [
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 6,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        },
-        {
-          "name": "민영",
-          "address": "분양주택",
-          "units": 5,
-          "announce_date": "에이치디씨현대산업개발 주식회사",
-          "move_in": "☎ 1866",
-          "url": ""
-        }
-      ]
-    }
-  ],
+  "total_records": 58,
+  "yearly": [],
+  "monthly": [],
   "recent": [
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "효성중공업 주식회사",
-      "move_in": "☎ 0293",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "마곡지구 17단지 토지임대부(본청약)",
+      "type": "국민",
+      "rent": "분양주택",
+      "builder": "이수건설(주)",
+      "phone": "☎ 1600-3456",
+      "announce_date": "2026-02-27",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 2,
-      "announce_date": "현대건설(주)",
-      "move_in": "☎ 0313",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "코오롱글로벌(주)",
-      "move_in": "☎ 1533",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     },
     {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양주택",
-      "units": 17,
-      "announce_date": "이수건설(주)",
-      "move_in": "☎ 1600",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 6,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 5,
-      "announce_date": "에이치디씨현대산업개발 주식회사",
-      "move_in": "☎ 1866",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "쌍용건설 주식회사",
-      "move_in": "☎ 0318",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "민영",
-      "address": "분양주택",
-      "units": 0,
-      "announce_date": "두산건설 주식회사",
-      "move_in": "☎ 0312",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
-      "url": ""
-    },
-    {
-      "name": "국민",
-      "address": "분양전환 가능임대",
-      "units": 5,
-      "announce_date": "기해건설(주)",
-      "move_in": "☎ 0316",
+      "name": "해링턴플레이스 노원 센트럴",
+      "type": "민영",
+      "rent": "분양주택",
+      "builder": "효성중공업 주식회사",
+      "phone": "☎ 02-935-9067",
+      "announce_date": "2026-02-20",
       "url": ""
     }
   ]
