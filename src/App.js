@@ -3015,7 +3015,8 @@ function SupplyPage() {
   const [unsoldDistrict, setUnsoldDistrict] = useState("전체");
   const mob = useWindowSize() < 768;
   const [completion, setCompletion] = useState(null);
-
+console.log("supplyDetail:", supplyDetail);
+console.log("yearly:", supplyDetail?.yearly);
   useEffect(() => {
     Promise.all([
       fetch("/data/housing-supply.json").then(r => r.json()),
