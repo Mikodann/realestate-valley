@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-19",
+  "updated": "2026-03-03",
   "total": 1319,
   "by_type": {
     "초등학교": 610,
@@ -16420,6 +16420,20 @@
       "office": "서울특별시교육청"
     },
     {
+      "name": "서울홍신고등학교",
+      "type": "고등학교",
+      "district": "강서구",
+      "address": "서울특별시 강서구 강서로45길 70",
+      "address_detail": "(내발산동, 서울홍신고등학교)",
+      "tel": "070-8644-6300",
+      "homepage": "http://seoul-hongshin.sen.hs.kr",
+      "founded": "19870108",
+      "public": "사립",
+      "coed": "남여공학",
+      "code": "7011651",
+      "office": "서울특별시교육청"
+    },
+    {
       "name": "서일문화예술고등학교",
       "type": "고등학교",
       "district": "종로구",
@@ -18338,17 +18352,17 @@
       "office": "서울특별시교육청"
     },
     {
-      "name": "한양공업고등학교",
+      "name": "한양과학기술고등학교",
       "type": "고등학교",
       "district": "중구",
       "address": "서울특별시 중구 을지로 299",
       "address_detail": "(신당동)",
       "tel": "02-2238-5181",
-      "homepage": "http://www.hanyang.hs.kr",
+      "homepage": "http://hanyang.sen.hs.kr",
       "founded": "19450901",
       "public": "사립",
       "coed": "남",
-      "code": "7010377",
+      "code": "7011650",
       "office": "서울특별시교육청"
     },
     {
@@ -18531,20 +18545,6 @@
       "public": "사립",
       "coed": "남",
       "code": "7010265",
-      "office": "서울특별시교육청"
-    },
-    {
-      "name": "화곡보건경영고등학교",
-      "type": "고등학교",
-      "district": "강서구",
-      "address": "서울특별시 강서구 강서로45길 70",
-      "address_detail": "(내발산동, 화곡보건경영고등학교)",
-      "tel": "070-8644-6300",
-      "homepage": "http://seoul-hongshin.sen.hs.kr",
-      "founded": "19870108",
-      "public": "사립",
-      "coed": "남여공학",
-      "code": "7011089",
       "office": "서울특별시교육청"
     },
     {
