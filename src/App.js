@@ -3134,7 +3134,6 @@ console.log("yearly:", supplyDetail?.yearly);
                     {items.map((p,i) => (<div key={i} style={{ color: p.color }}>{p.name}: {p.value.toLocaleString()}세대</div>))}
                   </div>);
                 }} />
-                <Bar dataKey="done" fill="#5a6480" radius={[4, 4, 0, 0]} name="입주완료" label={{ position: "top", fill: "#8B92A5", fontSize: 10, formatter: v => v > 0 ? v.toLocaleString() : "" }} />
                 <Bar dataKey="upcoming" fill="#A78BFA" radius={[4, 4, 0, 0]} name="입주예정" label={{ position: "top", fill: "#A78BFA", fontSize: 10, formatter: v => v > 0 ? v.toLocaleString() : "" }} />
               </BarChart>
             </ResponsiveContainer>
