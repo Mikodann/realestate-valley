@@ -489,7 +489,7 @@ function RentTrendChart({ mob }) {
   useEffect(() => {
     fetch("./data/rent-trend.json")
       .then(r => r.json())
-      ..then(d => {
+      .then(d => {
   // 🔥 마지막 달 제거 (현재월 급락 방지)
   const last = (d.months || [])[(d.months || []).length - 1];
 
