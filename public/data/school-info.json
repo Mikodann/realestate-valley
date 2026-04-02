@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-03",
+  "updated": "2026-04-03",
   "total": 1319,
   "by_type": {
     "초등학교": 610,
@@ -8852,7 +8852,7 @@
       "address": "서울특별시 강동구 고덕로27길 12",
       "address_detail": "(암사동414-17)",
       "tel": "02-441-4651",
-      "homepage": "http://www.kangil.ms.kr",
+      "homepage": "http://kangil.sen.ms.kr",
       "founded": "19821209",
       "public": "공립",
       "coed": "남여공학",
@@ -12871,7 +12871,7 @@
       "address_detail": "(용산동2가)",
       "tel": "070-4000-3800",
       "homepage": "http://www.ys.ms.kr",
-      "founded": "19450909",
+      "founded": "19460909",
       "public": "공립",
       "coed": "남",
       "code": "7061112",
