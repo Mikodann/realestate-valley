@@ -1,6 +1,6 @@
 {
-  "updated": "2026-03-03",
-  "total_records": 174,
+  "updated": "2026-04-19",
+  "total_records": 182,
   "yearly": [
     {
       "year": "2020",
@@ -34,23 +34,23 @@
     },
     {
       "year": "2026",
-      "count": 22,
-      "units": 4912
+      "count": 23,
+      "units": 4998
     },
     {
       "year": "2027",
-      "count": 16,
-      "units": 4152
+      "count": 17,
+      "units": 4240
     },
     {
       "year": "2028",
-      "count": 10,
-      "units": 3644
+      "count": 12,
+      "units": 4285
     },
     {
       "year": "2029",
-      "count": 3,
-      "units": 1307
+      "count": 7,
+      "units": 2155
     },
     {
       "year": "2030",
@@ -1219,14 +1219,20 @@
     },
     {
       "month": "202607",
-      "count": 2,
-      "units": 172,
+      "count": 3,
+      "units": 258,
       "complexes": [
         {
           "name": "경희궁 유보라",
           "units": 108,
           "addr": "서울특별시 서대문구 영천동 69-20외 160필지",
           "builder": "(주)반도건설"
+        },
+        {
+          "name": "오티에르 반포",
+          "units": 86,
+          "addr": "서울특별시 서초구 잠원동 59-10번지 외 3필지",
+          "builder": "㈜포스코이앤씨"
         },
         {
           "name": "디 아테온(THE ATHEON)",
@@ -1351,8 +1357,8 @@
     },
     {
       "month": "202703",
-      "count": 3,
-      "units": 1303,
+      "count": 4,
+      "units": 1391,
       "complexes": [
         {
           "name": "푸르지오 라디우스 파크",
@@ -1371,6 +1377,12 @@
           "units": 122,
           "addr": "서울특별시 마포구 아현동 613-10번지 일원",
           "builder": "(주)대우건설"
+        },
+        {
+          "name": "이촌 르엘",
+          "units": 88,
+          "addr": "서울특별시 용산구 이촌동 301-160 일원",
+          "builder": "롯데건설 주식회사"
         }
       ]
     },
@@ -1540,14 +1552,20 @@
     },
     {
       "month": "202808",
-      "count": 2,
-      "units": 663,
+      "count": 3,
+      "units": 935,
       "complexes": [
         {
           "name": "고척 푸르지오 힐스테이트",
           "units": 576,
           "addr": "서울특별시 구로구 고척동 148-1",
           "builder": "(주)대우건설, 현대엔지니어링(주)"
+        },
+        {
+          "name": "래미안 엘라비네",
+          "units": 272,
+          "addr": "서울특별시 강서구 방화동 608-97번지 일대",
+          "builder": "삼성물산(주)"
         },
         {
           "name": "역삼센트럴자이",
@@ -1572,9 +1590,15 @@
     },
     {
       "month": "202812",
-      "count": 1,
-      "units": 263,
+      "count": 2,
+      "units": 632,
       "complexes": [
+        {
+          "name": "라클라체자이드파인",
+          "units": 369,
+          "addr": "서울특별시 동작구 노량진동 294-220번지 일대",
+          "builder": "지에스건설(주), 에스케이에코플랜트 주식회사"
+        },
         {
           "name": "동작구수방사 공공분양주택(본청약)",
           "units": 263,
@@ -1585,8 +1609,8 @@
     },
     {
       "month": "202901",
-      "count": 2,
-      "units": 507,
+      "count": 3,
+      "units": 684,
       "complexes": [
         {
           "name": "드파인 연희",
@@ -1595,10 +1619,55 @@
           "builder": "에스케이에코플랜트(주)"
         },
         {
+          "name": "공덕역자이르네",
+          "units": 177,
+          "addr": "서울특별시 마포구 도화동 16-1번지 일원",
+          "builder": "자이에스앤디(주)"
+        },
+        {
           "name": "리버센트 푸르지오 위브",
           "units": 175,
           "addr": "서울특별시 영등포구 영등포동5가 32-8번지 일원",
           "builder": "(주)대우건설, 두산건설(주)"
+        }
+      ]
+    },
+    {
+      "month": "202902",
+      "count": 1,
+      "units": 56,
+      "complexes": [
+        {
+          "name": "아크로 드 서초",
+          "units": 56,
+          "addr": "서울특별시 서초구 서초동 1333번지 일원",
+          "builder": "디엘이앤씨 주식회사"
+        }
+      ]
+    },
+    {
+      "month": "202903",
+      "count": 1,
+      "units": 138,
+      "complexes": [
+        {
+          "name": "더샵 프리엘라",
+          "units": 138,
+          "addr": "서울특별시 영등포구 문래동5가 22번지 일원 ",
+          "builder": "포스코이앤씨"
+        }
+      ]
+    },
+    {
+      "month": "202907",
+      "count": 1,
+      "units": 477,
+      "complexes": [
+        {
+          "name": "더샵 신길센트럴시티",
+          "units": 477,
+          "addr": "서울특별시 영등포구 신길동 413-8번지 일원",
+          "builder": "(주) 포스코이앤씨"
         }
       ]
     },
@@ -1630,6 +1699,102 @@
     }
   ],
   "recent": [
+    {
+      "name": "공덕역자이르네",
+      "address": "서울특별시 마포구 도화동 16-1번지 일원",
+      "builder": "자이에스앤디(주)",
+      "developer": "주식회사 에스시티공덕피에프브이",
+      "units": 177,
+      "announce_date": "2026-04-17",
+      "move_in": "202901",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000114&pblancNo=2026000114"
+    },
+    {
+      "name": "라클라체자이드파인",
+      "address": "서울특별시 동작구 노량진동 294-220번지 일대",
+      "builder": "지에스건설(주), 에스케이에코플랜트 주식회사",
+      "developer": "노량진6재정비촉진구역 주택재개발정비사업조합",
+      "units": 369,
+      "announce_date": "2026-04-03",
+      "move_in": "202812",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000094&pblancNo=2026000094"
+    },
+    {
+      "name": "오티에르 반포",
+      "address": "서울특별시 서초구 잠원동 59-10번지 외 3필지",
+      "builder": "㈜포스코이앤씨",
+      "developer": "신반포21차아파트주택재건축정비사업조합",
+      "units": 86,
+      "announce_date": "2026-03-31",
+      "move_in": "202607",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000058&pblancNo=2026000058"
+    },
+    {
+      "name": "이촌 르엘",
+      "address": "서울특별시 용산구 이촌동 301-160 일원",
+      "builder": "롯데건설 주식회사",
+      "developer": "이촌동 현대아파트 리모델링주택조합",
+      "units": 88,
+      "announce_date": "2026-03-30",
+      "move_in": "202703",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000048&pblancNo=2026000048"
+    },
+    {
+      "name": "더샵 신길센트럴시티",
+      "address": "서울특별시 영등포구 신길동 413-8번지 일원",
+      "builder": "(주) 포스코이앤씨",
+      "developer": "신길5동지역주택조합",
+      "units": 477,
+      "announce_date": "2026-03-20",
+      "move_in": "202907",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000064&pblancNo=2026000064"
+    },
+    {
+      "name": "아크로 드 서초",
+      "address": "서울특별시 서초구 서초동 1333번지 일원",
+      "builder": "디엘이앤씨 주식회사",
+      "developer": "서초신동아아파트 주택재건축정비사업조합",
+      "units": 56,
+      "announce_date": "2026-03-20",
+      "move_in": "202902",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2025000497&pblancNo=2025000497"
+    },
+    {
+      "name": "더샵 프리엘라",
+      "address": "서울특별시 영등포구 문래동5가 22번지 일원 ",
+      "builder": "포스코이앤씨",
+      "developer": "문래진주아파트 주택재건축정비사업조합",
+      "units": 138,
+      "announce_date": "2026-03-12",
+      "move_in": "202903",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000023&pblancNo=2026000023"
+    },
+    {
+      "name": "래미안 엘라비네",
+      "address": "서울특별시 강서구 방화동 608-97번지 일대",
+      "builder": "삼성물산(주)",
+      "developer": "방화6재정비촉진구역 주택재건축정비사업조합",
+      "units": 272,
+      "announce_date": "2026-03-06",
+      "move_in": "202808",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000039&pblancNo=2026000039"
+    },
     {
       "name": "마곡지구 17단지 토지임대부(본청약)",
       "address": "서울특별시 강서구 마곡동 747-1, 마곡지구 17단지",
