@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-19 22:00",
+  "updated": "2026-04-26 22:00",
   "months": [
     "202401",
     "202402",
@@ -216,17 +216,17 @@
       },
       {
         "month": "202603",
-        "jeonse_avg": 67673,
-        "jeonse_count": 47,
-        "wolse_count": 90,
-        "total": 137
+        "jeonse_avg": 69033,
+        "jeonse_count": 49,
+        "wolse_count": 99,
+        "total": 148
       },
       {
         "month": "202604",
-        "jeonse_avg": 60790,
-        "jeonse_count": 16,
-        "wolse_count": 16,
-        "total": 32
+        "jeonse_avg": 76601,
+        "jeonse_count": 26,
+        "wolse_count": 26,
+        "total": 52
       }
     ],
     "중구": [
@@ -269,8 +269,8 @@
         "month": "202406",
         "jeonse_avg": 57343,
         "jeonse_count": 125,
-        "wolse_count": 143,
-        "total": 268
+        "wolse_count": 144,
+        "total": 269
       },
       {
         "month": "202407",
@@ -381,8 +381,8 @@
         "month": "202510",
         "jeonse_avg": 65998,
         "jeonse_count": 128,
-        "wolse_count": 153,
-        "total": 281
+        "wolse_count": 155,
+        "total": 283
       },
       {
         "month": "202511",
@@ -409,22 +409,22 @@
         "month": "202602",
         "jeonse_avg": 61711,
         "jeonse_count": 137,
-        "wolse_count": 182,
-        "total": 319
+        "wolse_count": 184,
+        "total": 321
       },
       {
         "month": "202603",
-        "jeonse_avg": 64200,
-        "jeonse_count": 126,
-        "wolse_count": 150,
-        "total": 276
+        "jeonse_avg": 64485,
+        "jeonse_count": 130,
+        "wolse_count": 159,
+        "total": 289
       },
       {
         "month": "202604",
-        "jeonse_avg": 65728,
-        "jeonse_count": 34,
-        "wolse_count": 37,
-        "total": 71
+        "jeonse_avg": 65713,
+        "jeonse_count": 54,
+        "wolse_count": 64,
+        "total": 118
       }
     ],
     "용산구": [
@@ -523,8 +523,8 @@
         "month": "202502",
         "jeonse_avg": 76749,
         "jeonse_count": 328,
-        "wolse_count": 237,
-        "total": 565
+        "wolse_count": 238,
+        "total": 566
       },
       {
         "month": "202503",
@@ -593,36 +593,36 @@
         "month": "202512",
         "jeonse_avg": 89894,
         "jeonse_count": 290,
-        "wolse_count": 298,
-        "total": 588
+        "wolse_count": 299,
+        "total": 589
       },
       {
         "month": "202601",
         "jeonse_avg": 88471,
         "jeonse_count": 268,
-        "wolse_count": 268,
-        "total": 536
+        "wolse_count": 270,
+        "total": 538
       },
       {
         "month": "202602",
-        "jeonse_avg": 98416,
-        "jeonse_count": 239,
-        "wolse_count": 229,
-        "total": 468
+        "jeonse_avg": 98079,
+        "jeonse_count": 241,
+        "wolse_count": 230,
+        "total": 471
       },
       {
         "month": "202603",
-        "jeonse_avg": 80137,
-        "jeonse_count": 219,
-        "wolse_count": 305,
-        "total": 524
+        "jeonse_avg": 79556,
+        "jeonse_count": 230,
+        "wolse_count": 317,
+        "total": 547
       },
       {
         "month": "202604",
-        "jeonse_avg": 80667,
-        "jeonse_count": 72,
-        "wolse_count": 121,
-        "total": 193
+        "jeonse_avg": 82720,
+        "jeonse_count": 109,
+        "wolse_count": 222,
+        "total": 331
       }
     ],
     "성동구": [
@@ -747,10 +747,10 @@
       },
       {
         "month": "202506",
-        "jeonse_avg": 71599,
-        "jeonse_count": 665,
+        "jeonse_avg": 71546,
+        "jeonse_count": 666,
         "wolse_count": 411,
-        "total": 1076
+        "total": 1077
       },
       {
         "month": "202507",
@@ -798,29 +798,29 @@
         "month": "202601",
         "jeonse_avg": 76692,
         "jeonse_count": 648,
-        "wolse_count": 527,
-        "total": 1175
+        "wolse_count": 528,
+        "total": 1176
       },
       {
         "month": "202602",
-        "jeonse_avg": 76998,
-        "jeonse_count": 401,
-        "wolse_count": 349,
-        "total": 750
-      },
-      {
-        "month": "202603",
-        "jeonse_avg": 77136,
-        "jeonse_count": 440,
-        "wolse_count": 313,
+        "jeonse_avg": 76969,
+        "jeonse_count": 402,
+        "wolse_count": 351,
         "total": 753
       },
       {
+        "month": "202603",
+        "jeonse_avg": 77114,
+        "jeonse_count": 456,
+        "wolse_count": 324,
+        "total": 780
+      },
+      {
         "month": "202604",
-        "jeonse_avg": 72081,
-        "jeonse_count": 155,
-        "wolse_count": 96,
-        "total": 251
+        "jeonse_avg": 73022,
+        "jeonse_count": 240,
+        "wolse_count": 160,
+        "total": 400
       }
     ],
     "광진구": [
@@ -996,29 +996,29 @@
         "month": "202601",
         "jeonse_avg": 73292,
         "jeonse_count": 238,
-        "wolse_count": 221,
-        "total": 459
+        "wolse_count": 222,
+        "total": 460
       },
       {
         "month": "202602",
-        "jeonse_avg": 73924,
-        "jeonse_count": 173,
-        "wolse_count": 250,
-        "total": 423
+        "jeonse_avg": 73839,
+        "jeonse_count": 175,
+        "wolse_count": 254,
+        "total": 429
       },
       {
         "month": "202603",
-        "jeonse_avg": 78139,
-        "jeonse_count": 162,
-        "wolse_count": 231,
-        "total": 393
+        "jeonse_avg": 77895,
+        "jeonse_count": 166,
+        "wolse_count": 242,
+        "total": 408
       },
       {
         "month": "202604",
-        "jeonse_avg": 73508,
-        "jeonse_count": 77,
-        "wolse_count": 51,
-        "total": 128
+        "jeonse_avg": 74495,
+        "jeonse_count": 113,
+        "wolse_count": 85,
+        "total": 198
       }
     ],
     "동대문구": [
@@ -1108,17 +1108,17 @@
       },
       {
         "month": "202501",
-        "jeonse_avg": 50002,
-        "jeonse_count": 498,
+        "jeonse_avg": 50008,
+        "jeonse_count": 499,
         "wolse_count": 626,
-        "total": 1124
+        "total": 1125
       },
       {
         "month": "202502",
         "jeonse_avg": 49648,
         "jeonse_count": 638,
-        "wolse_count": 569,
-        "total": 1207
+        "wolse_count": 570,
+        "total": 1208
       },
       {
         "month": "202503",
@@ -1157,10 +1157,10 @@
       },
       {
         "month": "202508",
-        "jeonse_avg": 52071,
-        "jeonse_count": 412,
-        "wolse_count": 379,
-        "total": 791
+        "jeonse_avg": 52011,
+        "jeonse_count": 413,
+        "wolse_count": 380,
+        "total": 793
       },
       {
         "month": "202509",
@@ -1192,31 +1192,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 56882,
-        "jeonse_count": 410,
+        "jeonse_avg": 56866,
+        "jeonse_count": 411,
         "wolse_count": 502,
-        "total": 912
+        "total": 913
       },
       {
         "month": "202602",
-        "jeonse_avg": 55304,
-        "jeonse_count": 306,
-        "wolse_count": 400,
-        "total": 706
+        "jeonse_avg": 55286,
+        "jeonse_count": 313,
+        "wolse_count": 402,
+        "total": 715
       },
       {
         "month": "202603",
-        "jeonse_avg": 54649,
-        "jeonse_count": 279,
-        "wolse_count": 334,
-        "total": 613
+        "jeonse_avg": 54975,
+        "jeonse_count": 290,
+        "wolse_count": 346,
+        "total": 636
       },
       {
         "month": "202604",
-        "jeonse_avg": 56130,
-        "jeonse_count": 85,
-        "wolse_count": 124,
-        "total": 209
+        "jeonse_avg": 56487,
+        "jeonse_count": 140,
+        "wolse_count": 163,
+        "total": 303
       }
     ],
     "중랑구": [
@@ -1313,10 +1313,10 @@
       },
       {
         "month": "202502",
-        "jeonse_avg": 39241,
-        "jeonse_count": 264,
-        "wolse_count": 264,
-        "total": 528
+        "jeonse_avg": 39149,
+        "jeonse_count": 265,
+        "wolse_count": 265,
+        "total": 530
       },
       {
         "month": "202503",
@@ -1329,8 +1329,8 @@
         "month": "202504",
         "jeonse_avg": 40030,
         "jeonse_count": 220,
-        "wolse_count": 218,
-        "total": 438
+        "wolse_count": 219,
+        "total": 439
       },
       {
         "month": "202505",
@@ -1378,15 +1378,15 @@
         "month": "202511",
         "jeonse_avg": 44203,
         "jeonse_count": 236,
-        "wolse_count": 425,
-        "total": 661
+        "wolse_count": 426,
+        "total": 662
       },
       {
         "month": "202512",
         "jeonse_avg": 42497,
         "jeonse_count": 233,
-        "wolse_count": 570,
-        "total": 803
+        "wolse_count": 571,
+        "total": 804
       },
       {
         "month": "202601",
@@ -1397,24 +1397,24 @@
       },
       {
         "month": "202602",
-        "jeonse_avg": 32065,
-        "jeonse_count": 344,
-        "wolse_count": 367,
-        "total": 711
+        "jeonse_avg": 32244,
+        "jeonse_count": 347,
+        "wolse_count": 368,
+        "total": 715
       },
       {
         "month": "202603",
-        "jeonse_avg": 29432,
-        "jeonse_count": 338,
-        "wolse_count": 351,
-        "total": 689
+        "jeonse_avg": 29669,
+        "jeonse_count": 343,
+        "wolse_count": 359,
+        "total": 702
       },
       {
         "month": "202604",
-        "jeonse_avg": 43106,
-        "jeonse_count": 82,
-        "wolse_count": 156,
-        "total": 238
+        "jeonse_avg": 42486,
+        "jeonse_count": 120,
+        "wolse_count": 315,
+        "total": 435
       }
     ],
     "성북구": [
@@ -1511,10 +1511,10 @@
       },
       {
         "month": "202502",
-        "jeonse_avg": 46901,
-        "jeonse_count": 560,
-        "wolse_count": 342,
-        "total": 902
+        "jeonse_avg": 46903,
+        "jeonse_count": 561,
+        "wolse_count": 343,
+        "total": 904
       },
       {
         "month": "202503",
@@ -1541,15 +1541,15 @@
         "month": "202506",
         "jeonse_avg": 47915,
         "jeonse_count": 477,
-        "wolse_count": 340,
-        "total": 817
+        "wolse_count": 341,
+        "total": 818
       },
       {
         "month": "202507",
         "jeonse_avg": 49650,
         "jeonse_count": 484,
-        "wolse_count": 265,
-        "total": 749
+        "wolse_count": 266,
+        "total": 750
       },
       {
         "month": "202508",
@@ -1569,15 +1569,15 @@
         "month": "202510",
         "jeonse_avg": 50838,
         "jeonse_count": 411,
-        "wolse_count": 238,
-        "total": 649
+        "wolse_count": 239,
+        "total": 650
       },
       {
         "month": "202511",
         "jeonse_avg": 53610,
         "jeonse_count": 449,
-        "wolse_count": 305,
-        "total": 754
+        "wolse_count": 306,
+        "total": 755
       },
       {
         "month": "202512",
@@ -1588,31 +1588,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 54522,
-        "jeonse_count": 419,
-        "wolse_count": 356,
+        "jeonse_avg": 54492,
+        "jeonse_count": 420,
+        "wolse_count": 355,
         "total": 775
       },
       {
         "month": "202602",
-        "jeonse_avg": 53806,
-        "jeonse_count": 332,
-        "wolse_count": 256,
-        "total": 588
+        "jeonse_avg": 53723,
+        "jeonse_count": 334,
+        "wolse_count": 259,
+        "total": 593
       },
       {
         "month": "202603",
-        "jeonse_avg": 49413,
-        "jeonse_count": 427,
-        "wolse_count": 292,
-        "total": 719
+        "jeonse_avg": 49533,
+        "jeonse_count": 434,
+        "wolse_count": 298,
+        "total": 732
       },
       {
         "month": "202604",
-        "jeonse_avg": 53885,
-        "jeonse_count": 143,
-        "wolse_count": 69,
-        "total": 212
+        "jeonse_avg": 53697,
+        "jeonse_count": 201,
+        "wolse_count": 125,
+        "total": 326
       }
     ],
     "강북구": [
@@ -1625,10 +1625,10 @@
       },
       {
         "month": "202402",
-        "jeonse_avg": 34943,
-        "jeonse_count": 152,
+        "jeonse_avg": 34878,
+        "jeonse_count": 153,
         "wolse_count": 129,
-        "total": 281
+        "total": 282
       },
       {
         "month": "202403",
@@ -1711,8 +1711,8 @@
         "month": "202502",
         "jeonse_avg": 36908,
         "jeonse_count": 155,
-        "wolse_count": 137,
-        "total": 292
+        "wolse_count": 138,
+        "total": 293
       },
       {
         "month": "202503",
@@ -1781,8 +1781,8 @@
         "month": "202512",
         "jeonse_avg": 44738,
         "jeonse_count": 116,
-        "wolse_count": 171,
-        "total": 287
+        "wolse_count": 172,
+        "total": 288
       },
       {
         "month": "202601",
@@ -1793,24 +1793,24 @@
       },
       {
         "month": "202602",
-        "jeonse_avg": 44495,
-        "jeonse_count": 105,
+        "jeonse_avg": 44393,
+        "jeonse_count": 107,
         "wolse_count": 135,
-        "total": 240
+        "total": 242
       },
       {
         "month": "202603",
-        "jeonse_avg": 40778,
-        "jeonse_count": 116,
-        "wolse_count": 107,
-        "total": 223
+        "jeonse_avg": 40411,
+        "jeonse_count": 118,
+        "wolse_count": 117,
+        "total": 235
       },
       {
         "month": "202604",
-        "jeonse_avg": 43544,
-        "jeonse_count": 53,
-        "wolse_count": 44,
-        "total": 97
+        "jeonse_avg": 44497,
+        "jeonse_count": 81,
+        "wolse_count": 65,
+        "total": 146
       }
     ],
     "도봉구": [
@@ -1914,10 +1914,10 @@
       },
       {
         "month": "202503",
-        "jeonse_avg": 30888,
-        "jeonse_count": 365,
+        "jeonse_avg": 30940,
+        "jeonse_count": 366,
         "wolse_count": 191,
-        "total": 556
+        "total": 557
       },
       {
         "month": "202504",
@@ -1970,17 +1970,17 @@
       },
       {
         "month": "202511",
-        "jeonse_avg": 32507,
-        "jeonse_count": 245,
-        "wolse_count": 207,
+        "jeonse_avg": 32548,
+        "jeonse_count": 244,
+        "wolse_count": 208,
         "total": 452
       },
       {
         "month": "202512",
-        "jeonse_avg": 33060,
-        "jeonse_count": 261,
+        "jeonse_avg": 33121,
+        "jeonse_count": 262,
         "wolse_count": 185,
-        "total": 446
+        "total": 447
       },
       {
         "month": "202601",
@@ -1991,24 +1991,24 @@
       },
       {
         "month": "202602",
-        "jeonse_avg": 32766,
-        "jeonse_count": 254,
-        "wolse_count": 185,
-        "total": 439
+        "jeonse_avg": 32808,
+        "jeonse_count": 257,
+        "wolse_count": 189,
+        "total": 446
       },
       {
         "month": "202603",
-        "jeonse_avg": 32755,
-        "jeonse_count": 269,
-        "wolse_count": 201,
-        "total": 470
+        "jeonse_avg": 32773,
+        "jeonse_count": 273,
+        "wolse_count": 206,
+        "total": 479
       },
       {
         "month": "202604",
-        "jeonse_avg": 33071,
-        "jeonse_count": 114,
-        "wolse_count": 56,
-        "total": 170
+        "jeonse_avg": 32605,
+        "jeonse_count": 168,
+        "wolse_count": 88,
+        "total": 256
       }
     ],
     "노원구": [
@@ -2030,8 +2030,8 @@
         "month": "202403",
         "jeonse_avg": 30016,
         "jeonse_count": 1180,
-        "wolse_count": 694,
-        "total": 1874
+        "wolse_count": 695,
+        "total": 1875
       },
       {
         "month": "202404",
@@ -2084,10 +2084,10 @@
       },
       {
         "month": "202411",
-        "jeonse_avg": 32406,
-        "jeonse_count": 838,
+        "jeonse_avg": 32413,
+        "jeonse_count": 839,
         "wolse_count": 562,
-        "total": 1400
+        "total": 1401
       },
       {
         "month": "202412",
@@ -2177,45 +2177,45 @@
         "month": "202512",
         "jeonse_avg": 35306,
         "jeonse_count": 894,
-        "wolse_count": 649,
-        "total": 1543
+        "wolse_count": 651,
+        "total": 1545
       },
       {
         "month": "202601",
-        "jeonse_avg": 33899,
-        "jeonse_count": 1043,
-        "wolse_count": 796,
-        "total": 1839
+        "jeonse_avg": 33929,
+        "jeonse_count": 1046,
+        "wolse_count": 798,
+        "total": 1844
       },
       {
         "month": "202602",
-        "jeonse_avg": 32008,
-        "jeonse_count": 874,
-        "wolse_count": 724,
-        "total": 1598
+        "jeonse_avg": 32080,
+        "jeonse_count": 881,
+        "wolse_count": 731,
+        "total": 1612
       },
       {
         "month": "202603",
-        "jeonse_avg": 30620,
-        "jeonse_count": 876,
-        "wolse_count": 744,
-        "total": 1620
+        "jeonse_avg": 30651,
+        "jeonse_count": 890,
+        "wolse_count": 769,
+        "total": 1659
       },
       {
         "month": "202604",
-        "jeonse_avg": 32278,
-        "jeonse_count": 290,
-        "wolse_count": 209,
-        "total": 499
+        "jeonse_avg": 33018,
+        "jeonse_count": 425,
+        "wolse_count": 317,
+        "total": 742
       }
     ],
     "은평구": [
       {
         "month": "202401",
-        "jeonse_avg": 42811,
-        "jeonse_count": 446,
+        "jeonse_avg": 42831,
+        "jeonse_count": 447,
         "wolse_count": 283,
-        "total": 729
+        "total": 730
       },
       {
         "month": "202402",
@@ -2247,10 +2247,10 @@
       },
       {
         "month": "202406",
-        "jeonse_avg": 47085,
-        "jeonse_count": 530,
+        "jeonse_avg": 47091,
+        "jeonse_count": 532,
         "wolse_count": 258,
-        "total": 788
+        "total": 790
       },
       {
         "month": "202407",
@@ -2312,15 +2312,15 @@
         "month": "202503",
         "jeonse_avg": 45203,
         "jeonse_count": 527,
-        "wolse_count": 302,
-        "total": 829
+        "wolse_count": 303,
+        "total": 830
       },
       {
         "month": "202504",
         "jeonse_avg": 45784,
         "jeonse_count": 431,
-        "wolse_count": 305,
-        "total": 736
+        "wolse_count": 306,
+        "total": 737
       },
       {
         "month": "202505",
@@ -2338,10 +2338,10 @@
       },
       {
         "month": "202507",
-        "jeonse_avg": 48094,
-        "jeonse_count": 456,
+        "jeonse_avg": 48065,
+        "jeonse_count": 457,
         "wolse_count": 323,
-        "total": 779
+        "total": 780
       },
       {
         "month": "202508",
@@ -2354,8 +2354,8 @@
         "month": "202509",
         "jeonse_avg": 45867,
         "jeonse_count": 442,
-        "wolse_count": 287,
-        "total": 729
+        "wolse_count": 288,
+        "total": 730
       },
       {
         "month": "202510",
@@ -2380,31 +2380,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 50256,
-        "jeonse_count": 437,
-        "wolse_count": 402,
-        "total": 839
+        "jeonse_avg": 50246,
+        "jeonse_count": 439,
+        "wolse_count": 403,
+        "total": 842
       },
       {
         "month": "202602",
-        "jeonse_avg": 48945,
-        "jeonse_count": 353,
-        "wolse_count": 293,
-        "total": 646
+        "jeonse_avg": 48860,
+        "jeonse_count": 354,
+        "wolse_count": 297,
+        "total": 651
       },
       {
         "month": "202603",
-        "jeonse_avg": 49412,
-        "jeonse_count": 452,
-        "wolse_count": 341,
-        "total": 793
+        "jeonse_avg": 49449,
+        "jeonse_count": 455,
+        "wolse_count": 352,
+        "total": 807
       },
       {
         "month": "202604",
-        "jeonse_avg": 51315,
-        "jeonse_count": 147,
-        "wolse_count": 169,
-        "total": 316
+        "jeonse_avg": 43464,
+        "jeonse_count": 306,
+        "wolse_count": 303,
+        "total": 609
       }
     ],
     "서대문구": [
@@ -2424,10 +2424,10 @@
       },
       {
         "month": "202403",
-        "jeonse_avg": 51278,
-        "jeonse_count": 365,
+        "jeonse_avg": 51283,
+        "jeonse_count": 366,
         "wolse_count": 243,
-        "total": 608
+        "total": 609
       },
       {
         "month": "202404",
@@ -2564,45 +2564,45 @@
       },
       {
         "month": "202511",
-        "jeonse_avg": 57980,
-        "jeonse_count": 402,
+        "jeonse_avg": 57856,
+        "jeonse_count": 403,
         "wolse_count": 280,
-        "total": 682
+        "total": 683
       },
       {
         "month": "202512",
-        "jeonse_avg": 58765,
-        "jeonse_count": 410,
-        "wolse_count": 407,
-        "total": 817
+        "jeonse_avg": 58801,
+        "jeonse_count": 411,
+        "wolse_count": 410,
+        "total": 821
       },
       {
         "month": "202601",
         "jeonse_avg": 60092,
         "jeonse_count": 437,
-        "wolse_count": 304,
-        "total": 741
+        "wolse_count": 305,
+        "total": 742
       },
       {
         "month": "202602",
         "jeonse_avg": 60128,
         "jeonse_count": 287,
-        "wolse_count": 340,
-        "total": 627
+        "wolse_count": 341,
+        "total": 628
       },
       {
         "month": "202603",
-        "jeonse_avg": 58304,
-        "jeonse_count": 288,
-        "wolse_count": 253,
-        "total": 541
+        "jeonse_avg": 58166,
+        "jeonse_count": 295,
+        "wolse_count": 260,
+        "total": 555
       },
       {
         "month": "202604",
-        "jeonse_avg": 55670,
-        "jeonse_count": 119,
-        "wolse_count": 107,
-        "total": 226
+        "jeonse_avg": 56974,
+        "jeonse_count": 171,
+        "wolse_count": 160,
+        "total": 331
       }
     ],
     "마포구": [
@@ -2624,29 +2624,29 @@
         "month": "202403",
         "jeonse_avg": 58237,
         "jeonse_count": 648,
-        "wolse_count": 583,
-        "total": 1231
+        "wolse_count": 584,
+        "total": 1232
       },
       {
         "month": "202404",
         "jeonse_avg": 63183,
         "jeonse_count": 436,
-        "wolse_count": 401,
-        "total": 837
+        "wolse_count": 402,
+        "total": 838
       },
       {
         "month": "202405",
         "jeonse_avg": 60725,
         "jeonse_count": 507,
-        "wolse_count": 474,
-        "total": 981
+        "wolse_count": 475,
+        "total": 982
       },
       {
         "month": "202406",
         "jeonse_avg": 64031,
         "jeonse_count": 483,
-        "wolse_count": 394,
-        "total": 877
+        "wolse_count": 395,
+        "total": 878
       },
       {
         "month": "202407",
@@ -2673,8 +2673,8 @@
         "month": "202410",
         "jeonse_avg": 66032,
         "jeonse_count": 533,
-        "wolse_count": 401,
-        "total": 934
+        "wolse_count": 402,
+        "total": 935
       },
       {
         "month": "202411",
@@ -2776,31 +2776,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 69288,
-        "jeonse_count": 593,
-        "wolse_count": 621,
-        "total": 1214
+        "jeonse_avg": 69352,
+        "jeonse_count": 596,
+        "wolse_count": 622,
+        "total": 1218
       },
       {
         "month": "202602",
-        "jeonse_avg": 67903,
-        "jeonse_count": 439,
-        "wolse_count": 445,
-        "total": 884
+        "jeonse_avg": 67824,
+        "jeonse_count": 442,
+        "wolse_count": 449,
+        "total": 891
       },
       {
         "month": "202603",
-        "jeonse_avg": 70827,
-        "jeonse_count": 395,
-        "wolse_count": 598,
-        "total": 993
+        "jeonse_avg": 70698,
+        "jeonse_count": 410,
+        "wolse_count": 614,
+        "total": 1024
       },
       {
         "month": "202604",
-        "jeonse_avg": 68504,
-        "jeonse_count": 154,
-        "wolse_count": 157,
-        "total": 311
+        "jeonse_avg": 70577,
+        "jeonse_count": 235,
+        "wolse_count": 260,
+        "total": 495
       }
     ],
     "양천구": [
@@ -2836,15 +2836,15 @@
         "month": "202405",
         "jeonse_avg": 52883,
         "jeonse_count": 638,
-        "wolse_count": 403,
-        "total": 1041
+        "wolse_count": 405,
+        "total": 1043
       },
       {
         "month": "202406",
-        "jeonse_avg": 55900,
-        "jeonse_count": 610,
-        "wolse_count": 261,
-        "total": 871
+        "jeonse_avg": 55913,
+        "jeonse_count": 611,
+        "wolse_count": 262,
+        "total": 873
       },
       {
         "month": "202407",
@@ -2946,10 +2946,10 @@
       },
       {
         "month": "202509",
-        "jeonse_avg": 57437,
-        "jeonse_count": 556,
+        "jeonse_avg": 57435,
+        "jeonse_count": 557,
         "wolse_count": 357,
-        "total": 913
+        "total": 914
       },
       {
         "month": "202510",
@@ -2974,31 +2974,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 61030,
-        "jeonse_count": 588,
-        "wolse_count": 377,
-        "total": 965
+        "jeonse_avg": 60998,
+        "jeonse_count": 590,
+        "wolse_count": 381,
+        "total": 971
       },
       {
         "month": "202602",
         "jeonse_avg": 61855,
-        "jeonse_count": 459,
-        "wolse_count": 264,
-        "total": 723
+        "jeonse_count": 465,
+        "wolse_count": 267,
+        "total": 732
       },
       {
         "month": "202603",
-        "jeonse_avg": 57991,
-        "jeonse_count": 493,
-        "wolse_count": 344,
-        "total": 837
+        "jeonse_avg": 58671,
+        "jeonse_count": 505,
+        "wolse_count": 349,
+        "total": 854
       },
       {
         "month": "202604",
-        "jeonse_avg": 53749,
-        "jeonse_count": 185,
-        "wolse_count": 147,
-        "total": 332
+        "jeonse_avg": 55213,
+        "jeonse_count": 272,
+        "wolse_count": 230,
+        "total": 502
       }
     ],
     "강서구": [
@@ -3006,8 +3006,8 @@
         "month": "202401",
         "jeonse_avg": 44529,
         "jeonse_count": 789,
-        "wolse_count": 568,
-        "total": 1357
+        "wolse_count": 569,
+        "total": 1358
       },
       {
         "month": "202402",
@@ -3018,10 +3018,10 @@
       },
       {
         "month": "202403",
-        "jeonse_avg": 39488,
-        "jeonse_count": 868,
+        "jeonse_avg": 39508,
+        "jeonse_count": 869,
         "wolse_count": 485,
-        "total": 1353
+        "total": 1354
       },
       {
         "month": "202404",
@@ -3081,10 +3081,10 @@
       },
       {
         "month": "202412",
-        "jeonse_avg": 47936,
-        "jeonse_count": 575,
+        "jeonse_avg": 47929,
+        "jeonse_count": 576,
         "wolse_count": 476,
-        "total": 1051
+        "total": 1052
       },
       {
         "month": "202501",
@@ -3125,8 +3125,8 @@
         "month": "202506",
         "jeonse_avg": 44940,
         "jeonse_count": 693,
-        "wolse_count": 794,
-        "total": 1487
+        "wolse_count": 795,
+        "total": 1488
       },
       {
         "month": "202507",
@@ -3172,31 +3172,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 49365,
-        "jeonse_count": 646,
-        "wolse_count": 662,
-        "total": 1308
+        "jeonse_avg": 49393,
+        "jeonse_count": 647,
+        "wolse_count": 663,
+        "total": 1310
       },
       {
         "month": "202602",
-        "jeonse_avg": 49459,
-        "jeonse_count": 512,
-        "wolse_count": 392,
-        "total": 904
+        "jeonse_avg": 49570,
+        "jeonse_count": 519,
+        "wolse_count": 394,
+        "total": 913
       },
       {
         "month": "202603",
-        "jeonse_avg": 43294,
-        "jeonse_count": 616,
-        "wolse_count": 517,
-        "total": 1133
+        "jeonse_avg": 43288,
+        "jeonse_count": 633,
+        "wolse_count": 539,
+        "total": 1172
       },
       {
         "month": "202604",
-        "jeonse_avg": 46596,
-        "jeonse_count": 223,
-        "wolse_count": 163,
-        "total": 386
+        "jeonse_avg": 47671,
+        "jeonse_count": 327,
+        "wolse_count": 278,
+        "total": 605
       }
     ],
     "구로구": [
@@ -3260,15 +3260,15 @@
         "month": "202409",
         "jeonse_avg": 38277,
         "jeonse_count": 339,
-        "wolse_count": 447,
-        "total": 786
+        "wolse_count": 448,
+        "total": 787
       },
       {
         "month": "202410",
-        "jeonse_avg": 39518,
-        "jeonse_count": 376,
+        "jeonse_avg": 39559,
+        "jeonse_count": 377,
         "wolse_count": 395,
-        "total": 771
+        "total": 772
       },
       {
         "month": "202411",
@@ -3293,10 +3293,10 @@
       },
       {
         "month": "202502",
-        "jeonse_avg": 39762,
-        "jeonse_count": 469,
+        "jeonse_avg": 39751,
+        "jeonse_count": 470,
         "wolse_count": 577,
-        "total": 1046
+        "total": 1047
       },
       {
         "month": "202503",
@@ -3316,8 +3316,8 @@
         "month": "202505",
         "jeonse_avg": 39434,
         "jeonse_count": 433,
-        "wolse_count": 422,
-        "total": 855
+        "wolse_count": 423,
+        "total": 856
       },
       {
         "month": "202506",
@@ -3365,36 +3365,36 @@
         "month": "202512",
         "jeonse_avg": 36361,
         "jeonse_count": 519,
-        "wolse_count": 563,
-        "total": 1082
+        "wolse_count": 564,
+        "total": 1083
       },
       {
         "month": "202601",
-        "jeonse_avg": 41154,
-        "jeonse_count": 449,
-        "wolse_count": 419,
-        "total": 868
+        "jeonse_avg": 41104,
+        "jeonse_count": 451,
+        "wolse_count": 423,
+        "total": 874
       },
       {
         "month": "202602",
         "jeonse_avg": 42107,
         "jeonse_count": 375,
-        "wolse_count": 397,
-        "total": 772
+        "wolse_count": 399,
+        "total": 774
       },
       {
         "month": "202603",
-        "jeonse_avg": 42508,
-        "jeonse_count": 340,
-        "wolse_count": 517,
-        "total": 857
+        "jeonse_avg": 42455,
+        "jeonse_count": 346,
+        "wolse_count": 530,
+        "total": 876
       },
       {
         "month": "202604",
-        "jeonse_avg": 34673,
-        "jeonse_count": 168,
-        "wolse_count": 126,
-        "total": 294
+        "jeonse_avg": 33672,
+        "jeonse_count": 290,
+        "wolse_count": 266,
+        "total": 556
       }
     ],
     "금천구": [
@@ -3421,10 +3421,10 @@
       },
       {
         "month": "202404",
-        "jeonse_avg": 34350,
-        "jeonse_count": 177,
+        "jeonse_avg": 34325,
+        "jeonse_count": 178,
         "wolse_count": 102,
-        "total": 279
+        "total": 280
       },
       {
         "month": "202405",
@@ -3570,29 +3570,29 @@
         "month": "202601",
         "jeonse_avg": 38594,
         "jeonse_count": 128,
-        "wolse_count": 166,
-        "total": 294
+        "wolse_count": 168,
+        "total": 296
       },
       {
         "month": "202602",
-        "jeonse_avg": 38181,
-        "jeonse_count": 124,
+        "jeonse_avg": 38179,
+        "jeonse_count": 125,
         "wolse_count": 101,
-        "total": 225
+        "total": 226
       },
       {
         "month": "202603",
-        "jeonse_avg": 37719,
-        "jeonse_count": 127,
-        "wolse_count": 130,
-        "total": 257
+        "jeonse_avg": 37361,
+        "jeonse_count": 131,
+        "wolse_count": 133,
+        "total": 264
       },
       {
         "month": "202604",
-        "jeonse_avg": 39625,
-        "jeonse_count": 35,
-        "wolse_count": 32,
-        "total": 67
+        "jeonse_avg": 40884,
+        "jeonse_count": 52,
+        "wolse_count": 58,
+        "total": 110
       }
     ],
     "영등포구": [
@@ -3670,8 +3670,8 @@
         "month": "202411",
         "jeonse_avg": 55657,
         "jeonse_count": 510,
-        "wolse_count": 693,
-        "total": 1203
+        "wolse_count": 694,
+        "total": 1204
       },
       {
         "month": "202412",
@@ -3684,8 +3684,8 @@
         "month": "202501",
         "jeonse_avg": 54095,
         "jeonse_count": 469,
-        "wolse_count": 364,
-        "total": 833
+        "wolse_count": 365,
+        "total": 834
       },
       {
         "month": "202502",
@@ -3705,15 +3705,15 @@
         "month": "202504",
         "jeonse_avg": 57416,
         "jeonse_count": 606,
-        "wolse_count": 347,
-        "total": 953
+        "wolse_count": 348,
+        "total": 954
       },
       {
         "month": "202505",
         "jeonse_avg": 54717,
         "jeonse_count": 525,
-        "wolse_count": 352,
-        "total": 877
+        "wolse_count": 353,
+        "total": 878
       },
       {
         "month": "202506",
@@ -3726,8 +3726,8 @@
         "month": "202507",
         "jeonse_avg": 55766,
         "jeonse_count": 575,
-        "wolse_count": 515,
-        "total": 1090
+        "wolse_count": 517,
+        "total": 1092
       },
       {
         "month": "202508",
@@ -3759,38 +3759,38 @@
       },
       {
         "month": "202512",
-        "jeonse_avg": 64394,
-        "jeonse_count": 537,
+        "jeonse_avg": 64384,
+        "jeonse_count": 538,
         "wolse_count": 434,
-        "total": 971
+        "total": 972
       },
       {
         "month": "202601",
         "jeonse_avg": 61214,
         "jeonse_count": 614,
-        "wolse_count": 461,
-        "total": 1075
+        "wolse_count": 462,
+        "total": 1076
       },
       {
         "month": "202602",
-        "jeonse_avg": 62113,
-        "jeonse_count": 517,
-        "wolse_count": 487,
-        "total": 1004
+        "jeonse_avg": 62358,
+        "jeonse_count": 521,
+        "wolse_count": 491,
+        "total": 1012
       },
       {
         "month": "202603",
-        "jeonse_avg": 61877,
-        "jeonse_count": 466,
-        "wolse_count": 567,
-        "total": 1033
+        "jeonse_avg": 62305,
+        "jeonse_count": 482,
+        "wolse_count": 585,
+        "total": 1067
       },
       {
         "month": "202604",
-        "jeonse_avg": 59704,
-        "jeonse_count": 156,
-        "wolse_count": 156,
-        "total": 312
+        "jeonse_avg": 59917,
+        "jeonse_count": 221,
+        "wolse_count": 212,
+        "total": 433
       }
     ],
     "동작구": [
@@ -3938,8 +3938,8 @@
         "month": "202509",
         "jeonse_avg": 65666,
         "jeonse_count": 490,
-        "wolse_count": 236,
-        "total": 726
+        "wolse_count": 237,
+        "total": 727
       },
       {
         "month": "202510",
@@ -3959,36 +3959,36 @@
         "month": "202512",
         "jeonse_avg": 66084,
         "jeonse_count": 483,
-        "wolse_count": 391,
-        "total": 874
+        "wolse_count": 392,
+        "total": 875
       },
       {
         "month": "202601",
-        "jeonse_avg": 67478,
-        "jeonse_count": 535,
-        "wolse_count": 433,
-        "total": 968
+        "jeonse_avg": 67560,
+        "jeonse_count": 539,
+        "wolse_count": 436,
+        "total": 975
       },
       {
         "month": "202602",
-        "jeonse_avg": 63022,
-        "jeonse_count": 430,
-        "wolse_count": 354,
-        "total": 784
+        "jeonse_avg": 62881,
+        "jeonse_count": 433,
+        "wolse_count": 355,
+        "total": 788
       },
       {
         "month": "202603",
-        "jeonse_avg": 64143,
-        "jeonse_count": 391,
-        "wolse_count": 313,
-        "total": 704
+        "jeonse_avg": 64341,
+        "jeonse_count": 404,
+        "wolse_count": 321,
+        "total": 725
       },
       {
         "month": "202604",
-        "jeonse_avg": 66384,
-        "jeonse_count": 128,
-        "wolse_count": 130,
-        "total": 258
+        "jeonse_avg": 66619,
+        "jeonse_count": 201,
+        "wolse_count": 184,
+        "total": 385
       }
     ],
     "관악구": [
@@ -4122,8 +4122,8 @@
         "month": "202507",
         "jeonse_avg": 46749,
         "jeonse_count": 296,
-        "wolse_count": 237,
-        "total": 533
+        "wolse_count": 238,
+        "total": 534
       },
       {
         "month": "202508",
@@ -4150,8 +4150,8 @@
         "month": "202511",
         "jeonse_avg": 49367,
         "jeonse_count": 294,
-        "wolse_count": 215,
-        "total": 509
+        "wolse_count": 216,
+        "total": 510
       },
       {
         "month": "202512",
@@ -4162,31 +4162,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 49286,
-        "jeonse_count": 247,
-        "wolse_count": 322,
-        "total": 569
+        "jeonse_avg": 49207,
+        "jeonse_count": 249,
+        "wolse_count": 324,
+        "total": 573
       },
       {
         "month": "202602",
-        "jeonse_avg": 48745,
-        "jeonse_count": 216,
-        "wolse_count": 294,
-        "total": 510
+        "jeonse_avg": 48751,
+        "jeonse_count": 217,
+        "wolse_count": 295,
+        "total": 512
       },
       {
         "month": "202603",
-        "jeonse_avg": 48576,
-        "jeonse_count": 214,
-        "wolse_count": 213,
-        "total": 427
+        "jeonse_avg": 48684,
+        "jeonse_count": 223,
+        "wolse_count": 226,
+        "total": 449
       },
       {
         "month": "202604",
-        "jeonse_avg": 47591,
-        "jeonse_count": 80,
-        "wolse_count": 64,
-        "total": 144
+        "jeonse_avg": 47799,
+        "jeonse_count": 123,
+        "wolse_count": 98,
+        "total": 221
       }
     ],
     "서초구": [
@@ -4285,8 +4285,8 @@
         "month": "202502",
         "jeonse_avg": 95557,
         "jeonse_count": 726,
-        "wolse_count": 777,
-        "total": 1503
+        "wolse_count": 778,
+        "total": 1504
       },
       {
         "month": "202503",
@@ -4325,10 +4325,10 @@
       },
       {
         "month": "202508",
-        "jeonse_avg": 95538,
-        "jeonse_count": 978,
+        "jeonse_avg": 95487,
+        "jeonse_count": 979,
         "wolse_count": 866,
-        "total": 1844
+        "total": 1845
       },
       {
         "month": "202509",
@@ -4355,36 +4355,36 @@
         "month": "202512",
         "jeonse_avg": 108065,
         "jeonse_count": 775,
-        "wolse_count": 726,
-        "total": 1501
+        "wolse_count": 728,
+        "total": 1503
       },
       {
         "month": "202601",
-        "jeonse_avg": 101274,
-        "jeonse_count": 653,
+        "jeonse_avg": 101354,
+        "jeonse_count": 655,
         "wolse_count": 671,
-        "total": 1324
+        "total": 1326
       },
       {
         "month": "202602",
-        "jeonse_avg": 83196,
-        "jeonse_count": 594,
-        "wolse_count": 474,
-        "total": 1068
+        "jeonse_avg": 83424,
+        "jeonse_count": 602,
+        "wolse_count": 477,
+        "total": 1079
       },
       {
         "month": "202603",
-        "jeonse_avg": 105015,
-        "jeonse_count": 499,
-        "wolse_count": 434,
-        "total": 933
+        "jeonse_avg": 105337,
+        "jeonse_count": 511,
+        "wolse_count": 455,
+        "total": 966
       },
       {
         "month": "202604",
-        "jeonse_avg": 100517,
-        "jeonse_count": 154,
-        "wolse_count": 121,
-        "total": 275
+        "jeonse_avg": 105889,
+        "jeonse_count": 222,
+        "wolse_count": 204,
+        "total": 426
       }
     ],
     "강남구": [
@@ -4495,10 +4495,10 @@
       },
       {
         "month": "202504",
-        "jeonse_avg": 77808,
-        "jeonse_count": 1093,
-        "wolse_count": 781,
-        "total": 1874
+        "jeonse_avg": 77785,
+        "jeonse_count": 1095,
+        "wolse_count": 782,
+        "total": 1877
       },
       {
         "month": "202505",
@@ -4532,8 +4532,8 @@
         "month": "202509",
         "jeonse_avg": 95910,
         "jeonse_count": 927,
-        "wolse_count": 836,
-        "total": 1763
+        "wolse_count": 837,
+        "total": 1764
       },
       {
         "month": "202510",
@@ -4551,38 +4551,38 @@
       },
       {
         "month": "202512",
-        "jeonse_avg": 96047,
-        "jeonse_count": 1274,
-        "wolse_count": 1197,
-        "total": 2471
+        "jeonse_avg": 96024,
+        "jeonse_count": 1276,
+        "wolse_count": 1198,
+        "total": 2474
       },
       {
         "month": "202601",
-        "jeonse_avg": 93946,
-        "jeonse_count": 1090,
-        "wolse_count": 946,
-        "total": 2036
+        "jeonse_avg": 93976,
+        "jeonse_count": 1093,
+        "wolse_count": 949,
+        "total": 2042
       },
       {
         "month": "202602",
-        "jeonse_avg": 98478,
-        "jeonse_count": 658,
-        "wolse_count": 748,
-        "total": 1406
+        "jeonse_avg": 98137,
+        "jeonse_count": 665,
+        "wolse_count": 754,
+        "total": 1419
       },
       {
         "month": "202603",
-        "jeonse_avg": 91161,
-        "jeonse_count": 671,
-        "wolse_count": 827,
-        "total": 1498
+        "jeonse_avg": 91096,
+        "jeonse_count": 691,
+        "wolse_count": 852,
+        "total": 1543
       },
       {
         "month": "202604",
-        "jeonse_avg": 92502,
-        "jeonse_count": 239,
-        "wolse_count": 236,
-        "total": 475
+        "jeonse_avg": 93661,
+        "jeonse_count": 368,
+        "wolse_count": 369,
+        "total": 737
       }
     ],
     "송파구": [
@@ -4693,10 +4693,10 @@
       },
       {
         "month": "202504",
-        "jeonse_avg": 65717,
-        "jeonse_count": 1201,
+        "jeonse_avg": 65675,
+        "jeonse_count": 1202,
         "wolse_count": 739,
-        "total": 1940
+        "total": 1941
       },
       {
         "month": "202505",
@@ -4742,10 +4742,10 @@
       },
       {
         "month": "202511",
-        "jeonse_avg": 82138,
-        "jeonse_count": 1070,
-        "wolse_count": 781,
-        "total": 1851
+        "jeonse_avg": 82122,
+        "jeonse_count": 1071,
+        "wolse_count": 782,
+        "total": 1853
       },
       {
         "month": "202512",
@@ -4756,31 +4756,31 @@
       },
       {
         "month": "202601",
-        "jeonse_avg": 75437,
-        "jeonse_count": 1038,
-        "wolse_count": 989,
-        "total": 2027
+        "jeonse_avg": 75447,
+        "jeonse_count": 1039,
+        "wolse_count": 990,
+        "total": 2029
       },
       {
         "month": "202602",
-        "jeonse_avg": 74687,
-        "jeonse_count": 814,
-        "wolse_count": 644,
-        "total": 1458
+        "jeonse_avg": 74716,
+        "jeonse_count": 822,
+        "wolse_count": 656,
+        "total": 1478
       },
       {
         "month": "202603",
-        "jeonse_avg": 74125,
-        "jeonse_count": 866,
-        "wolse_count": 814,
-        "total": 1680
+        "jeonse_avg": 74134,
+        "jeonse_count": 885,
+        "wolse_count": 841,
+        "total": 1726
       },
       {
         "month": "202604",
-        "jeonse_avg": 79559,
-        "jeonse_count": 294,
-        "wolse_count": 230,
-        "total": 524
+        "jeonse_avg": 79724,
+        "jeonse_count": 415,
+        "wolse_count": 406,
+        "total": 821
       }
     ],
     "강동구": [
@@ -4809,15 +4809,15 @@
         "month": "202404",
         "jeonse_avg": 50358,
         "jeonse_count": 788,
-        "wolse_count": 431,
-        "total": 1219
+        "wolse_count": 432,
+        "total": 1220
       },
       {
         "month": "202405",
         "jeonse_avg": 51875,
         "jeonse_count": 766,
-        "wolse_count": 617,
-        "total": 1383
+        "wolse_count": 618,
+        "total": 1384
       },
       {
         "month": "202406",
@@ -4884,10 +4884,10 @@
       },
       {
         "month": "202503",
-        "jeonse_avg": 42746,
-        "jeonse_count": 1369,
+        "jeonse_avg": 42762,
+        "jeonse_count": 1370,
         "wolse_count": 817,
-        "total": 2186
+        "total": 2187
       },
       {
         "month": "202504",
@@ -4914,15 +4914,15 @@
         "month": "202507",
         "jeonse_avg": 55508,
         "jeonse_count": 686,
-        "wolse_count": 575,
-        "total": 1261
+        "wolse_count": 576,
+        "total": 1262
       },
       {
         "month": "202508",
         "jeonse_avg": 54422,
         "jeonse_count": 648,
-        "wolse_count": 536,
-        "total": 1184
+        "wolse_count": 537,
+        "total": 1185
       },
       {
         "month": "202509",
@@ -4949,36 +4949,36 @@
         "month": "202512",
         "jeonse_avg": 60302,
         "jeonse_count": 702,
-        "wolse_count": 711,
-        "total": 1413
+        "wolse_count": 713,
+        "total": 1415
       },
       {
         "month": "202601",
-        "jeonse_avg": 61740,
-        "jeonse_count": 781,
-        "wolse_count": 658,
-        "total": 1439
+        "jeonse_avg": 61690,
+        "jeonse_count": 782,
+        "wolse_count": 660,
+        "total": 1442
       },
       {
         "month": "202602",
-        "jeonse_avg": 61936,
-        "jeonse_count": 559,
-        "wolse_count": 396,
-        "total": 955
+        "jeonse_avg": 61981,
+        "jeonse_count": 564,
+        "wolse_count": 401,
+        "total": 965
       },
       {
         "month": "202603",
-        "jeonse_avg": 61152,
-        "jeonse_count": 547,
-        "wolse_count": 572,
-        "total": 1119
+        "jeonse_avg": 61036,
+        "jeonse_count": 562,
+        "wolse_count": 589,
+        "total": 1151
       },
       {
         "month": "202604",
-        "jeonse_avg": 55664,
-        "jeonse_count": 246,
-        "wolse_count": 152,
-        "total": 398
+        "jeonse_avg": 57235,
+        "jeonse_count": 346,
+        "wolse_count": 333,
+        "total": 679
       }
     ]
   }
