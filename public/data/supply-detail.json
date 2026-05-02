@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-19",
-  "total_records": 182,
+  "updated": "2026-05-03",
+  "total_records": 183,
   "yearly": [
     {
       "year": "2020",
@@ -44,8 +44,8 @@
     },
     {
       "year": "2028",
-      "count": 12,
-      "units": 4285
+      "count": 13,
+      "units": 4384
     },
     {
       "year": "2029",
@@ -1577,9 +1577,15 @@
     },
     {
       "month": "202809",
-      "count": 1,
-      "units": 82,
+      "count": 2,
+      "units": 181,
       "complexes": [
+        {
+          "name": "더 리치먼드 미아",
+          "units": 99,
+          "addr": "서울특별시 강북구 미아동 703-13번지",
+          "builder": "태원건설산업(주)"
+        },
         {
           "name": "제기동역 아이파크",
           "units": 82,
@@ -1699,6 +1705,18 @@
     }
   ],
   "recent": [
+    {
+      "name": "더 리치먼드 미아",
+      "address": "서울특별시 강북구 미아동 703-13번지",
+      "builder": "태원건설산업(주)",
+      "developer": "우리자산신탁 주식회사",
+      "units": 99,
+      "announce_date": "2026-04-27",
+      "move_in": "202809",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000156&pblancNo=2026000156"
+    },
     {
       "name": "공덕역자이르네",
       "address": "서울특별시 마포구 도화동 16-1번지 일원",
