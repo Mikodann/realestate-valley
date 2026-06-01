@@ -5,9 +5,9 @@ import {
 } from "recharts";
 import {
   Home, TrendingUp, Calculator, MapPin, ChevronRight, ArrowUpRight,
-  ArrowDownRight, Building2, DollarSign, Percent, Lock, BarChart3,
-  PiggyBank, FileText, Shield, Zap, ArrowRight, Eye, EyeOff,
-  Sparkles, LogOut, Menu, X, RefreshCw, Loader2, Database, Wifi, WifiOff,
+  ArrowDownRight, Building2, DollarSign, Lock, BarChart3,
+  PiggyBank, FileText, Shield, ArrowRight, Eye, EyeOff,
+  Sparkles, LogOut, Menu, X, Database, Wifi, WifiOff,
   Newspaper, Brain, ExternalLink, Clock, TrendingDown, Play, Search, Map
 } from "lucide-react";
 
@@ -350,6 +350,7 @@ function Nav({ currentPage, setCurrentPage, onLogout }) {
     { id: "listings", label: "매물검색", icon: Search },
     { id: "cleanup", label: "정비사업", icon: Building2 },
     { id: "history", label: "시세추이", icon: TrendingUp },
+    { id: "prediction", label: "시세예측", icon: Brain },
     { id: "school", label: "학군정보", icon: MapPin },
     { id: "supply", label: "입주물량", icon: Building2 },
     { id: "news", label: "뉴스", icon: Newspaper },
@@ -475,7 +476,6 @@ function RentTrendChart({ mob }) {
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState("zone");
   const [selectedZone, setSelectedZone] = useState("동남권");
-  const [selectedDist, setSelectedDist] = useState("강남구");
 
   const ZONES = {
     "도심권": ["종로구","중구","용산구"],
@@ -604,7 +604,6 @@ function HousingSupplyChart({ mob }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const COLORS = { "전국": "#8B92A5", "수도권": "#4ECDC4", "서울": "#0066FF" };
 
   useEffect(() => {
     fetch("./data/housing-supply.json")
@@ -1339,7 +1338,6 @@ function DashboardPage() {
   }, []);
 
   const now = new Date();
-  const curYM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}`;
   const prevYM = (() => { const d = new Date(now.getFullYear(), now.getMonth() - 1, 1); return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`; })();
 
   const months = useMemo(() => getRecentMonths(6), []);
@@ -2943,7 +2941,6 @@ function RedevelopmentMapPage() {
 
             <div style={{ padding: 6 }}>
               {filtered.map((p, i) => {
-                const c = REDEV_COLORS[p.type];
                 return (
                   <div key={i} style={s.card(selected === i)} onClick={() => focusProject(i)}
                     onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,.04)"; }}
@@ -3053,7 +3050,6 @@ console.log("yearly:", supplyDetail?.yearly);
   // 미분양 데이터 처리
   const unsoldData = unsold ? unsold.data : {};
   const unsoldDistricts = ["전체", ...Object.keys(unsoldData)];
-  const latestMonth = Object.keys(Object.values(unsoldData)[0] || {}).sort().pop() || "";
 
   // 구별 최신 미분양
   const districtUnsold = Object.entries(unsoldData).map(([gu, months]) => {
@@ -3082,11 +3078,6 @@ console.log("yearly:", supplyDetail?.yearly);
     seoulTotal += vals[vals.length - 1] || 0;
   });
 
-  // 최근 인허가 합계
-  const seoulSupply = supply["서울"] || [];
-  const latestSupply = seoulSupply.length > 0 ? seoulSupply[seoulSupply.length - 1].value : 0;
-  const prevSupply = seoulSupply.length > 1 ? seoulSupply[seoulSupply.length - 2].value : 0;
-  const supplyChange = latestSupply - prevSupply;
 
   const cardS = { background: "rgba(255,255,255,.03)", border: "1px solid rgba(255,255,255,.06)", borderRadius: 16, padding: mob ? 16 : 20 };
   const selS = { background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 8, padding: "8px 12px", color: "#fff", fontSize: 13, fontFamily: "'Noto Sans KR',sans-serif", outline: "none", cursor: "pointer" };
@@ -3692,7 +3683,6 @@ function CleanupPage() {
   const [filterStage, setFilterStage] = useState("전체");
   const [sortKey, setSortKey] = useState("no");
   const [sortAsc, setSortAsc] = useState(true);
-  const [viewMode, setViewMode] = useState("table");
   const mob = useWindowSize() < 1024;
 
   useEffect(() => {
@@ -4183,6 +4173,7 @@ export default function App() {
       {page === "listings" && <ListingsPage />}
       {page === "cleanup" && <CleanupPage />}
       {page === "history" && <AptHistoryPage />}
+      {page === "prediction" && <PredictionPage />}
       {page === "school" && <SchoolInfoPage />}
       {page === "supply" && <SupplyPage />}
       {page === "news" && <NewsPage />}
