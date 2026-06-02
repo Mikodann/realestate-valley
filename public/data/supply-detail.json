@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-03",
-  "total_records": 183,
+  "updated": "2026-06-03",
+  "total_records": 185,
   "yearly": [
     {
       "year": "2020",
@@ -49,13 +49,13 @@
     },
     {
       "year": "2029",
-      "count": 7,
-      "units": 2155
+      "count": 8,
+      "units": 2440
     },
     {
       "year": "2030",
-      "count": 1,
-      "units": 242
+      "count": 2,
+      "units": 674
     }
   ],
   "monthly": [
@@ -1679,14 +1679,20 @@
     },
     {
       "month": "202908",
-      "count": 1,
-      "units": 800,
+      "count": 2,
+      "units": 1085,
       "complexes": [
         {
           "name": "더샵 퍼스트월드",
           "units": 800,
           "addr": "서울특별시 중랑구 상봉동 83-1번지 일원",
           "builder": "(주)포스코이앤씨"
+        },
+        {
+          "name": "아크로 리버스카이",
+          "units": 285,
+          "addr": "서울특별시 동작구 대방동 23-61번지 일대",
+          "builder": "디엘이앤씨 주식회사"
         }
       ]
     },
@@ -1702,9 +1708,46 @@
           "builder": "에이치디씨현대산업개발 주식회사"
         }
       ]
+    },
+    {
+      "month": "203006",
+      "count": 1,
+      "units": 432,
+      "complexes": [
+        {
+          "name": "써밋 더힐",
+          "units": 432,
+          "addr": "서울특별시 동작구 흑석동 304번지 일원",
+          "builder": "(주)대우건설"
+        }
+      ]
     }
   ],
   "recent": [
+    {
+      "name": "써밋 더힐",
+      "address": "서울특별시 동작구 흑석동 304번지 일원",
+      "builder": "(주)대우건설",
+      "developer": "흑석11재정비촉진구역재개발정비사업조합",
+      "units": 432,
+      "announce_date": "2026-05-15",
+      "move_in": "203006",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000120&pblancNo=2026000120"
+    },
+    {
+      "name": "아크로 리버스카이",
+      "address": "서울특별시 동작구 대방동 23-61번지 일대",
+      "builder": "디엘이앤씨 주식회사",
+      "developer": "노량진8재정비촉진구역주택재개발정비사업조합",
+      "units": 285,
+      "announce_date": "2026-05-13",
+      "move_in": "202908",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000116&pblancNo=2026000116"
+    },
     {
       "name": "더 리치먼드 미아",
       "address": "서울특별시 강북구 미아동 703-13번지",
