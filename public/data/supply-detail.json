@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-03",
-  "total_records": 185,
+  "updated": "2026-07-03",
+  "total_records": 189,
   "yearly": [
     {
       "year": "2020",
@@ -34,8 +34,8 @@
     },
     {
       "year": "2026",
-      "count": 23,
-      "units": 4998
+      "count": 24,
+      "units": 5004
     },
     {
       "year": "2027",
@@ -49,13 +49,13 @@
     },
     {
       "year": "2029",
-      "count": 8,
-      "units": 2440
+      "count": 9,
+      "units": 2611
     },
     {
       "year": "2030",
-      "count": 2,
-      "units": 674
+      "count": 4,
+      "units": 1778
     }
   ],
   "monthly": [
@@ -1219,8 +1219,8 @@
     },
     {
       "month": "202607",
-      "count": 3,
-      "units": 258,
+      "count": 4,
+      "units": 264,
       "complexes": [
         {
           "name": "경희궁 유보라",
@@ -1239,6 +1239,12 @@
           "units": 64,
           "addr": "서울특별시 강동구 길동 336-1번지",
           "builder": "(주)에이블피엔지"
+        },
+        {
+          "name": "북서울자이 폴라리스(보류지)",
+          "units": 6,
+          "addr": "서울특별시 강북구 미아동 791-364번지 일대 (미아 3구역 주택재개발 정비사업)",
+          "builder": "지에스건설 (주)"
         }
       ]
     },
@@ -1697,6 +1703,32 @@
       ]
     },
     {
+      "month": "202911",
+      "count": 1,
+      "units": 171,
+      "complexes": [
+        {
+          "name": "드파인 아르티아",
+          "units": 171,
+          "addr": "서울특별시 동작구 노량진동 312-75번지 일대",
+          "builder": "에스케이에코플랜트 주식회사"
+        }
+      ]
+    },
+    {
+      "month": "203002",
+      "count": 1,
+      "units": 72,
+      "complexes": [
+        {
+          "name": "동작 센트럴 동문 디 이스트",
+          "units": 72,
+          "addr": "서울특별시 동작구 상도동 363-10번지 일원",
+          "builder": "동문건설(주)"
+        }
+      ]
+    },
+    {
       "month": "203003",
       "count": 1,
       "units": 242,
@@ -1721,9 +1753,70 @@
           "builder": "(주)대우건설"
         }
       ]
+    },
+    {
+      "month": "203009",
+      "count": 1,
+      "units": 1032,
+      "complexes": [
+        {
+          "name": "장위 푸르지오 마크원",
+          "units": 1032,
+          "addr": "서울특별시 성북구 장위동 68-37 일대",
+          "builder": "(주)대우건설"
+        }
+      ]
     }
   ],
   "recent": [
+    {
+      "name": "동작 센트럴 동문 디 이스트",
+      "address": "서울특별시 동작구 상도동 363-10번지 일원",
+      "builder": "동문건설(주)",
+      "developer": "장승배기역지역주택조합",
+      "units": 72,
+      "announce_date": "2026-07-02",
+      "move_in": "203002",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000153&pblancNo=2026000153"
+    },
+    {
+      "name": "장위 푸르지오 마크원",
+      "address": "서울특별시 성북구 장위동 68-37 일대",
+      "builder": "(주)대우건설",
+      "developer": "장위10구역주택재개발정비사업조합",
+      "units": 1032,
+      "announce_date": "2026-06-19",
+      "move_in": "203009",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000275&pblancNo=2026000275"
+    },
+    {
+      "name": "드파인 아르티아",
+      "address": "서울특별시 동작구 노량진동 312-75번지 일대",
+      "builder": "에스케이에코플랜트 주식회사",
+      "developer": "노량진2재정비촉진구역재개발정비사업조합",
+      "units": 171,
+      "announce_date": "2026-06-19",
+      "move_in": "202911",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000241&pblancNo=2026000241"
+    },
+    {
+      "name": "북서울자이 폴라리스(보류지)",
+      "address": "서울특별시 강북구 미아동 791-364번지 일대 (미아 3구역 주택재개발 정비사업)",
+      "builder": "지에스건설 (주)",
+      "developer": "미아제3구역주택재개발정비사업조합",
+      "units": 6,
+      "announce_date": "2026-06-12",
+      "move_in": "202607",
+      "type": "민영",
+      "rent": "분양주택",
+      "url": "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancDetail.do?houseManageNo=2026000235&pblancNo=2026000235"
+    },
     {
       "name": "써밋 더힐",
       "address": "서울특별시 동작구 흑석동 304번지 일원",
